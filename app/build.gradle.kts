@@ -45,4 +45,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //otp
+    implementation ("com.github.mukeshsolanki:android-otpview-pinview:2.1.2")
+
 }
