@@ -31,7 +31,7 @@
             android:name=".register.RegisterPembeliActivity"
             android:exported="false" />
         <activity
-            android:name=".role.pembeli.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

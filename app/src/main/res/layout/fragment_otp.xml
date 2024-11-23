@@ -14,14 +14,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="200dp"
             android:background="@drawable/bg_header_rounded"
             android:padding="25dp">
 
             <ImageButton
                 android:id="@+id/btnBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
                 android:background="@drawable/back_button_selector"
                 android:src="@drawable/ic_arrow_back"
                 android:contentDescription="@string/back_button"
@@ -40,7 +40,7 @@
                 android:gravity="end"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="6dp"
-                android:layout_marginTop="80dp" />
+                android:layout_marginTop="60dp" />
 
             <!-- Teks "account" -->
             <TextView
@@ -54,7 +54,7 @@
                 android:gravity="end"
                 android:layout_below="@id/txtCreateYour"
                 android:layout_alignStart="@id/txtCreateYour"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="0dp" />
         </RelativeLayout>
 
         <!-- Scrollable Content -->
@@ -75,9 +75,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@{otpregistPembVM.otpregistPembModel.txtVerifikasifour}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:gravity="center"
+                    android:textSize="16sp"
                     tools:text="Verifikasi 4 digit kode dari email anda!" />
+
+                <EditText
+                    android:id="@+id/yourName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:padding="12dp"
+                    android:inputType="textPersonName"
+                    android:layout_marginTop="10dp"/>
 
 <!--                <com.mukesh.OtpView-->
 <!--                    android:id="@+id/otpViewOtpview"-->
@@ -85,13 +94,13 @@
 <!--                    android:layout_height="wrap_content"-->
 <!--                    android:layout_gravity="center"-->
 <!--                    android:inputType="number"-->
-<!--                    android:itemBackground="@color/white"-->
+<!--                    android:itemBackground="#FFFFFF"-->
 <!--                    app:OtpItemCount="4"-->
 <!--                    app:OtpItemHeight="54dp"-->
 <!--                    app:OtpItemSpacing="16dp"-->
 <!--                    app:OtpItemWidth="54dp"-->
-<!--                    app:OtpLineColor="@color/black"-->
-<!--                    app:OtpViewType="rectangle" />-->
+<!--                    app:OtpLineColor="#000000"-->
+<!--                    app:OtpViewType="rectangle"/>-->
             </LinearLayout>
         </ScrollView>
 

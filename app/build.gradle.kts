@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.dicoding.projectcapstone"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.dicoding.projectcapstone"
@@ -33,6 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -46,7 +50,14 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //otp
-    implementation ("com.github.mukeshsolanki:android-otpview-pinview:2.1.2")
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    //otp
+    implementation (libs.otpview)
+//    implementation ("com.github.mukeshsolanki:android-otpview-pinview:2.1.2")
+
+    implementation ("androidx.appcompat:appcompat:1.6.1")
+    implementation ("com.google.android.material:material:1.9.0")
 }
