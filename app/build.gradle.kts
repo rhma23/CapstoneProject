@@ -53,7 +53,6 @@ dependencies {
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
     //otp
     implementation (libs.otpview)
 //    implementation ("com.github.mukeshsolanki:android-otpview-pinview:2.1.2")
