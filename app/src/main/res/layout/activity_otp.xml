@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/white"
+        android:orientation="vertical"
         tools:context=".otp.OtpFragment">
 
         <!-- Header Section -->
@@ -24,34 +24,34 @@
                 android:id="@+id/btnBack"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:background="@drawable/back_button_selector"
-                android:src="@drawable/ic_arrow_back"
-                android:contentDescription="@string/back_button"
                 android:layout_alignParentStart="true"
-                android:elevation="4dp" />
+                android:background="@drawable/back_button_selector"
+                android:contentDescription="@string/back_button"
+                android:elevation="4dp"
+                android:src="@drawable/ic_arrow_back" />
 
             <!-- Title -->
             <TextView
                 android:id="@+id/txtCreateYour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="60dp"
                 android:text="Code"
                 android:textColor="@android:color/white"
                 android:textSize="32sp"
-                android:textStyle="bold"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="60dp" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/txtCreateYour"
+                android:layout_alignStart="@id/txtCreateYour"
                 android:text="Verification"
                 android:textColor="@android:color/white"
                 android:textSize="32sp"
-                android:textStyle="bold"
-                android:layout_below="@id/txtCreateYour"
-                android:layout_alignStart="@id/txtCreateYour" />
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <!-- Scrollable Content -->
@@ -64,8 +64,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="24dp">
+                android:layout_margin="24dp"
+                android:orientation="vertical">
 
                 <!-- Verification Info -->
                 <TextView
@@ -75,37 +75,33 @@
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:textSize="16sp"
-                    tools:text="Verifikasi 4 digit kode dari email anda!" />
+                    tools:text="Enter the 4-digit code sent to your email!" />
 
-                <!-- Name Input -->
+                <!-- OTP Input -->
                 <EditText
                     android:id="@+id/otp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
-                    android:padding="12dp"
-                    android:inputType="textPersonName"
                     android:layout_marginTop="10dp"
-                    android:hint="@string/enter_name"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="@string/enter_otp"
+                    android:inputType="number"
+                    android:padding="12dp"
                     android:textColorHint="@color/hint_color" />
 
-                <!-- Optional OTP View (Commented Out) -->
-                <!-- Uncomment below if you want to add the OTP view -->
-                <!--
-                <com.mukesh.OtpView
-                    android:id="@+id/otpViewOtpview"
+                <!-- Resend OTP Button -->
+                <Button
+                    android:id="@+id/btnResendOtp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:inputType="number"
-                    android:itemBackground="@android:color/white"
-                    app:OtpItemCount="4"
-                    app:OtpItemHeight="54dp"
-                    app:OtpItemSpacing="16dp"
-                    app:OtpItemWidth="54dp"
-                    app:OtpLineColor="#000000"
-                    app:OtpViewType="rectangle" />
-                -->
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/register_button_selector"
+                    android:padding="10dp"
+                    android:text="@string/resend_otp"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </ScrollView>
 
@@ -118,9 +114,9 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/register_button_selector"
             android:padding="15dp"
-            android:text="@string/register"
-            android:textSize="20sp"
+            android:text="@string/send"
             android:textColor="@android:color/white"
+            android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
 </layout>

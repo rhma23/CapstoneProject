@@ -33,4 +33,28 @@ class OtpModel (private val repository: OtpRepository) : ViewModel() {
         }
 
     }
+
+    fun resendOtp(email: String, onResult: (Boolean) -> Unit) {
+        Log.d("Otp", "Otp: $email")
+        viewModelScope.launch {
+            try {
+                val response: OtpResponse = repository.resendOtp(email)
+                if (response.success == true) {
+                    Log.d("Otp", "Resend Otp successful: ${response.message}")
+                    Log.d("Otp", "Resend Otp result: ${response.result}")
+                    onResult(true)
+                } else {
+                    Log.d("Otp", "Resend Otp failed: ${response.message}")
+                    onResult(false)
+                }
+            } catch (e: HttpException) {
+                Log.e("Otp", "HTTP Error: ${e.code()} - ${e.response()?.errorBody()?.string()}")
+                onResult(false)
+            } catch (e: Exception) {
+                Log.e("Otp", "Unexpected Error", e)
+                onResult(false)
+            }
+        }
+
+    }
 }

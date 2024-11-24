@@ -46,16 +46,18 @@ class RegisterPembeliActivity : AppCompatActivity() {
                 registerModel.register(username, email, password, role) { success ->
                     if (success) {
                         sessionManager.saveEmail(email)
+                        val intent = Intent(this, OtpActivity::class.java)
                         AlertDialog.Builder(this).apply {
                             setTitle("Yeah!")
-                            setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
-                            setPositiveButton("Lanjut") { _, _ -> finish() }
+                            setMessage("Akun dengan $email sebentar lagi jadi nihh. Yuk, lanjutkan dengan verifikasi email")
+                            setPositiveButton("Lanjut") { _, _ ->
+                                finish()
+                                startActivity(intent)
+                            }
                             create()
                             show()
                         }
-                        //move to otp activity
-                        val intent = Intent(this, OtpActivity::class.java)
-                        startActivity(intent)
+
                     } else {
                         AlertDialog.Builder(this).apply {
                             setTitle("Oops!")

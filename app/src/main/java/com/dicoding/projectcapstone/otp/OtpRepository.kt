@@ -11,6 +11,11 @@ class OtpRepository(
         return apiService.verify(request)
     }
 
+    suspend fun resendOtp(email: String): OtpResponse {
+        val request = ResendOtpRequest(email)
+        return apiService.resendOtp(request)
+    }
+
     companion object {
         @Volatile
         private var instance: OtpRepository? = null

@@ -56,5 +56,30 @@ class OtpActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.btnResendOtp.setOnClickListener {
+            val email = sessionManager.getEmail()
+            if (email != null) {
+                otpModel.resendOtp(email) { success ->
+                    if (success) {
+                        AlertDialog.Builder(this).apply {
+                            setTitle("OTP Sent")
+                            setMessage("OTP has been resent to $email.")
+                            setPositiveButton("OK", null)
+                            create()
+                            show()
+                        }
+                    } else {
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Error")
+                            setMessage("Failed to resend OTP. Please try again.")
+                            setPositiveButton("Retry", null)
+                            create()
+                            show()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
