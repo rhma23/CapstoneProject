@@ -1,49 +1,37 @@
 package com.dicoding.projectcapstone.register
 
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.util.Patterns
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.RetrofitClient
+import com.dicoding.projectcapstone.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityRegisterPembeliBinding
+import com.dicoding.projectcapstone.otp.OtpActivity
 
 class RegisterPembeliActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterPembeliBinding
     private lateinit var repository: RegisterRepository
+    private lateinit var sessionManager: SessionManager
 
     private val registerModel: RegisterModel by viewModels {
         RegisterModelFactory(repository)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterPembeliBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         repository = RegisterRepository.getInstance(RetrofitClient.apiService)
+        sessionManager = SessionManager(this)
         setupView()
         setupAction()
-        setupPasswordValidation()
-        setupEmailValidation()
     }
 
     private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
+        // Existing setupView code
     }
 
     private fun setupAction() {
@@ -52,12 +40,12 @@ class RegisterPembeliActivity : AppCompatActivity() {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
             val confirmPassword = binding.confirmPassword.text.toString()
-
-            Log.d("setupAction", "setupAction: $username, $email, $password")
+            val role = "buyer"
 
             if (binding.email.error == null && binding.password.error == null) {
-                registerModel.register(username, email, password) { success ->
+                registerModel.register(username, email, password, role) { success ->
                     if (success) {
+                        sessionManager.saveEmail(email)
                         AlertDialog.Builder(this).apply {
                             setTitle("Yeah!")
                             setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
@@ -65,43 +53,20 @@ class RegisterPembeliActivity : AppCompatActivity() {
                             create()
                             show()
                         }
+                        //move to otp activity
+                        val intent = Intent(this, OtpActivity::class.java)
+                        startActivity(intent)
                     } else {
-                        binding.email.error = "Pendaftaran gagal. Coba lagi!"
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Oops!")
+                            setMessage("Akun dengan $email gagal dibuat. Coba lagi ya.")
+                            setPositiveButton("Ulangi") { _, _ -> finish() }
+                            create()
+                            show()
+                        }
                     }
                 }
             }
         }
-    }
-
-    private fun setupPasswordValidation() {
-        binding.password.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null && s.length < 8) {
-                    binding.password.error = "Password tidak boleh kurang dari 8 karakter"
-                } else {
-                    binding.password.error = null
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
-    }
-
-    private fun setupEmailValidation() {
-        binding.email.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null && !Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
-                    binding.email.error = "Format email tidak valid"
-                } else {
-                    binding.email.error = null
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
     }
 }

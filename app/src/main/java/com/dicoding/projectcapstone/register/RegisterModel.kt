@@ -10,12 +10,12 @@ import retrofit2.HttpException
 
 class RegisterModel (private val repository: RegisterRepository) : ViewModel() {
 
-    fun register(username: String, email: String, password: String, onResult: (Boolean) -> Unit) {
+    fun register(username: String, email: String, password: String, role: String, onResult: (Boolean) -> Unit) {
         val TAG = "registerUser"
         Log.d(TAG, "registerUser: $username, $email, $password")
         viewModelScope.launch {
             try {
-                val response: RegisterResponse = repository.register(username, email, password)
+                val response: RegisterResponse = repository.register(username, email, password, role)
                 if (response.success == true) {
                     Log.d(TAG, "Registration successful: ${response.message}")
                     Log.d(TAG, "register: ${response.result}")

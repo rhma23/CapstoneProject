@@ -16,6 +16,7 @@ data class Result(
     val is_verified: Boolean? = null,
     val updatedAt: String? = null,
     val createdAt: String? = null,
+    val address: String? = null,
 
 )
 

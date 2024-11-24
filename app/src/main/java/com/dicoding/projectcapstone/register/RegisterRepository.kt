@@ -1,14 +1,13 @@
 package com.dicoding.projectcapstone.register
 
-import android.util.Log
 import com.dicoding.projectcapstone.ApiService
 
 
 class RegisterRepository(
     private val apiService: ApiService
 ) {
-    suspend fun register(username: String, email: String, password: String): RegisterResponse {
-        val request = RegisterRequest(username, email, password)
+    suspend fun register(username: String, email: String, password: String, role: String): RegisterResponse {
+        val request = RegisterRequest(username, email, password, role)
         return apiService.register(request)
     }
 
