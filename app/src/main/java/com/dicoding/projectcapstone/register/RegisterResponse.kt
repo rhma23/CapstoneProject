@@ -7,14 +7,15 @@ data class RegisterResponse(
 )
 
 data class Result(
-    val createdAt: String? = null,
-    val password: String? = null,
-    val otpExpiration: String? = null,
     val id: Int? = null,
-    val otpCode: String? = null,
-    val isVerified: Boolean? = null,
-    val email: String? = null,
     val username: String? = null,
-    val updatedAt: String? = null
+    val email: String? = null,
+    val password: String? = null,
+    val otp_code: String? = null,
+    val otp_expiration: String? = null,
+    val is_verified: Boolean? = null,
+    val updatedAt: String? = null,
+    val createdAt: String? = null,
+
 )
 

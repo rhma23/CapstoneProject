@@ -1,17 +1,13 @@
 package com.dicoding.projectcapstone
 
-import com.dicoding.projectcapstone.register.RegisterResponse
+import com.dicoding.projectcapstone.register.RegisterRequest
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import com.dicoding.projectcapstone.register.RegisterResponse
+import retrofit2.http.Body
 
 interface ApiService {
-    @FormUrlEncoded
     @POST("auth/register")
-    suspend fun register(
-        @Field("name") name: String,
-        @Field("email") email: String,
-        @Field("password") password: String
-    ): RegisterResponse
-
+    suspend fun register(@Body request: RegisterRequest): RegisterResponse
 }
