@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
+        loginModel.setSessionManager(sessionManager) // Pass sessionManager to loginModel
         setupAction()
     }
 
@@ -33,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
-
             loginModel.login(email, password) { success ->
                 if (success) {
                     val intent = Intent(this, MainActivity::class.java)
