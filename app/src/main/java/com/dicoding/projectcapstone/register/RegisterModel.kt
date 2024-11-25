@@ -6,9 +6,10 @@ import kotlinx.coroutines.launch
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dicoding.projectcapstone.repository.AuthRepository
 import retrofit2.HttpException
 
-class RegisterModel (private val repository: RegisterRepository) : ViewModel() {
+class RegisterModel (private val repository: AuthRepository) : ViewModel() {
 
     fun register(username: String, email: String, password: String, role: String, onResult: (Boolean) -> Unit) {
         val TAG = "registerUser"

@@ -8,10 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityOtpBinding
+import com.dicoding.projectcapstone.repository.AuthRepository
 
 class OtpActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
-    private lateinit var repository: OtpRepository
+    private lateinit var repository: AuthRepository
     private lateinit var sessionManager: SessionManager
 
     private val otpModel: OtpModel by viewModels {
@@ -23,18 +24,18 @@ class OtpActivity : AppCompatActivity() {
         binding = ActivityOtpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        repository = OtpRepository.getInstance(RetrofitClient.apiService)
+        repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
         setupAction()
     }
 
     private fun setupAction() {
-        binding.btnSendOtp.setOnClickListener {
+        binding.btnVerify.setOnClickListener {
             val email = sessionManager.getEmail()
-            val otp_code = binding.otp.text.toString()
+            val otp_code = binding.txtResendOtp.text.toString()
             Log.d("setupAction", "setupAction: $email, $otp_code")
 
-            if (email != null && binding.otp.error == null) {
+            if (email != null && binding.txtResendOtp.error == null) {
                 otpModel.verify(email, otp_code) { success ->
                     if (success) {
                         AlertDialog.Builder(this).apply {

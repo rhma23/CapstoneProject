@@ -78,7 +78,7 @@
                     android:textColor="#000000"/>
 
                 <EditText
-                    android:id="@+id/etyYourName"
+                    android:id="@+id/etYourName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
@@ -128,7 +128,7 @@
                     app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etForgotPassword"
+                        android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_background"

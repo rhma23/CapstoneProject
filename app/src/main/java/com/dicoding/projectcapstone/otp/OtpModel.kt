@@ -1,14 +1,13 @@
 package com.dicoding.projectcapstone.otp
 
-import com.dicoding.projectcapstone.register.RegisterRepository
-import com.dicoding.projectcapstone.register.RegisterResponse
 import kotlinx.coroutines.launch
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dicoding.projectcapstone.repository.AuthRepository
 import retrofit2.HttpException
 
-class OtpModel (private val repository: OtpRepository) : ViewModel() {
+class OtpModel (private val repository: AuthRepository) : ViewModel() {
 
     fun verify(email: String, otp_code: String, onResult: (Boolean) -> Unit) {
         Log.d("Otp", "Otp: $email, $otp_code")
