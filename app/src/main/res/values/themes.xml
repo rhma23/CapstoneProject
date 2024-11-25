@@ -6,5 +6,17 @@
         <item name="colorPrimaryDark">#33677B</item>
     </style>
 
+    <!-- Warna untuk ikon pencarian -->
+    <style name="SearchViewTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">#4DA0C1</item>
+    </style>
+
+    <!-- Style for rounded corner images -->
+    <style name="RoundedCornerImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+
     <style name="Theme.ProjectCapstone" parent="Base.Theme.ProjectCapstone" />
 </resources>

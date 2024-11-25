@@ -18,12 +18,12 @@
             android:id="@+id/txtPilihPeran"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pilih_peran_anda"
+            android:text="@string/choose_your_role"
             android:textStyle="bold"
             android:gravity="center"
             android:textSize="20sp"
             android:textColor="@color/blue"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="30dp"
 
             android:fontFamily="sans-serif-medium"/>
 
@@ -31,7 +31,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPedagang"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_marginBottom="20dp"
             android:text="@string/pedagang"
             android:textStyle="bold"
@@ -46,9 +46,9 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPembeli"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/pembeli"
+            android:text="@string/buyer"
             android:textStyle="bold"
             android:textAllCaps="false"
             android:background="@drawable/btn_rounded_selector"

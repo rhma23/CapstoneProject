@@ -10,16 +10,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#FFFFFF"
-        tools:context=".register.RegisterPembeliActivity">
+        tools:context=".register.RegisterBuyerActivity">
 
-        <!-- Header dengan latar biru -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/bg_header_rounded"
             android:padding="25dp">
 
-            <!-- Button Back -->
             <ImageButton
                 android:id="@+id/btnBack"
                 android:layout_width="38dp"
@@ -31,7 +29,6 @@
                 android:elevation="4dp"
                 android:layout_gravity="center" />
 
-            <!-- Teks "Create your" -->
             <TextView
                 android:id="@+id/txtCreateYour"
                 android:layout_width="wrap_content"
@@ -43,9 +40,8 @@
                 android:gravity="end"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="6dp"
-                android:layout_marginTop="60dp" />
+                android:layout_marginTop="65dp" />
 
-            <!-- Teks "account" -->
             <TextView
                 android:id="@+id/txtAccount"
                 android:layout_width="wrap_content"
@@ -60,7 +56,6 @@
                 android:layout_marginTop="0dp" />
         </RelativeLayout>
 
-        <!-- Scrollable Content -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -79,8 +74,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/your_name"
                     android:layout_marginTop="16dp"
+                    android:layout_marginStart="6dp"
                     android:textSize="16sp"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"/>
 
                 <EditText
                     android:id="@+id/yourName"
@@ -88,17 +84,19 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
                     android:padding="12dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
                     android:inputType="textPersonName"
                     app:startIconDrawable="@drawable/ic_person"
                     android:layout_marginTop="4dp"/>
 
-                <!-- Email Field -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/email"
                     android:textSize="16sp"
+                    android:layout_marginStart="6dp"
                     android:textColor="#000000" />
 
                 <EditText
@@ -107,17 +105,19 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
                     android:padding="12dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
                     android:inputType="textEmailAddress"
                     app:startIconDrawable="@drawable/ic_email"
                     android:layout_marginTop="4dp"/>
 
-                <!-- Password Field -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/password"
                     android:textSize="16sp"
+                    android:layout_marginStart="6dp"
                     android:textColor="#000000" />
 
                 <EditText
@@ -126,17 +126,19 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
                     android:padding="12dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
                     android:inputType="textPassword"
                     android:layout_marginTop="4dp"
                     app:startIconDrawable="@drawable/ic_lock"/>
 
-                <!-- Confirm Password Field -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/confirm_password"
                     android:textSize="16sp"
+                    android:layout_marginStart="6dp"
                     android:textColor="#000000" />
 
                 <EditText
@@ -145,28 +147,29 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
                     android:padding="12dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
                     android:inputType="textPassword"
                     app:startIconDrawable="@drawable/ic_lock"
                     android:layout_marginTop="4dp"/>
 
-                <!-- Register Button -->
                 <Button
                     android:id="@+id/btnregister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginHorizontal="32dp"
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/register_button_selector"
-                    android:padding="15dp"
+                    android:padding="10dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
                     android:text="@string/register"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:theme="@null" />
             </LinearLayout>
         </ScrollView>
-
-
     </LinearLayout>
 </layout>

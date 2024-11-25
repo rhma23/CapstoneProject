@@ -13,12 +13,6 @@
         android:theme="@style/Theme.ProjectCapstone"
         tools:targetApi="31">
         <activity
-            android:name=".role.pembeli.home.Home"
-            android:exported="false" />
-        <activity
-            android:name=".role.pedagang.HomePage"
-            android:exported="false" />
-        <activity
             android:name=".register.RegisterPedagangActivity"
             android:exported="false" />
         <activity
@@ -28,7 +22,7 @@
             android:name=".role.RoleActivity"
             android:exported="false" />
         <activity
-            android:name=".register.RegisterPembeliActivity"
+            android:name=".register.RegisterBuyerActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

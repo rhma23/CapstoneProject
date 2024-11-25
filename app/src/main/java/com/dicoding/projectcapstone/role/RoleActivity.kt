@@ -2,11 +2,10 @@ package com.dicoding.projectcapstone.role
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.databinding.ActivityRoleBinding
 import com.dicoding.projectcapstone.register.RegisterPedagangActivity
-import com.dicoding.projectcapstone.register.RegisterPembeliActivity
+import com.dicoding.projectcapstone.register.RegisterBuyerActivity
 
 class RoleActivity : AppCompatActivity() {
 
@@ -23,7 +22,7 @@ class RoleActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.btnPembeli.setOnClickListener {
-            val intent = Intent(this, RegisterPembeliActivity::class.java)
+            val intent = Intent(this, RegisterBuyerActivity::class.java)
             startActivity(intent)
         }
 
