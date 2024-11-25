@@ -12,14 +12,12 @@
         android:orientation="vertical"
         tools:context=".otp.OtpFragment">
 
-        <!-- Header Section -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/bg_header_rounded"
             android:padding="25dp">
 
-            <!-- Back Button -->
             <ImageButton
                 android:id="@+id/btnBack"
                 android:layout_width="38dp"
@@ -30,14 +28,13 @@
                 android:elevation="4dp"
                 android:src="@drawable/ic_arrow_back" />
 
-            <!-- Title -->
             <TextView
                 android:id="@+id/txtCreateYour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="60dp"
-                android:text="Code"
+                android:text="@string/code"
                 android:textColor="@android:color/white"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -48,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtCreateYour"
                 android:layout_alignStart="@id/txtCreateYour"
-                android:text="Verification"
+                android:text="@string/verification"
                 android:textColor="@android:color/white"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -69,13 +66,13 @@
 
                 <!-- Verification Info -->
                 <TextView
-                    android:id="@+id/txtVerifikasifour"
+                    android:id="@+id/txtVerify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:textSize="16sp"
-                    tools:text="Enter the 4-digit code sent to your email!" />
+                    android:text="@string/enter_the_4_digit_code_sent_to_your_email" />
 
                 <!-- OTP Input -->
                 <EditText
@@ -88,34 +85,46 @@
                     android:padding="12dp"
                     android:textColorHint="@color/hint_color" />
 
-                <!-- Resend OTP Button -->
-                <Button
-                    android:id="@+id/btnResendOtp"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/register_button_selector"
-                    android:padding="10dp"
-                    android:text="@string/resend_otp"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        android:id="@+id/txtOtpPart1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/didn_t_receive_the_verification_otp"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txtOtpPart2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/resend_again"
+                        android:layout_marginStart="3dp"
+                        android:textColor="@color/blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
-        <!-- Register Button -->
         <Button
-            android:id="@+id/btnregister"
+            android:id="@+id/btnSendOtp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/register_button_selector"
-            android:padding="15dp"
-            android:text="@string/send"
-            android:textColor="@android:color/white"
+            android:padding="10dp"
+            android:text="@string/verify"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
     </LinearLayout>
 </layout>
