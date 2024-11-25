@@ -30,10 +30,10 @@
                 android:layout_gravity="center" />
 
             <TextView
-                android:id="@+id/txtCreateYour"
+                android:id="@+id/txtLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Log in to your"
+                android:text="@string/log_in_to_your"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
                 android:textStyle="bold"
@@ -51,8 +51,8 @@
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:gravity="end"
-                android:layout_below="@id/txtCreateYour"
-                android:layout_alignStart="@id/txtCreateYour"
+                android:layout_below="@id/txtLogin"
+                android:layout_alignStart="@id/txtLogin"
                 android:layout_marginTop="0dp" />
         </RelativeLayout>
 
@@ -78,7 +78,7 @@
                     android:textColor="#000000" />
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
@@ -98,20 +98,28 @@
                     android:layout_marginStart="6dp"
                     android:textColor="#000000" />
 
-                <EditText
-                    android:id="@+id/password"
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
-                    android:padding="12dp"
                     android:layout_marginStart="6dp"
                     android:layout_marginEnd="6dp"
-                    android:inputType="textPassword"
                     android:layout_marginTop="4dp"
-                    app:startIconDrawable="@drawable/ic_lock"/>
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etForgotPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_background"
+                        android:padding="12dp"
+                        android:inputType="textPassword"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/btnregister"
+                    android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
@@ -121,11 +129,10 @@
                     android:padding="10dp"
                     android:layout_marginStart="6dp"
                     android:layout_marginEnd="6dp"
-                    android:text="Log In"
+                    android:text="@string/log_in"
                     android:textSize="20sp"
                     android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:theme="@null" />
+                    android:textStyle="bold"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
