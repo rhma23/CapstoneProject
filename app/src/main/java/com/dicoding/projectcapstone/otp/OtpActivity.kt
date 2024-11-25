@@ -29,7 +29,7 @@ class OtpActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.btnregister.setOnClickListener {
+        binding.btnSendOtp.setOnClickListener {
             val email = sessionManager.getEmail()
             val otp_code = binding.otp.text.toString()
             Log.d("setupAction", "setupAction: $email, $otp_code")
@@ -57,7 +57,7 @@ class OtpActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnResendOtp.setOnClickListener {
+        binding.txtResendOtp.setOnClickListener {
             val email = sessionManager.getEmail()
             if (email != null) {
                 otpModel.resendOtp(email) { success ->

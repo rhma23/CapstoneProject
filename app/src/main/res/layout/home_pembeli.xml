@@ -85,7 +85,6 @@
                 android:layout_marginTop="16dp"
                 android:scaleType="centerCrop"
                 android:background="@drawable/bg_header_rounded"
-                android:src="@drawable/static_image"
                 tools:ignore="ContentDescription" />
 
             <!-- Categories Section -->
@@ -113,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/btn_kategori_food_selector"
+                    android:background="@drawable/btn_kategori_makanan_selector"
                     android:text="Food"
                     android:textStyle="bold"
                     android:textSize="15sp"
@@ -125,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
-                    android:background="@drawable/btn_kategori_drink_selector"
+                    android:background="@drawable/btn_kategori_minuman_selector"
                     android:text="Drink"
                     android:textStyle="bold"
                     android:textSize="15sp"
