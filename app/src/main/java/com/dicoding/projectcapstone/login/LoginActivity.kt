@@ -2,11 +2,13 @@ package com.dicoding.projectcapstone.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityLoginBinding
 import com.dicoding.projectcapstone.MainActivity
+import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.repository.AuthRepository
 
@@ -27,6 +29,14 @@ class LoginActivity : AppCompatActivity() {
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
         loginModel.setSessionManager(sessionManager) // Pass sessionManager to loginModel
+
+        // Tombol back
+        val btnBack: ImageButton = findViewById(R.id.btnBack)
+        btnBack.setOnClickListener {
+            // Menutup aktivitas saat tombol diklik
+            onBackPressed()
+        }
+        
         setupAction()
     }
 
