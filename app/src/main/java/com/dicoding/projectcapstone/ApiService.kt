@@ -1,5 +1,7 @@
 package com.dicoding.projectcapstone
 
+import com.dicoding.projectcapstone.login.LoginRequest
+import com.dicoding.projectcapstone.login.LoginResponse
 import com.dicoding.projectcapstone.otp.OtpRequest
 import com.dicoding.projectcapstone.otp.OtpResponse
 import com.dicoding.projectcapstone.otp.ResendOtpRequest
@@ -17,4 +19,10 @@ interface ApiService {
 
     @POST("auth/resend_otp")
     suspend fun resendOtp(@Body request: ResendOtpRequest): OtpResponse
+
+    @POST("auth/login")
+    suspend fun login(@Body request: LoginRequest): LoginResponse
+
+    @POST("get_user_data")
+    suspend fun getData(): LoginResponse
 }

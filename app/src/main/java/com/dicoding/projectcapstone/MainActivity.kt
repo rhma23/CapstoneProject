@@ -2,27 +2,46 @@ package com.dicoding.projectcapstone
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-
 import com.dicoding.projectcapstone.databinding.ActivityMainBinding
-import com.dicoding.projectcapstone.welcome.WelcomeActivity
+import com.dicoding.projectcapstone.login.LoginActivity
+import com.dicoding.projectcapstone.repository.AuthRepository
+import com.dicoding.projectcapstone.user.UserModel
+import com.dicoding.projectcapstone.user.UserModelFactory
+import com.dicoding.projectcapstone.user.UserRepository
+import com.dicoding.projectcapstone.utils.SessionManager
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var repository: UserRepository
+    private lateinit var sessionManager: SessionManager
+    private val userModel: UserModel by viewModels {
+        UserModelFactory(repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupAction()
+        repository = UserRepository.getInstance(RetrofitClient.apiService)
+        sessionManager = SessionManager(this)
+        userModel.setSessionManager(sessionManager)
+
+        if (sessionManager.getToken() == null) {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            setupAction()
+        }
     }
 
     private fun setupAction() {
-        binding.btnWelcome.setOnClickListener {
-            val intent = Intent(this, WelcomeActivity::class.java)
-            startActivity(intent)
+        binding.button.setOnClickListener {
+            userModel.logout()
         }
     }
 }

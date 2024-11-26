@@ -1,6 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Kategori"
+        app:titleCentered="true"
+        app:titleTextColor="@android:color/white"
+        tools:layout_editor_absoluteX="12dp" />
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/back_button_selector"
+        android:contentDescription="@string/back_button"
+        android:elevation="4dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.285" />
+
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Search"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/food_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    // Activity untuk menampilkan daftar kategori makanan dan minuman
+    public class KategoriActivity extends AppCompatActivity {
+
+    private RecyclerView foodList;
+    private ArrayList<Kategori> kategoriList;
+private KategoriAdapter kategoriAdapter;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_kategori);
+
+// Inisialisasi view
+foodList = findViewById(R.id.food_list);
+
+// Inisialisasi data kategori
+kategoriList = new ArrayList<>();
+    kategoriList.add(new Kategori("Makanan", R.drawable.ic_food));
+    kategoriList.add(new Kategori("Minuman", R.drawable.ic_drink));
+
+    // Inisialisasi adapter
+    kategoriAdapter = new KategoriAdapter(kategoriList);
+
+    // Set adapter ke RecyclerView
+    foodList.setAdapter(kategoriAdapter);
+
+    // Set layout manager untuk RecyclerView
+    foodList.setLayoutManager(new LinearLayoutManager(this));
+    }
+    }
+
+    // Adapter untuk menampilkan item kategori dalam RecyclerView
+    public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.ViewHolder> {
+
+        private ArrayList<Kategori> kategoriList;
+
+            public KategoriAdapter(ArrayList<Kategori> kategoriList) {
+                this.kategoriList = kategoriList;
+                }
+
+                @NonNull
+                @Override
+                public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_kategori, parent, false);
+                return new ViewHolder(view);
+                }
+
+                @Override
+                public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+                Kategori kategori = kategoriList.get(position);
+                holder.imageView.setImageResource(kategori.getImageResource());
+                holder.textView.setText(kategori.getName());
+                }
+
+                @Override
+                public int getItemCount() {
+                return kategoriList.size();
+                }
+
+                public static class ViewHolder extends RecyclerView.ViewHolder {
+
+                public ImageView imageView;
+                public TextView textView;
+
+                public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                imageView = itemView.findViewById(R.id.image_view);
+                textView = itemView.findViewById(R.id.text_view);
+                }
+                }
+                }
+
+                // Model untuk data kategori
+                public class Kategori {
+
+                private String name;
+                private int imageResource;
+
+                public Kategori(String name, int imageResource) {
+                this.name = name;
+                this.imageResource = imageResource;
+                }
+
+                public String getName() {
+                return name;
+                }
+
+                public int getImageResource() {
+                return imageResource;
+                }
+                }

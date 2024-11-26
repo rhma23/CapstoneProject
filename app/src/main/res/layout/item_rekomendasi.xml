@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:transitionName="storyImageTransition"
-    android:layout_width="175dp"
+    android:layout_width="135dp"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:elevation="4dp"
@@ -12,29 +12,29 @@
     app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="175dp"
-        android:layout_height="230dp"
+        android:layout_width="135dp"
+        android:layout_height="180dp"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="10dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageLogo"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/RoundedCornerImage"
-            tools:src="@tools:sample/avatars"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/namaDagangan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Soto"
-            android:textSize="14sp"
+            android:text="@string/nama_makanan"
+            android:textSize="12sp"
             android:layout_marginStart="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageLogo"/>
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="2dp"
-                android:text="4.5"
+                android:text="@string/rating"
                 android:textSize="10sp" />
 
             <ImageView
@@ -63,7 +63,7 @@
                 android:layout_height="12dp"
                 android:src="@drawable/ic_star"
                 android:layout_marginEnd="4dp"
-                android:contentDescription="Rating Star Icon" />
+                android:contentDescription="@string/rating_star_icon" />
 
         </LinearLayout>
 
@@ -71,8 +71,8 @@
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buka"
-            android:textSize="8sp"
+            android:text="@string/status_dagangan"
+            android:textSize="6sp"
             android:maxLines="1"
             android:layout_marginStart="4dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,8 +82,8 @@
             android:id="@+id/jarak"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="1.5 km"
-            android:textSize="8sp"
+            android:text="@string/jarak"
+            android:textSize="6sp"
             android:maxLines="1"
             android:layout_marginStart="4dp"
             android:layout_marginTop="3dp"
@@ -106,8 +106,8 @@
                 android:id="@+id/harga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp 15.000"
-                android:textSize="12sp"
+                android:text="@string/harga"
+                android:textSize="8sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white" />
         </LinearLayout>
