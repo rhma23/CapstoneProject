@@ -62,8 +62,6 @@
                             android:src="@drawable/ic_hand"
                             android:contentDescription="@null"/>
                     </LinearLayout>
-
-
                 </LinearLayout>
 
                 <ImageView
@@ -194,11 +192,7 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
-
             </RelativeLayout>
-
-
 
             <TextView
                 android:id="@+id/txtCategory"
