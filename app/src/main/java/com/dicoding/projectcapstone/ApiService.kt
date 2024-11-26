@@ -22,4 +22,7 @@ interface ApiService {
 
     @POST("auth/login")
     suspend fun login(@Body request: LoginRequest): LoginResponse
+
+    @POST("get_user_data")
+    suspend fun getData(): LoginResponse
 }
