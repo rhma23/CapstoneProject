@@ -1,9 +1,8 @@
 package com.dicoding.projectcapstone.login
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.dicoding.projectcapstone.SessionManager
+import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.repository.AuthRepository
 import kotlinx.coroutines.launch
 

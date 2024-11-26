@@ -12,7 +12,7 @@
     </style>
 
     <!-- Style for rounded corner images -->
-    <style name="RoundedCornerImage">
+    <style name="RoundedCornerImage" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">20dp</item>
     </style>

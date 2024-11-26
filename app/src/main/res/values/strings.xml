@@ -48,6 +48,27 @@
     <!-- login -->
     <string name="log_in">Log In</string>
     <string name="log_in_to_your">Log in to your</string>
+    <string name="ket_forgot_password">Forgot Password?</string>
+    <string name="don_t_have_account">Don\'t have account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="logo_description">logo description</string>
+    <string name="wellcome">Wellcome</string>
+    <string name="confirm">Confirm</string>
+    <string name="txt_new_password">New Password</string>
+    <string name="text_content_cuaca">Hujan-hujan gini, ada rekomendasi makanan untukmu nih!</string>
+    <string name="categories">Categories</string>
+    <string name="food">Food</string>
+    <string name="drink">Drink</string>
+    <string name="recommendations">Recommendations</string>
+    <string name="popular">Popular</string>
+    <string name="nama_makanan">Soto</string>
+    <string name="rating">4.5</string>
+    <string name="rating_star_icon">Rating Star Icon</string>
+    <string name="status_dagangan">Buka</string>
+    <string name="jarak">1.5 km</string>
+    <string name="harga">Rp 15.000</string>
+    <string name="profile_picture_description">profile_picture_description</string>
+    <string name="enter_otp">enter otp</string>
 
 
 </resources>

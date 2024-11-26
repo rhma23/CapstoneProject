@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 import com.dicoding.projectcapstone.databinding.ActivityMainBinding
 import com.dicoding.projectcapstone.login.LoginActivity
+import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {

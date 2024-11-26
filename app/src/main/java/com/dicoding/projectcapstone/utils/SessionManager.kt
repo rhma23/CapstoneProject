@@ -1,8 +1,7 @@
-package com.dicoding.projectcapstone
+package com.dicoding.projectcapstone.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.media.session.MediaSession.Token
 
 class SessionManager(context: Context) {
     private val prefs: SharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)

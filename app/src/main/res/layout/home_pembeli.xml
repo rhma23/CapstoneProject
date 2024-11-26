@@ -59,7 +59,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="4dp"
-                            android:src="@drawable/ic_hand" />
+                            android:src="@drawable/ic_hand"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
 
@@ -72,25 +73,139 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_harga"
-                    android:src="@drawable/ic_hand" />
+                    android:src="@drawable/ic_cloudy"
+                    android:contentDescription="@string/profile_picture_description"/>
             </RelativeLayout>
 
-            <ImageView
+            <RelativeLayout
                 android:id="@+id/imgBanner"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="16dp"
                 android:scaleType="centerCrop"
                 android:background="@drawable/bg_header_rounded"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription">
+
+                <TextView
+                    android:id="@+id/txtWeatherMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_content_cuaca"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="sans-serif-medium" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp">
+
+                    <!-- Rekomendasi Makanan -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp">
+
+                        <!-- Makanan 1 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginEnd="8dp">
+
+                            <ImageView
+                                android:id="@+id/imgSeblak"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:src="@drawable/ic_person"
+                                android:scaleType="centerCrop"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/txtSeblak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Seblak"
+                                android:textSize="14sp"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center"
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+
+                        <!-- Makanan 2 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginEnd="8dp">
+
+                            <ImageView
+                                android:id="@+id/imgMie"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:src="@drawable/ic_hand"
+                                android:scaleType="centerCrop"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/txtMie"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mie"
+                                android:textSize="14sp"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center"
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+
+                        <!-- Makanan 3 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/imgBakso"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:src="@drawable/ic_email"
+                                android:scaleType="centerCrop"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/txtBakso"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bakso"
+                                android:textSize="14sp"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center"
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
 
             <TextView
                 android:id="@+id/txtCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Categories"
+                android:text="@string/categories"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -110,7 +225,7 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/btn_kategori_makanan_selector"
-                    android:text="Food"
+                    android:text="@string/food"
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:textColor="@android:color/white" />
@@ -122,7 +237,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
                     android:background="@drawable/btn_kategori_minuman_selector"
-                    android:text="Drink"
+                    android:text="@string/drink"
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:textColor="@android:color/white" />
@@ -134,7 +249,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Recommendations"
+                android:text="@string/recommendations"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -152,7 +267,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Popular"
+                android:text="@string/popular"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
