@@ -10,13 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
-import com.dicoding.projectcapstone.databinding.ActivityOtpBinding
+import com.dicoding.projectcapstone.databinding.ActivityOtpForgotPasswordBinding
 import com.dicoding.projectcapstone.otp.OtpModel
 import com.dicoding.projectcapstone.otp.OtpModelFactory
 import com.dicoding.projectcapstone.repository.AuthRepository
 
-class OtpActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityOtpBinding
+class OtpForgotPasswordActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityOtpForgotPasswordBinding
     private lateinit var repository: AuthRepository
     private lateinit var sessionManager: SessionManager
 
@@ -26,7 +26,7 @@ class OtpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityOtpBinding.inflate(layoutInflater)
+        binding = ActivityOtpForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
@@ -37,55 +37,61 @@ class OtpActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.btnVerify.setOnClickListener {
             val intentOtpForgotPassword= Intent(this, ConfirmPasswordActivity::class.java)
-            val email = sessionManager.getEmail()
-            val otp_code = binding.txtResendOtp.text.toString()
-            Log.d("setupAction", "setupAction: $email, $otp_code")
+            val otp_code = binding.etOtp.text.toString()
 
-            if (email != null && binding.txtResendOtp.error == null) {
-                otpModel.verify(email, otp_code) { success ->
-                    if (success) {
-                        AlertDialog.Builder(this).apply {
-                            setTitle("Yeah!")
-                            setMessage("Akun dengan $email sudah jadi nih. Yuk, login segera")
-                            setPositiveButton("Lanjut") { _, _ -> finish() }
-                            create()
-                            show()
+            if (binding.txtResendOtp.error == null) {
+                if(otp_code == sessionManager.getOtpForgotPassword()) {
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Yeah!")
+                        setMessage("Otp benar")
+                        setPositiveButton("Lanjut") { _, _ ->
+                            startActivity(intentOtpForgotPassword)
+                            finish()
+
                         }
-                    } else {
-                        AlertDialog.Builder(this).apply {
-                            setTitle("Oops!")
-                            setMessage("Akun dengan $email gagal dibuat. Coba lagi ya.")
-                            setPositiveButton("Ulangi") { _, _ -> finish()
-                                startActivity(intentOtpForgotPassword)
-                                finish()
-                            }
-                            create()
-                            show()
-                        }
+                        create()
+                        show()
                     }
+                }
+            } else {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Oops!")
+                    setMessage("Otp salah")
+                    setPositiveButton("Ulangi", null)
+                    create()
+                    show()
                 }
             }
         }
 
         binding.txtResendOtp.setOnClickListener {
-            val email = sessionManager.getEmail()
+            val email = sessionManager.getEmailForgotPassword()
             if (email != null) {
-                otpModel.resendOtp(email) { success ->
-                    if (success) {
-                        AlertDialog.Builder(this).apply {
-                            setTitle("OTP Sent")
-                            setMessage("OTP has been resent to $email.")
-                            setPositiveButton("OK", null)
-                            create()
-                            show()
-                        }
-                    } else {
-                        AlertDialog.Builder(this).apply {
-                            setTitle("Error")
-                            setMessage("Failed to resend OTP. Please try again.")
-                            setPositiveButton("Retry", null)
-                            create()
-                            show()
+                otpModel.resendOtpForgotPassword(email) { otpResponse ->
+                    if (otpResponse != null) {
+                        if (otpResponse.success == true) {
+                            otpResponse.result?.otp_code?.let { it1 ->
+                                sessionManager.saveOtpForgotPassword(
+                                    it1
+                                )
+                            }
+                            AlertDialog.Builder(this).apply {
+                                setTitle("OTP Sent")
+                                setMessage("OTP has been resent to $email.")
+                                setPositiveButton("Lanjut") { _, _ ->
+                                    finish()
+                                }
+                                create()
+                                show()
+                            }
+                        } else {
+                            AlertDialog.Builder(this).apply {
+                                setTitle("Error")
+                                setMessage("Failed to resend OTP. Please try again.")
+                                setPositiveButton("Retry", null)
+                                create()
+                                show()
+                            }
                         }
                     }
                 }

@@ -6,6 +6,8 @@ import com.dicoding.projectcapstone.login.LoginResponse
 import com.dicoding.projectcapstone.otp.OtpRequest
 import com.dicoding.projectcapstone.otp.OtpResponse
 import com.dicoding.projectcapstone.otp.ResendOtpRequest
+import com.dicoding.projectcapstone.password.ForgotPasswordRequest
+import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.register.RegisterRequest
 import com.dicoding.projectcapstone.register.RegisterResponse
 
@@ -31,6 +33,11 @@ class AuthRepository(
     suspend fun resendOtp(email: String): OtpResponse {
         val request = ResendOtpRequest(email)
         return apiService.resendOtp(request)
+    }
+
+    suspend fun resetPassword(otp_code: String, email: String, newPassword: String): ForgotPasswordResponse {
+        val request = ForgotPasswordRequest(otp_code, email, newPassword)
+        return apiService.resetPassword(request)
     }
     companion object {
         @Volatile
