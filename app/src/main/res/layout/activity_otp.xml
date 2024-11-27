@@ -14,30 +14,20 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="180dp"
             android:background="@drawable/bg_header_rounded"
             android:padding="25dp">
-
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:layout_alignParentStart="true"
-                android:background="@drawable/back_button_selector"
-                android:contentDescription="@string/back_button"
-                android:elevation="4dp"
-                android:src="@drawable/ic_arrow_back" />
 
             <TextView
                 android:id="@+id/txtCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="60dp"
                 android:text="@string/code"
-                android:textColor="@android:color/white"
-                android:textSize="32sp"
-                android:textStyle="bold" />
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="6dp" />
 
             <TextView
                 android:id="@+id/txtVerification"
@@ -78,7 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
-                    android:padding="12dp"
+                    android:padding="15dp"
                     android:layout_marginStart="6dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginTop="4dp"

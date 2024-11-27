@@ -3,12 +3,14 @@ package com.dicoding.projectcapstone.login
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityLoginBinding
 import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
+import com.dicoding.projectcapstone.otp.OtpActivity
 import com.dicoding.projectcapstone.register.RegisterBuyerActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
 import com.dicoding.projectcapstone.ui.MyButton
@@ -37,21 +39,36 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.txtSignUp.setOnClickListener {
-            val intent = Intent(this, RegisterBuyerActivity::class.java)
-            startActivity(intent)
+            val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
+            startActivity(intentRegister)
         }
         binding.btnLogin.setOnClickListener {
             myButton.isPressed = true
+            val intent = Intent(this, LoginActivity::class.java)
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
-            loginModel.login(email, password) { success ->
-                if (success) {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+            if (email.isEmpty() || password.isEmpty()) {
+                myButton.isPressed = false
+                AlertDialog.Builder(this).apply {
+                    setTitle("Opps!")
+                    setMessage("Email dan password salah")
+                    setPositiveButton("Ulangi") { _, _ ->
+                        finish()
+                        startActivity(intent)
+                        finish()
+                    }
+                    create()
+                    show()
+                }
+            } else {
+                loginModel.login(email, password) { success ->
+                    if (success) {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
             }
         }
-        myButton.isPressed = false
     }
 }
