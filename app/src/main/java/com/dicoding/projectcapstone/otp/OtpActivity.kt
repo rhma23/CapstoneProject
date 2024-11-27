@@ -2,9 +2,11 @@ package com.dicoding.projectcapstone.otp
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityOtpBinding
@@ -26,6 +28,14 @@ class OtpActivity : AppCompatActivity() {
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
+
+        // Tombol back
+        val btnBack: ImageButton = findViewById(R.id.btnBack)
+        btnBack.setOnClickListener {
+            // Menutup aktivitas saat tombol diklik
+            onBackPressed()
+        }
+
         setupAction()
     }
 

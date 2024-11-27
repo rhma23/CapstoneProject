@@ -16,17 +16,17 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/txtWelcome"
@@ -60,7 +60,7 @@
                             android:layout_height="20dp"
                             android:layout_marginStart="4dp"
                             android:src="@drawable/ic_hand"
-                            android:contentDescription="@null"/>
+                            android:contentDescription="@null" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -68,140 +68,66 @@
                     android:id="@+id/button"
                     android:layout_width="100dp"
                     android:layout_height="48dp"
-                    android:text="logout"
+                    android:text="@string/logout"
                     android:textStyle="bold"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"/>
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/imgProfile"-->
-<!--                    android:layout_width="48dp"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_marginEnd="8dp"-->
-<!--                    android:src="@drawable/ic_cloudy"-->
-<!--                    android:contentDescription="@string/profile_picture_description"/>-->
-            </RelativeLayout>
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/imgBanner"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="16dp"
-                android:scaleType="centerCrop"
-                android:background="@drawable/bg_header_rounded"
+                android:elevation="4dp"
                 tools:ignore="ContentDescription">
 
-                <TextView
-                    android:id="@+id/txtWeatherMessage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_content_cuaca"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="sans-serif-medium" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/image_rainy"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RoundedCornerImage" />
+
+                <View
+                    android:id="@+id/overlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.4" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="80dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
 
-                    <!-- Rekomendasi Makanan -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/txtWeatherMessage"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginTop="8dp">
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/hujan_hujan_begini_yuk_nikmati_makanan_hangat_yang_bikin_hati_nyaman"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
 
-                        <!-- Makanan 1 -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:layout_marginEnd="8dp">
-
-                            <ImageView
-                                android:id="@+id/imgSeblak"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:src="@drawable/ic_person"
-                                android:scaleType="centerCrop"
-                                tools:ignore="ContentDescription" />
-
-                            <TextView
-                                android:id="@+id/txtSeblak"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Seblak"
-                                android:textSize="14sp"
-                                android:layout_marginTop="4dp"
-                                android:gravity="center"
-                                android:textColor="@color/black" />
-                        </LinearLayout>
-
-                        <!-- Makanan 2 -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:layout_marginEnd="8dp">
-
-                            <ImageView
-                                android:id="@+id/imgMie"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:src="@drawable/ic_hand"
-                                android:scaleType="centerCrop"
-                                tools:ignore="ContentDescription" />
-
-                            <TextView
-                                android:id="@+id/txtMie"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mie"
-                                android:textSize="14sp"
-                                android:layout_marginTop="4dp"
-                                android:gravity="center"
-                                android:textColor="@color/black" />
-                        </LinearLayout>
-
-                        <!-- Makanan 3 -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/imgBakso"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:src="@drawable/ic_email"
-                                android:scaleType="centerCrop"
-                                tools:ignore="ContentDescription" />
-
-                            <TextView
-                                android:id="@+id/txtBakso"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Bakso"
-                                android:textSize="14sp"
-                                android:layout_marginTop="4dp"
-                                android:gravity="center"
-                                android:textColor="@color/black" />
-                        </LinearLayout>
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/btnSeeAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingHorizontal="12dp"
+                        android:text="@string/see_all"
+                        android:theme="@style/CustomButtonStyle"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
                 </LinearLayout>
+
+
             </RelativeLayout>
 
             <TextView
@@ -247,7 +173,6 @@
                     android:textColor="@android:color/white" />
             </LinearLayout>
 
-            <!-- Recommendations Section -->
             <TextView
                 android:id="@+id/txtRecommendations"
                 android:layout_width="wrap_content"
@@ -265,7 +190,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" />
 
-            <!-- Popular Section -->
             <TextView
                 android:id="@+id/txtPopular"
                 android:layout_width="wrap_content"

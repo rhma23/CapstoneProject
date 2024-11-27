@@ -1,6 +1,7 @@
 package com.dicoding.projectcapstone.password
 
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,5 +13,11 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
 
+        // Tombol back
+        val btnBack: ImageButton = findViewById(R.id.btnBack)
+        btnBack.setOnClickListener {
+            // Menutup aktivitas saat tombol diklik
+            onBackPressed()
+        }
     }
 }
