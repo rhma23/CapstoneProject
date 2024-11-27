@@ -52,7 +52,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
             val password = binding.etPassword.text.toString()
             val confirmPassword = binding.etConfirmPassword.text.toString()
             val role = "buyer"
-            if(password != confirmPassword) {
+            if(password == confirmPassword) {
                 if (binding.etEmail.error == null && binding.etPassword.error == null) {
                     registerModel.register(username, email, password, role) { success ->
                         if (!isFinishing && !isDestroyed) {

@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.button.setOnClickListener {
             userModel.logout()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 }
