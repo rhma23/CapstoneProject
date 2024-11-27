@@ -9,6 +9,8 @@ class SessionManager(context: Context) {
     companion object {
         private const val EMAIL_KEY = "email"
         private const val TOKEN_KEY = "token"
+        private const val EMAIL_FORGOT_PASSW_KEY = "email_forgot_password"
+        private const val OTP_FORGOT_PASSWORD_KEY = "otp_forgot_password"
     }
 
     fun saveEmail(email: String) {
@@ -19,6 +21,26 @@ class SessionManager(context: Context) {
 
     fun getEmail(): String? {
         return prefs.getString(EMAIL_KEY, null)
+    }
+
+    fun saveEmailForgotPassword(email: String) {
+        val editor = prefs.edit()
+    editor.putString(EMAIL_FORGOT_PASSW_KEY, email)
+        editor.apply()
+    }
+
+    fun getEmailForgotPassword(): String? {
+        return prefs.getString(EMAIL_FORGOT_PASSW_KEY, null)
+    }
+
+    fun saveOtpForgotPassword(otp: String) {
+        val editor = prefs.edit()
+        editor.putString(OTP_FORGOT_PASSWORD_KEY, otp)
+        editor.apply()
+    }
+
+    fun getOtpForgotPassword(): String? {
+        return prefs.getString(OTP_FORGOT_PASSWORD_KEY, null)
     }
 
     fun saveToken(token: String) {

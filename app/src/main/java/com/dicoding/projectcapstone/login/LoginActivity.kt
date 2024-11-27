@@ -11,6 +11,7 @@ import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.otp.OtpActivity
+import com.dicoding.projectcapstone.password.ForgotPasswordActivity
 import com.dicoding.projectcapstone.register.RegisterBuyerActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
 import com.dicoding.projectcapstone.ui.MyButton
@@ -42,6 +43,12 @@ class LoginActivity : AppCompatActivity() {
             val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
             startActivity(intentRegister)
         }
+
+        binding.txtForgotPassword.setOnClickListener {
+            val intentForgotPasword = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intentForgotPasword)
+        }
+
         binding.btnLogin.setOnClickListener {
             myButton.isPressed = true
             val intent = Intent(this, LoginActivity::class.java)

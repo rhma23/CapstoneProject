@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone.otp
+package com.dicoding.projectcapstone.password
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,8 @@ import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityOtpBinding
+import com.dicoding.projectcapstone.otp.OtpModel
+import com.dicoding.projectcapstone.otp.OtpModelFactory
 import com.dicoding.projectcapstone.repository.AuthRepository
 
 class OtpActivity : AppCompatActivity() {
@@ -29,20 +31,12 @@ class OtpActivity : AppCompatActivity() {
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
-
-        // Tombol back
-        val btnBack: ImageButton = findViewById(R.id.btnBack)
-        btnBack.setOnClickListener {
-            // Menutup aktivitas saat tombol diklik
-            onBackPressed()
-        }
-
         setupAction()
     }
 
     private fun setupAction() {
         binding.btnVerify.setOnClickListener {
-            val intentOtp = Intent(this, OtpActivity::class.java)
+            val intentOtpForgotPassword= Intent(this, ConfirmPasswordActivity::class.java)
             val email = sessionManager.getEmail()
             val otp_code = binding.txtResendOtp.text.toString()
             Log.d("setupAction", "setupAction: $email, $otp_code")
@@ -62,7 +56,7 @@ class OtpActivity : AppCompatActivity() {
                             setTitle("Oops!")
                             setMessage("Akun dengan $email gagal dibuat. Coba lagi ya.")
                             setPositiveButton("Ulangi") { _, _ -> finish()
-                                startActivity(intentOtp)
+                                startActivity(intentOtpForgotPassword)
                                 finish()
                             }
                             create()
