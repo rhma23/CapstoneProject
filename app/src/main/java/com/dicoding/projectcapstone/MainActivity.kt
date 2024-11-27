@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.databinding.ActivityMainBinding
 import com.dicoding.projectcapstone.login.LoginActivity
-import com.dicoding.projectcapstone.repository.AuthRepository
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
