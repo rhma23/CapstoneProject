@@ -10,13 +10,16 @@ import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityRegisterBuyerBinding
+import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.otp.OtpActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
+import com.dicoding.projectcapstone.ui.MyButton
 
 class RegisterBuyerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBuyerBinding
     private lateinit var repository: AuthRepository
     private lateinit var sessionManager: SessionManager
+    private lateinit var myButton: MyButton
 
     private val registerModel: RegisterModel by viewModels {
         RegisterModelFactory(repository)
@@ -30,12 +33,8 @@ class RegisterBuyerActivity : AppCompatActivity() {
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
 
-        // Tombol back
-        val btnBack: ImageButton = findViewById(R.id.btnBack)
-        btnBack.setOnClickListener {
-            // Menutup aktivitas saat tombol diklik
-            onBackPressed()
-        }
+        // Initialize myButton
+        myButton = binding.btnRegister
 
         setupView()
         setupAction()
@@ -46,13 +45,16 @@ class RegisterBuyerActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.btnRegister.setOnClickListener {
+
+        myButton.setOnClickListener {
+            val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
             val username = binding.etYourName.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
             val confirmPassword = binding.etConfirmPassword.text.toString()
             val role = "buyer"
-            if(password == confirmPassword) {
+            if (password == confirmPassword) {
+
                 if (binding.etEmail.error == null && binding.etPassword.error == null) {
                     registerModel.register(username, email, password, role) { success ->
                         if (!isFinishing && !isDestroyed) {
@@ -73,7 +75,9 @@ class RegisterBuyerActivity : AppCompatActivity() {
                                 AlertDialog.Builder(this).apply {
                                     setTitle("Oops!")
                                     setMessage("Akun dengan $email gagal dibuat. Coba lagi ya.")
-                                    setPositiveButton("Ulangi") { _, _ -> finish() }
+                                    setPositiveButton("Ulangi") { _, _ ->
+                                        startActivity(intentRegister)
+                                        finish() }
                                     create()
                                     show()
                                 }
@@ -81,7 +85,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
                         }
                     }
                 }
-            }else{
+            } else {
                 binding.etConfirmPassword.error = "Password tidak sama"
             }
         }
