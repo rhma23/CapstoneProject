@@ -30,13 +30,6 @@ class OtpActivity : AppCompatActivity() {
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
 
-        // Tombol back
-        val btnBack: ImageButton = findViewById(R.id.btnBack)
-        btnBack.setOnClickListener {
-            // Menutup aktivitas saat tombol diklik
-            onBackPressed()
-        }
-
         setupAction()
     }
 
