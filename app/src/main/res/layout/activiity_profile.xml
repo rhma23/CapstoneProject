@@ -35,7 +35,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="24dp"
             android:src="@drawable/profil"
-            android:contentDescription="@string/profile_picture"
+            android:contentDescription="Profile Picture"
             android:background="@drawable/bg_item"
             android:padding="8dp" />
 
@@ -70,7 +70,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_person1"
-                    android:contentDescription="@string/nama_icon" />
+                    android:contentDescription="" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -85,7 +85,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:contentDescription="@string/arrow_icon" />
+                    android:contentDescription="arrow icon" />
             </LinearLayout>
 
             <!-- Email -->
@@ -102,7 +102,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_email"
-                    android:contentDescription="@string/email_icon" />
+                    android:contentDescription="email_icon" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -117,7 +117,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:contentDescription="@string/arrow_icon" />
+                    android:contentDescription="arrow_icon" />
             </LinearLayout>
 
             <!-- Ubah Password -->
@@ -134,7 +134,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_lock"
-                    android:contentDescription="@string/password_icon" />
+                    android:contentDescription="password_icon" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -149,7 +149,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:contentDescription="@string/arrow_icon" />
+                    android:contentDescription="arrow_icon" />
             </LinearLayout>
 
             <!-- No. Handphone -->
@@ -166,7 +166,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_handphone"
-                    android:contentDescription="@string/phone_icon" />
+                    android:contentDescription="phone_icon" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -181,7 +181,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_right"
-                    android:contentDescription="@string/arrow_icon" />
+                    android:contentDescription="arrow_icon" />
             </LinearLayout>
         </LinearLayout>
 

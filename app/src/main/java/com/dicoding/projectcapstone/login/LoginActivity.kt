@@ -10,7 +10,6 @@ import com.dicoding.projectcapstone.databinding.ActivityLoginBinding
 import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
-import com.dicoding.projectcapstone.otp.OtpActivity
 import com.dicoding.projectcapstone.password.ForgotPasswordActivity
 import com.dicoding.projectcapstone.register.RegisterBuyerActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
@@ -21,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var repository: AuthRepository
     private lateinit var sessionManager: SessionManager
     private lateinit var myButton: MyButton
+
     private val loginModel: LoginModel by viewModels {
         LoginModelFactory(repository)
     }
@@ -59,11 +59,7 @@ class LoginActivity : AppCompatActivity() {
                 AlertDialog.Builder(this).apply {
                     setTitle("Opps!")
                     setMessage("Email dan password salah")
-                    setPositiveButton("Ulangi") { _, _ ->
-                        finish()
-                        startActivity(intent)
-                        finish()
-                    }
+                    setPositiveButton("Ulangi", null)
                     create()
                     show()
                 }
@@ -73,6 +69,14 @@ class LoginActivity : AppCompatActivity() {
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
+                    } else {
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Opps!")
+                            setMessage("Email dan password salah")
+                            setPositiveButton("Ulangi", null)
+                            create()
+                            show()
+                        }
                     }
                 }
             }

@@ -18,10 +18,10 @@
             android:name=".password.NewPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".password.OtpForgotPasswordActivity"
+            android:name=".otp.OtpRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".password.ConfirmPasswordActivity"
+            android:name=".password.OtpForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".password.ForgotPasswordActivity"

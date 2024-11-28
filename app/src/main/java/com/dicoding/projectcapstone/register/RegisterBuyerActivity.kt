@@ -6,12 +6,10 @@ import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityRegisterBuyerBinding
-import com.dicoding.projectcapstone.login.LoginActivity
-import com.dicoding.projectcapstone.otp.OtpActivity
+import com.dicoding.projectcapstone.otp.OtpRegisterActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
 import com.dicoding.projectcapstone.ui.ButtonRegist
 import com.dicoding.projectcapstone.ui.MyButton
@@ -66,7 +64,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
                                     setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
                                     setPositiveButton("Lanjut") { _, _ ->
                                         finish()
-                                        val intent = Intent(this@RegisterBuyerActivity, OtpActivity::class.java)
+                                        val intent = Intent(this@RegisterBuyerActivity, OtpRegisterActivity::class.java)
                                         startActivity(intent)
                                     }
                                     create()
