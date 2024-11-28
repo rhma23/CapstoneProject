@@ -45,16 +45,15 @@ class RegisterBuyerActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-
         myButton.setOnClickListener {
             val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
+            val intentOtpActivity = Intent(this, OtpActivity::class.java)
             val username = binding.etYourName.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
             val confirmPassword = binding.etConfirmPassword.text.toString()
             val role = "buyer"
             if (password == confirmPassword) {
-
                 if (binding.etEmail.error == null && binding.etPassword.error == null) {
                     registerModel.register(username, email, password, role) { success ->
                         if (!isFinishing && !isDestroyed) {
@@ -65,12 +64,11 @@ class RegisterBuyerActivity : AppCompatActivity() {
                                     setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
                                     setPositiveButton("Lanjut") { _, _ ->
                                         finish()
-                                        val intent = Intent(this@RegisterBuyerActivity, OtpActivity::class.java)
-                                        startActivity(intent)
                                     }
                                     create()
                                     show()
                                 }
+                                startActivity(intentOtpActivity)
                             } else {
                                 AlertDialog.Builder(this).apply {
                                     setTitle("Oops!")
