@@ -5,12 +5,15 @@ import com.dicoding.projectcapstone.login.LoginResponse
 import com.dicoding.projectcapstone.otp.OtpRequest
 import com.dicoding.projectcapstone.otp.OtpResponse
 import com.dicoding.projectcapstone.otp.ResendOtpRequest
+import com.dicoding.projectcapstone.otp.ResendOtpResponse
 import com.dicoding.projectcapstone.password.ForgotPasswordRequest
 import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.register.RegisterRequest
 import retrofit2.http.POST
 import com.dicoding.projectcapstone.register.RegisterResponse
+import com.dicoding.projectcapstone.user.UserDataResponse
 import retrofit2.http.Body
+import retrofit2.http.Header
 
 interface ApiService {
     @POST("auth/register")
@@ -20,7 +23,7 @@ interface ApiService {
     suspend fun verify(@Body request: OtpRequest): OtpResponse
 
     @POST("auth/resend_otp")
-    suspend fun resendOtp(@Body request: ResendOtpRequest): OtpResponse
+    suspend fun resendOtp(@Body request: ResendOtpRequest): ResendOtpResponse
 
     @POST("auth/login")
     suspend fun login(@Body request: LoginRequest): LoginResponse
@@ -28,6 +31,9 @@ interface ApiService {
     @POST("auth/ResetPassword")
     suspend fun resetPassword(@Body request: ForgotPasswordRequest): ForgotPasswordResponse
 
-    @POST("get_user_data")
-    suspend fun getData(): LoginResponse
+    @POST("auth/userData")
+    suspend fun getUserData(
+        @Header("Authorization") authorization: String
+    ): UserDataResponse
+
 }

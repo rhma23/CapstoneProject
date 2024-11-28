@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
         userModel.setSessionManager(sessionManager)
 
-        if (sessionManager.getToken() == null) {
+        if (!sessionManager.getIsLogin()) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+        binding.txtName.text = sessionManager.getUsername()
         binding.button.setOnClickListener {
             userModel.logout()
             val intent = Intent(this, LoginActivity::class.java)

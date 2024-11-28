@@ -17,7 +17,14 @@ class LoginModel(private val repository: AuthRepository) : ViewModel() {
         viewModelScope.launch {
             val result = repository.login(email, password)
             if (result.success == true) {
-                result.token?.let { sessionManager.saveToken(it) }
+                val userData = result.result?.token?.let { repository.getUserData(it) }
+                if(userData != null && userData.success == true && userData.result?.isVerified == true) {
+                    userData.result.id?.let { sessionManager.saveUserId(it) }
+                    userData.result.username?.let { sessionManager.saveUsername(it) }
+                    userData.result.email?.let { sessionManager.saveEmailUser(it) }
+                    userData.result.role?.let { sessionManager.saveRole(it) }
+                    sessionManager.saveIsLogin(true)
+                }
             }
             callback(result.success == true)
         }

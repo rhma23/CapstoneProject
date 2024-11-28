@@ -46,8 +46,8 @@ public class KategoriAdapter extends RecyclerView.Adapter<com.dicoding.projectca
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                imageView = itemView.findViewById(R.id.image_view);
-                textView = itemView.findViewById(R.id.text_view);
+                imageView = itemView.findViewById(R.id.item_image);
+                textView = itemView.findViewById(R.id.item_name);
             }
         }
     }

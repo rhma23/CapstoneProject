@@ -6,13 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.repository.AuthRepository
-import com.dicoding.projectcapstone.utils.SessionManager
 import retrofit2.HttpException
 
 class OtpModel(private val repository: AuthRepository) : ViewModel() {
 
     fun verify(email: String, otp_code: String, onResult: (Boolean) -> Unit) {
-        Log.d("Otp", "Otp: $email, $otp_code")
         viewModelScope.launch {
             try {
                 val response: OtpResponse = repository.verify(email, otp_code)
@@ -38,7 +36,7 @@ class OtpModel(private val repository: AuthRepository) : ViewModel() {
         Log.d("Otp", "Otp: $email")
         viewModelScope.launch {
             try {
-                val response: OtpResponse = repository.resendOtp(email)
+                val response: ResendOtpResponse = repository.resendOtp(email)
                 if (response.success == true) {
                     Log.d("Otp", "Resend Otp successful: ${response.message}")
                     Log.d("Otp", "Resend Otp result: ${response.result}")
@@ -61,14 +59,14 @@ class OtpModel(private val repository: AuthRepository) : ViewModel() {
         Log.d("Otp", "Otp: $email")
         viewModelScope.launch {
             try {
-                val response: OtpResponse = repository.resendOtp(email)
+                val response: ResendOtpResponse = repository.resendOtp(email)
                 if (response.success == true) {
                     Log.d("Otp", "Resend Otp successful: ${response.message}")
                     Log.d("Otp", "Resend Otp result: ${response.result}")
-                    onResult(response)
+                    onResult(response.success?.let { OtpResponse(success = it) })
                 } else {
                     Log.d("Otp", "Resend Otp failed: ${response.message}")
-                    onResult(response)
+                    onResult(response.success?.let { OtpResponse(success = it) })
                 }
             } catch (e: HttpException) {
                 Log.e("Otp", "HTTP Error: ${e.code()} - ${e.response()?.errorBody()?.string()}")

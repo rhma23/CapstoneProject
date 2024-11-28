@@ -36,18 +36,17 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.btnVerify.setOnClickListener {
-            val intentOtpForgotPassword= Intent(this, ConfirmPasswordActivity::class.java)
+            val intentNewPasswordActivity = Intent(this, NewPasswordActivity::class.java)
             val otp_code = binding.etOtp.text.toString()
 
-            if (binding.txtResendOtp.error == null) {
+            if (binding.etOtp.error == null) {
                 if(otp_code == sessionManager.getOtpForgotPassword()) {
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
                         setMessage("Otp benar")
                         setPositiveButton("Lanjut") { _, _ ->
-                            startActivity(intentOtpForgotPassword)
+                            startActivity(intentNewPasswordActivity)
                             finish()
-
                         }
                         create()
                         show()

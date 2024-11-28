@@ -79,5 +79,8 @@
 
     <string name="logout">Logout</string>
 
+    <!-- profile -->
+    <string name="rating_icon">★</string>
+    <string name="distance_icon">📍</string>
 
 </resources>

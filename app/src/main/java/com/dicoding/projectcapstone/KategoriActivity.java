@@ -22,17 +22,17 @@ public class KategoriActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.item_kategori);
 
-            foodList = findViewById(R.id.food_list);
-            foodList = findViewById(R.id.drink_list);
-
-            kategoriList = new ArrayList<>();
-            kategoriList.add(new Kategori("Makanan", R.drawable.ic_food));
-            kategoriList.add(new Kategori("Minuman", R.drawable.ic_drink));
-
-            kategoriAdapter = new KategoriAdapter(kategoriList);
-
-            foodList.setAdapter(kategoriAdapter);
-            foodList.setLayoutManager(new LinearLayoutManager(this));
+//            foodList = findViewById(R.id.food_list);
+//            foodList = findViewById(R.id.drink_list);
+//
+//            kategoriList = new ArrayList<>();
+//            kategoriList.add(new Kategori("Makanan", R.drawable.ic_food));
+//            kategoriList.add(new Kategori("Minuman", R.drawable.ic_drink));
+//
+//            kategoriAdapter = new KategoriAdapter(kategoriList);
+//
+//            foodList.setAdapter(kategoriAdapter);
+//            foodList.setLayoutManager(new LinearLayoutManager(this));
         }
     }
 }

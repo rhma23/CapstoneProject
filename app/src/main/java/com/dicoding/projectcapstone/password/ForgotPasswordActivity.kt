@@ -5,14 +5,11 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityForgotPasswordBinding
-import com.dicoding.projectcapstone.databinding.ActivityLoginBinding
 import com.dicoding.projectcapstone.otp.OtpModel
 import com.dicoding.projectcapstone.otp.OtpModelFactory
 import com.dicoding.projectcapstone.repository.AuthRepository
-import com.dicoding.projectcapstone.ui.MyButton
 import com.dicoding.projectcapstone.utils.SessionManager
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -37,7 +34,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
             val email = binding.etForgotPassword.text.toString()
             if (email != null) {
                 otpModel.resendOtpForgotPassword(email) { otpResponse ->
-                    startActivity(intent)
                     if (otpResponse != null) {
                         val result = otpResponse.success
                         if (result == true) {
@@ -48,8 +44,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
                                 )
                             }
                             AlertDialog.Builder(this).apply {
-                                setTitle("OTP Sent")
-                                setMessage("OTP has been resent to $email.")
+                                setTitle("OTP Dikirim")
+                                setMessage("OTP telah dikirim ke email $email.")
                                 setPositiveButton("Lanjut") { _, _ ->
                                     startActivity(intent)
                                     finish()
@@ -59,9 +55,9 @@ class ForgotPasswordActivity : AppCompatActivity() {
                             }
                         } else {
                             AlertDialog.Builder(this).apply {
-                                setTitle("Error")
-                                setMessage("Failed to resend OTP. Please try again.")
-                                setPositiveButton("Retry", null)
+                                setTitle("Gagal Mengirim OTP")
+                                setMessage("Gagal mengirim OTP. Coba lagi.")
+                                setPositiveButton("Coba Lagi", null)
                                 create()
                                 show()
                             }

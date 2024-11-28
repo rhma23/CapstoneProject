@@ -11,7 +11,7 @@ import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityRegisterBuyerBinding
 import com.dicoding.projectcapstone.login.LoginActivity
-import com.dicoding.projectcapstone.otp.OtpActivity
+import com.dicoding.projectcapstone.otp.OtpRegisterActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
 import com.dicoding.projectcapstone.ui.MyButton
 
@@ -45,9 +45,9 @@ class RegisterBuyerActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+        val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
+        val intentOtpActivity = Intent(this, OtpRegisterActivity::class.java)
         myButton.setOnClickListener {
-            val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
-            val intentOtpActivity = Intent(this, OtpActivity::class.java)
             val username = binding.etYourName.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
@@ -61,14 +61,14 @@ class RegisterBuyerActivity : AppCompatActivity() {
                                 sessionManager.saveEmail(email)
                                 AlertDialog.Builder(this).apply {
                                     setTitle("Yeah!")
-                                    setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
+                                    setMessage("Akun dengan $email hampir jadi, silahkan cek email untuk verifikasi.")
                                     setPositiveButton("Lanjut") { _, _ ->
+                                        startActivity(intentOtpActivity)
                                         finish()
                                     }
                                     create()
                                     show()
                                 }
-                                startActivity(intentOtpActivity)
                             } else {
                                 AlertDialog.Builder(this).apply {
                                     setTitle("Oops!")
