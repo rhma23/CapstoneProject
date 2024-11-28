@@ -4,12 +4,12 @@ import kotlinx.coroutines.launch
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.repository.AuthRepository
 import com.dicoding.projectcapstone.utils.SessionManager
 import retrofit2.HttpException
 
 class OtpModel(private val repository: AuthRepository) : ViewModel() {
-    private lateinit var sessionManager: SessionManager
 
     fun verify(email: String, otp_code: String, onResult: (Boolean) -> Unit) {
         Log.d("Otp", "Otp: $email, $otp_code")
@@ -57,8 +57,7 @@ class OtpModel(private val repository: AuthRepository) : ViewModel() {
         }
     }
 
-    fun resendOtpForgotPassword(email: String, onResult: (Boolean) -> Unit) {
-//        sessionManager = SessionManager(this)
+    fun resendOtpForgotPassword(email: String, onResult: (OtpResponse?) -> Unit) {
         Log.d("Otp", "Otp: $email")
         viewModelScope.launch {
             try {
@@ -66,17 +65,38 @@ class OtpModel(private val repository: AuthRepository) : ViewModel() {
                 if (response.success == true) {
                     Log.d("Otp", "Resend Otp successful: ${response.message}")
                     Log.d("Otp", "Resend Otp result: ${response.result}")
-                    response.result?.otp_code?.let { sessionManager.saveOtpForgotPassword(it) }
-                    onResult(true)
+                    onResult(response)
                 } else {
                     Log.d("Otp", "Resend Otp failed: ${response.message}")
-                    onResult(false)
+                    onResult(response)
                 }
             } catch (e: HttpException) {
                 Log.e("Otp", "HTTP Error: ${e.code()} - ${e.response()?.errorBody()?.string()}")
-                onResult(false)
+                onResult(null)
             } catch (e: Exception) {
                 Log.e("Otp", "Unexpected Error", e)
+                onResult(null)
+            }
+        }
+    }
+
+    fun resetPassowrd(otp_code: String, email: String, newPasword: String, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            try {
+                val response: ForgotPasswordResponse = repository.resetPassword(otp_code, email, newPasword)
+                if (response.success == true) {
+                    Log.d("Reset Passoword", "Reset Passoword successful: ${response.message}")
+                    Log.d("Reset Passoword", "Reset Passoword result: ${response}")
+                    onResult(true)
+                } else {
+                    Log.d("Reset Passoword", "Reset Passoword failed: ${response.message}")
+                    onResult(false)
+                }
+            } catch (e: HttpException) {
+                Log.e("Reset Passoword", "HTTP Error: ${e.code()} - ${e.response()?.errorBody()?.string()}")
+                onResult(false)
+            } catch (e: Exception) {
+                Log.e("Reset Passoword", "Unexpected Error", e)
                 onResult(false)
             }
         }

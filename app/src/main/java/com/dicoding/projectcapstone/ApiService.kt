@@ -5,6 +5,8 @@ import com.dicoding.projectcapstone.login.LoginResponse
 import com.dicoding.projectcapstone.otp.OtpRequest
 import com.dicoding.projectcapstone.otp.OtpResponse
 import com.dicoding.projectcapstone.otp.ResendOtpRequest
+import com.dicoding.projectcapstone.password.ForgotPasswordRequest
+import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.register.RegisterRequest
 import retrofit2.http.POST
 import com.dicoding.projectcapstone.register.RegisterResponse
@@ -22,6 +24,9 @@ interface ApiService {
 
     @POST("auth/login")
     suspend fun login(@Body request: LoginRequest): LoginResponse
+
+    @POST("auth/ResetPassword")
+    suspend fun resetPassword(@Body request: ForgotPasswordRequest): ForgotPasswordResponse
 
     @POST("get_user_data")
     suspend fun getData(): LoginResponse

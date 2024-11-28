@@ -2,23 +2,26 @@ package com.dicoding.projectcapstone.password
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
+import com.dicoding.projectcapstone.databinding.ActivityConfirmPasswordBinding
 import com.dicoding.projectcapstone.databinding.ActivityForgotPasswordBinding
-import com.dicoding.projectcapstone.databinding.ActivityLoginBinding
+import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.otp.OtpModel
 import com.dicoding.projectcapstone.otp.OtpModelFactory
 import com.dicoding.projectcapstone.repository.AuthRepository
-import com.dicoding.projectcapstone.ui.MyButton
 import com.dicoding.projectcapstone.utils.SessionManager
 
-class ForgotPasswordActivity : AppCompatActivity() {
+class ConfirmPasswordActivity : AppCompatActivity() {
     lateinit var repository: AuthRepository
     private lateinit var sessionManager: SessionManager
-    private lateinit var binding: ActivityForgotPasswordBinding
+    private lateinit var binding: ActivityConfirmPasswordBinding
 
     private val otpModel: OtpModel by viewModels {
         OtpModelFactory(repository)
@@ -26,31 +29,28 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
+        binding = ActivityConfirmPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
 
-        binding.btnSubmitFgPassword.setOnClickListener {
-            val intent = Intent(this, OtpForgotPasswordActivity::class.java)
-            val email = binding.etForgotPassword.text.toString()
-            if (email != null) {
-                otpModel.resendOtpForgotPassword(email) { otpResponse ->
-                    startActivity(intent)
-                    if (otpResponse != null) {
-                        val result = otpResponse.success
-                        if (result == true) {
-                            sessionManager.saveEmailForgotPassword(email)
-                            otpResponse.result?.otp_code?.let { it1 ->
-                                sessionManager.saveOtpForgotPassword(
-                                    it1
-                                )
-                            }
+        setupAction()
+    }
+
+    private fun setupAction() {
+        binding.btnSubmitConfirmPass.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            val newPassword = binding.etNewPassword.text.toString()
+            val email = sessionManager.getEmailForgotPassword()
+            val otp_code = sessionManager.getOtpForgotPassword()
+            if (newPassword != null && email != null && otp_code != null) {
+                otpModel.resetPassowrd(newPassword, email, otp_code) { success ->
+                        if (success == true) {
                             AlertDialog.Builder(this).apply {
-                                setTitle("OTP Sent")
-                                setMessage("OTP has been resent to $email.")
-                                setPositiveButton("Lanjut") { _, _ ->
+                                setTitle("Berhasil")
+                                setMessage("Password berhasil dirubah")
+                                setPositiveButton("Login") { _, _ ->
                                     startActivity(intent)
                                     finish()
                                 }
@@ -59,18 +59,15 @@ class ForgotPasswordActivity : AppCompatActivity() {
                             }
                         } else {
                             AlertDialog.Builder(this).apply {
-                                setTitle("Error")
-                                setMessage("Failed to resend OTP. Please try again.")
-                                setPositiveButton("Retry", null)
+                                setTitle("Galgal")
+                                setMessage("Gagal merubah password. Silahkan coba lagi")
+                                setPositiveButton("Coba lagi", null)
                                 create()
                                 show()
                             }
                         }
-                    }
                 }
             }
         }
     }
-
-
 }
