@@ -6,11 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
-import com.dicoding.projectcapstone.databinding.ActivityForgotPasswordBinding
 import com.dicoding.projectcapstone.databinding.ActivityNewPasswordBinding
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.otp.OtpModel
@@ -34,7 +30,7 @@ class NewPasswordActivity : AppCompatActivity() {
         setContentView(binding.root)
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
-
+        otpModel.setSessionManager(sessionManager)
         setupAction()
     }
 

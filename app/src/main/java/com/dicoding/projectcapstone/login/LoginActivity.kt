@@ -59,11 +59,7 @@ class LoginActivity : AppCompatActivity() {
                 AlertDialog.Builder(this).apply {
                     setTitle("Opps!")
                     setMessage("Email dan password salah")
-                    setPositiveButton("Ulangi") { _, _ ->
-                        finish()
-                        startActivity(intent)
-                        finish()
-                    }
+                    setPositiveButton("Ulangi", null)
                     create()
                     show()
                 }
@@ -77,11 +73,7 @@ class LoginActivity : AppCompatActivity() {
                         AlertDialog.Builder(this).apply {
                             setTitle("Opps!")
                             setMessage("Email dan password salah")
-                            setPositiveButton("Ulangi") { _, _ ->
-                                finish()
-                                startActivity(intent)
-                                finish()
-                            }
+                            setPositiveButton("Ulangi", null)
                             create()
                             show()
                         }

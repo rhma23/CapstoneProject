@@ -1,10 +1,17 @@
 package com.dicoding.projectcapstone.otp
 
 data class ResendOtpResponse(
-	val result: String? = null,
+	val result: Result? = null,
 	val success: Boolean? = null,
-	val otpExpiration: String? = null,
-	val message: String? = null,
-	val email: String? = null
+	val message: String? = null
+)
+
+data class Result(
+	val otp_expiration: String? = null,
+	val id: Int? = null,
+	val otp_code: String? = null,
+	val is_verified: Boolean? = null,
+	val email: String? = null,
+	val username: String? = null
 )
 

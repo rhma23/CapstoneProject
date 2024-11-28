@@ -37,6 +37,11 @@ class AuthRepository(
         return apiService.resendOtp(request)
     }
 
+    suspend fun resendOtpForgotPassword(email: String): ResendOtpResponse {
+        val request = ResendOtpRequest(email)
+        return apiService.resendOtp(request)
+    }
+
     suspend fun resetPassword(otp_code: String, email: String, newPassword: String): ForgotPasswordResponse {
         val request = ForgotPasswordRequest(otp_code, email, newPassword)
         return apiService.resetPassword(request)

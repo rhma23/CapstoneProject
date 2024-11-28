@@ -73,9 +73,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
                                 AlertDialog.Builder(this).apply {
                                     setTitle("Oops!")
                                     setMessage("Akun dengan $email gagal dibuat. Coba lagi ya.")
-                                    setPositiveButton("Ulangi") { _, _ ->
-                                        startActivity(intentRegister)
-                                        finish() }
+                                    setPositiveButton("Ulangi", null)
                                     create()
                                     show()
                                 }

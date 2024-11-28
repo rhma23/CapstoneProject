@@ -66,14 +66,8 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
         binding.txtResendOtp.setOnClickListener {
             val email = sessionManager.getEmailForgotPassword()
             if (email != null) {
-                otpModel.resendOtpForgotPassword(email) { otpResponse ->
-                    if (otpResponse != null) {
-                        if (otpResponse.success == true) {
-                            otpResponse.result?.otp_code?.let { it1 ->
-                                sessionManager.saveOtpForgotPassword(
-                                    it1
-                                )
-                            }
+                otpModel.resendOtpForgotPassword(email) { success ->
+                        if (success ) {
                             AlertDialog.Builder(this).apply {
                                 setTitle("OTP Sent")
                                 setMessage("OTP has been resent to $email.")
@@ -92,7 +86,7 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
                                 show()
                             }
                         }
-                    }
+
                 }
             }
         }

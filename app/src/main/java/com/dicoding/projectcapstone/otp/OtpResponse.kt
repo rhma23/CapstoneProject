@@ -6,7 +6,7 @@ data class OtpResponse(
 	val message: String? = null
 )
 
-data class Result(
+data class OtpResult(
 	val createdAt: String? = null,
 	val password: String? = null,
 	val address: String? = null,

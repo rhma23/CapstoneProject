@@ -13,6 +13,7 @@ import retrofit2.http.POST
 import com.dicoding.projectcapstone.register.RegisterResponse
 import com.dicoding.projectcapstone.user.UserDataResponse
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Header
 
 interface ApiService {
@@ -31,9 +32,9 @@ interface ApiService {
     @POST("auth/ResetPassword")
     suspend fun resetPassword(@Body request: ForgotPasswordRequest): ForgotPasswordResponse
 
-    @POST("auth/userData")
+    @GET("auth/userData")
     suspend fun getUserData(
-        @Header("Authorization") authorization: String
+        @Header("Authorization") authHeader: String
     ): UserDataResponse
 
 }

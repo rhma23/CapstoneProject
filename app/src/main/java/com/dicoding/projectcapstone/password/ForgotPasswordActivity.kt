@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityForgotPasswordBinding
 import com.dicoding.projectcapstone.otp.OtpModel
@@ -28,21 +29,14 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
-
+        otpModel.setSessionManager(sessionManager)
         binding.btnSubmitFgPassword.setOnClickListener {
-            val intent = Intent(this, OtpForgotPasswordActivity::class.java)
             val email = binding.etForgotPassword.text.toString()
             if (email != null) {
-                otpModel.resendOtpForgotPassword(email) { otpResponse ->
-                    if (otpResponse != null) {
-                        val result = otpResponse.success
-                        if (result == true) {
+                val intent = Intent(this, OtpForgotPasswordActivity::class.java)
+                otpModel.resendOtpForgotPassword(email) { success ->
+                    if (success) {
                             sessionManager.saveEmailForgotPassword(email)
-                            otpResponse.result?.otp_code?.let { it1 ->
-                                sessionManager.saveOtpForgotPassword(
-                                    it1
-                                )
-                            }
                             AlertDialog.Builder(this).apply {
                                 setTitle("OTP Dikirim")
                                 setMessage("OTP telah dikirim ke email $email.")
@@ -62,11 +56,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
                                 show()
                             }
                         }
-                    }
+
                 }
             }
         }
     }
-
 
 }

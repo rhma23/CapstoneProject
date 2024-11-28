@@ -11,7 +11,7 @@ data class Result(
 	val address: Any? = null,
 	val role: String? = null,
 	val id: Int? = null,
-	val isVerified: Boolean? = null,
+	val is_verified: Boolean? = null,
 	val email: String? = null,
 	val username: String? = null,
 	val updatedAt: String? = null
