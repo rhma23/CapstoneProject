@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class Kategori {
-    private String name;
-    private int imageResource;
+    private final String name;
+    private final int imageResource;
 
     public Kategori(String name, int imageResource) {
         this.name = name;

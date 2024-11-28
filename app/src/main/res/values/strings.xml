@@ -40,7 +40,6 @@
     <string name="welcome">Welcome</string>
     <string name="user_name">Rahma!</string>
     <string name="hujan_hujan_begini_yuk_nikmati_makanan_hangat_yang_bikin_hati_nyaman">Hujan-hujan begini, yuk nikmati makanan hangat yang bikin hati nyaman!</string>
-    <string name="see_all">See all</string>
     <string name="text_content_cuaca">Hujan-hujan gini, ada rekomendasi makanan untukmu nih!</string>
     <string name="categories">Categories</string>
     <string name="food">Food</string>
@@ -62,6 +61,7 @@
     <string name="forgot_password">Password</string>
     <string name="enter_your_email_to_reset_your_password">Enter your email to reset your password.</string>
     <string name="submit">Submit</string>
+    <string name="button_forgot_password">Button Forgot Password</string>
 
     <!-- new password -->
     <string name="enter_your_new_password">Enter your new password!</string>
@@ -75,9 +75,13 @@
     <string name="ket_forgot_password">Forgot Password?</string>
     <string name="don_t_have_account">Don\'t have account?</string>
     <string name="sign_up">Sign Up</string>
+    <string name="login_button">Login Button</string>
 
 
     <string name="logout">Logout</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 </resources>

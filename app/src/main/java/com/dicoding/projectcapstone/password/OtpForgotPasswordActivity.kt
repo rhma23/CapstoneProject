@@ -15,7 +15,7 @@ import com.dicoding.projectcapstone.otp.OtpModel
 import com.dicoding.projectcapstone.otp.OtpModelFactory
 import com.dicoding.projectcapstone.repository.AuthRepository
 
-class OtpActivity : AppCompatActivity() {
+class OtpForgotPasswordActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
     private lateinit var repository: AuthRepository
     private lateinit var sessionManager: SessionManager
@@ -36,7 +36,7 @@ class OtpActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.btnVerify.setOnClickListener {
-            val intentOtpForgotPassword= Intent(this, ConfirmPasswordActivity::class.java)
+            val intentOtpForgotPassword= Intent(this, NewPasswordActivity::class.java)
             val email = sessionManager.getEmail()
             val otp_code = binding.txtResendOtp.text.toString()
             Log.d("setupAction", "setupAction: $email, $otp_code")

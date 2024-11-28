@@ -13,13 +13,14 @@ import com.dicoding.projectcapstone.databinding.ActivityRegisterBuyerBinding
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.otp.OtpActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
+import com.dicoding.projectcapstone.ui.ButtonRegist
 import com.dicoding.projectcapstone.ui.MyButton
 
 class RegisterBuyerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBuyerBinding
     private lateinit var repository: AuthRepository
     private lateinit var sessionManager: SessionManager
-    private lateinit var myButton: MyButton
+    private lateinit var buttonRegist: ButtonRegist
 
     private val registerModel: RegisterModel by viewModels {
         RegisterModelFactory(repository)
@@ -34,7 +35,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
 
         // Initialize myButton
-        myButton = binding.btnRegister
+        buttonRegist = binding.btnRegister
 
         setupView()
         setupAction()
@@ -46,7 +47,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
 
     private fun setupAction() {
 
-        myButton.setOnClickListener {
+        buttonRegist.setOnClickListener {
             val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
             val username = binding.etYourName.text.toString()
             val email = binding.etEmail.text.toString()
