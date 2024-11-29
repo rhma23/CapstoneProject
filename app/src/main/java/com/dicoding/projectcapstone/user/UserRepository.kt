@@ -3,7 +3,7 @@ package com.dicoding.projectcapstone.user
 import com.dicoding.projectcapstone.ApiService
 
 class UserRepository(private val apiService: ApiService)  {
-    suspend fun getUserData() = apiService.getData()
+    suspend fun getUserData() = apiService.getUserData("Bearer {Your Token}")
     companion object {
         @Volatile
         private var instance: UserRepository? = null

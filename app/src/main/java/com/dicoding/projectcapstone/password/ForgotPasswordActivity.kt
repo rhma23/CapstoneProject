@@ -8,11 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityForgotPasswordBinding
-import com.dicoding.projectcapstone.databinding.ActivityLoginBinding
 import com.dicoding.projectcapstone.otp.OtpModel
 import com.dicoding.projectcapstone.otp.OtpModelFactory
 import com.dicoding.projectcapstone.repository.AuthRepository
-import com.dicoding.projectcapstone.ui.MyButton
 import com.dicoding.projectcapstone.utils.SessionManager
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -31,25 +29,17 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
-
+        otpModel.setSessionManager(sessionManager)
         binding.btnSubmitFgPassword.setOnClickListener {
-            val intent = Intent(this, OtpForgotPasswordActivity::class.java)
             val email = binding.etForgotPassword.text.toString()
             if (email != null) {
-                otpModel.resendOtpForgotPassword(email) { otpResponse ->
-                    startActivity(intent)
-                    if (otpResponse != null) {
-                        val result = otpResponse.success
-                        if (result == true) {
+                val intent = Intent(this, OtpForgotPasswordActivity::class.java)
+                otpModel.resendOtpForgotPassword(email) { success ->
+                    if (success) {
                             sessionManager.saveEmailForgotPassword(email)
-                            otpResponse.result?.otp_code?.let { it1 ->
-                                sessionManager.saveOtpForgotPassword(
-                                    it1
-                                )
-                            }
                             AlertDialog.Builder(this).apply {
-                                setTitle("OTP Sent")
-                                setMessage("OTP has been resent to $email.")
+                                setTitle("OTP Dikirim")
+                                setMessage("OTP telah dikirim ke email $email.")
                                 setPositiveButton("Lanjut") { _, _ ->
                                     startActivity(intent)
                                     finish()
@@ -59,18 +49,17 @@ class ForgotPasswordActivity : AppCompatActivity() {
                             }
                         } else {
                             AlertDialog.Builder(this).apply {
-                                setTitle("Error")
-                                setMessage("Failed to resend OTP. Please try again.")
-                                setPositiveButton("Retry", null)
+                                setTitle("Gagal Mengirim OTP")
+                                setMessage("Gagal mengirim OTP. Coba lagi.")
+                                setPositiveButton("Coba Lagi", null)
                                 create()
                                 show()
                             }
                         }
-                    }
+
                 }
             }
         }
     }
-
 
 }

@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import com.dicoding.projectcapstone.R
 
 
-class MyButton @JvmOverloads constructor(
+class ButtonSubmit @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = android.R.attr.buttonStyle
