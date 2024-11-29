@@ -1,8 +1,11 @@
 package com.dicoding.projectcapstone.ui
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.dicoding.projectcapstone.R
@@ -10,23 +13,14 @@ import com.dicoding.projectcapstone.R
 class CustomText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = android.R.attr.textViewStyle
+    defStyleAttr: Int = android.R.attr.textStyle
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
-    private val normalColor = ContextCompat.getColor(context, R.color.normal_color)
-    private val clickedColor = ContextCompat.getColor(context, R.color.clicked_color)
-
-    private var isClicked = false
-
     init {
-        setTextColor(normalColor) // Set warna awal
+        background = ContextCompat.getDrawable(context, R.drawable.back_button_selector)
+        setTextColor(Color.parseColor("#4DA0C1"))
         textSize = 14f
         gravity = Gravity.CENTER
         isAllCaps = false
-
-        setOnClickListener {
-            isClicked = !isClicked // Toggle state
-            setTextColor(if (isClicked) clickedColor else normalColor) // Ganti warna
-        }
     }
 }

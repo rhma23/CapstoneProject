@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var repository: AuthRepository
     private lateinit var sessionManager: SessionManager
-    private lateinit var myButton: MyButton
+//    private lateinit var myButton: MyButton
 
     private val loginModel: LoginModel by viewModels {
         LoginModelFactory(repository)
@@ -35,9 +35,9 @@ class LoginActivity : AppCompatActivity() {
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
-        myButton = findViewById(R.id.btnLogin) // Initialize myButton
+//        myButton = findViewById(R.id.btnLogin) // Initialize myButton
         loginModel.setSessionManager(sessionManager) // Pass sessionManager to loginModel
-        myButton.isPressed = false
+//        myButton.isPressed = false
         setupAction()
     }
 
@@ -53,12 +53,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            myButton.isPressed = true
+//            myButton.isPressed = true
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
             Log.d("setupAction Login 2", "setupAction: $email, $password")
             if (email.isEmpty() || password.isEmpty()) {
-                myButton.isPressed = false
+//                myButton.isPressed = false
                 AlertDialog.Builder(this).apply {
                     setTitle("Opps!")
                     setMessage("Email dan password salah")

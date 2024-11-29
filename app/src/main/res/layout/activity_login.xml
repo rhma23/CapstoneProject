@@ -105,16 +105,16 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Forgot Password -->
-                <TextView
+                <com.dicoding.projectcapstone.ui.CustomViewText
                     android:id="@+id/txtForgotPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="6dp"
                     android:text="@string/ket_forgot_password"
                     android:textSize="14sp"
-                    android:layout_gravity="end"
-                    android:textColor="#000000" />
+                    android:padding="5dp"
+                    android:layout_gravity="end" />
 
                 <!-- Login Button -->
                 <com.dicoding.projectcapstone.ui.MyButton
@@ -155,10 +155,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/sign_up"
-                        android:layout_marginStart="4dp"
+                        android:textSize="14sp"
+                        android:padding="5dp"
                         android:textStyle="bold"
                         android:clickable="true"
-                        android:focusable="true" />
+                        android:focusable="true"
+                        android:textAllCaps="false"/>
+
                 </LinearLayout>
 
             </LinearLayout>

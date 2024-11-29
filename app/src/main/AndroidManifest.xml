@@ -42,9 +42,6 @@
             android:name=".register.RegisterBuyerActivity"
             android:exported="false" />
         <activity
-            android:name=".otp.OtpActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

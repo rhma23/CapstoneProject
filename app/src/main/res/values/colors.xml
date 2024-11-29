@@ -8,8 +8,6 @@
     <color name="gray">#6E6A6A</color>
     <color name="primary_color">#FF6200EE</color>
     <color name="green">#00FF00</color>
-
-    <color name="normal_color">#4DA0C1</color> <!-- Warna normal -->
-    <color name="clicked_color">#33677B</color> <!-- Warna setelah klik -->
+    <color name="holo_blue_light">#4DA0C1</color>
 
 </resources>
