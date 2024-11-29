@@ -2,6 +2,7 @@ package com.dicoding.projectcapstone.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -53,9 +54,9 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
             myButton.isPressed = true
-            val intent = Intent(this, LoginActivity::class.java)
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
+            Log.d("setupAction Login 2", "setupAction: $email, $password")
             if (email.isEmpty() || password.isEmpty()) {
                 myButton.isPressed = false
                 AlertDialog.Builder(this).apply {
@@ -66,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
                     show()
                 }
             } else {
+                Log.d("setupAction Login 1", "setupAction: $email, $password")
                 loginModel.login(email, password) { success ->
                     if (success) {
                         val intent = Intent(this, MainActivity::class.java)

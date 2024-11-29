@@ -17,6 +17,7 @@ class LoginModel(private val repository: AuthRepository) : ViewModel() {
     fun login(email: String, password: String, callback: (Boolean) -> Unit) {
         viewModelScope.launch {
             try {
+                Log.d("Login model 1", "Email: $email, Password: $password")
                 val result = repository.login(email, password)
                 if (result.success == true) {
                     val userData = result.result?.token?.let { repository.getUserData(it) }
@@ -29,6 +30,7 @@ class LoginModel(private val repository: AuthRepository) : ViewModel() {
                             sessionManager.saveIsLogin(true)
                             callback(result.success)
                         } else {
+                            Log.d("C-Login Model F-login", "User belum register")
                             callback(false)
                         }
                     }

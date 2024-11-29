@@ -31,6 +31,7 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
+        otpModel.setSessionManager(sessionManager)
         setupAction()
     }
 
@@ -48,6 +49,14 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
                             startActivity(intentNewPasswordActivity)
                             finish()
                         }
+                        create()
+                        show()
+                    }
+                } else {
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Oops!")
+                        setMessage("Otp salah")
+                        setPositiveButton("Ulangi", null)
                         create()
                         show()
                     }
@@ -71,9 +80,7 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
                             AlertDialog.Builder(this).apply {
                                 setTitle("OTP Sent")
                                 setMessage("OTP has been resent to $email.")
-                                setPositiveButton("Lanjut") { _, _ ->
-                                    finish()
-                                }
+                                setPositiveButton("Lanjut", null)
                                 create()
                                 show()
                             }
