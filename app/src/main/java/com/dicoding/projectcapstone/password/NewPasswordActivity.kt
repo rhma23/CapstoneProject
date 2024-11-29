@@ -36,7 +36,7 @@ class NewPasswordActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.btnSubmitConfirmPass.setOnClickListener {
+        binding.btnSubmitNewPass.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             val newPassword = binding.etNewPassword.text.toString()
             val email = sessionManager.getEmailForgotPassword()

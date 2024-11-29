@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class KategoriAdapter extends RecyclerView.Adapter<com.dicoding.projectcapstone.KategoriAdapter.ViewHolder> {
 
-        private ArrayList<Kategori> kategoriList;
+        private final ArrayList<Kategori> kategoriList;
 
         public KategoriAdapter(ArrayList<Kategori> kategoriList) {
             this.kategoriList = kategoriList;

@@ -121,7 +121,7 @@
                         android:layout_marginStart="16dp"
                         android:fontFamily="sans-serif-medium"
                         android:paddingHorizontal="12dp"
-                        android:text="@string/see_all"
+                        android:text="@string/recommendations"
                         android:theme="@style/CustomButtonStyle"
                         android:textColor="@color/blue"
                         android:textSize="14sp" />

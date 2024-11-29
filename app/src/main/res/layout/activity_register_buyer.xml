@@ -157,47 +157,21 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.dicoding.projectcapstone.ui.MyButton
+                <com.dicoding.projectcapstone.ui.ButtonRegist
                     android:id="@+id/btnRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:layout_marginHorizontal="32dp"
                     android:layout_marginBottom="24dp"
-                    android:background="@drawable/register_button_selector"
-                    android:padding="10dp"
+                    android:padding="15dp"
                     android:layout_marginStart="6dp"
                     android:layout_marginEnd="6dp"
                     android:text="@string/register"
                     android:textSize="20sp"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:theme="@null" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginTop="40dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/don_t_have_account"
-                        android:textSize="14sp"
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:id="@+id/txtSignUp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sign_up"
-                        android:textSize="14sp"
-                        android:textColor="@color/blue"
-                        android:layout_marginStart="4dp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
+                    android:textAllCaps="false" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
