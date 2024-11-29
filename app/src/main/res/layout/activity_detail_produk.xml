@@ -19,24 +19,14 @@
             android:padding="16dp"
             android:elevation="4dp">
 
-            <!-- Back Button -->
-            <ImageView
-                android:id="@+id/back_button"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_arrow_back"
-                android:contentDescription="@string/back_button"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/back_button_selector" />
-
             <!-- Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
-                android:text="Detail Produk"
-                android:textSize="18sp"
+                android:text="@string/detail_produk_title"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white" />
         </LinearLayout>
@@ -55,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Nama Produk"
+            android:text="@string/default_product_name"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black" />
@@ -66,9 +56,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Rp 10.000"
+            android:text="@string/default_product_price"
             android:textSize="18sp"
-            android:textColor="@color/primary_color"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <!-- Rating and Distance -->
@@ -91,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="4.5"
+                android:text="@string/default_rating"
                 android:textSize="14sp"
                 android:textColor="@color/black" />
 
@@ -113,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="2,5 km"
+                android:text="@string/default_distance"
                 android:textSize="14sp"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -124,9 +114,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Status: Buka"
+            android:text="@string/status_open"
             android:textSize="14sp"
-            android:textColor="@color/green" />
+            android:textColor="#00C853" />
 
         <!-- Product Description -->
         <TextView
@@ -134,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Deskripsi"
+            android:text="@string/description_label"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black" />
@@ -144,7 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec magna a libero."
+            android:text="@string/default_description"
             android:textSize="14sp"
             android:textColor="@color/black" />
 
@@ -154,7 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Tambahkan ke Keranjang"
+            android:text="@string/add_to_cart"
             android:backgroundTint="@color/blue"
             android:textColor="@android:color/white" />
     </LinearLayout>

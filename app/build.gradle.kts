@@ -62,6 +62,10 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
+    // Gmaps
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
+
+
 
 }
 
