@@ -2,7 +2,6 @@ package com.dicoding.projectcapstone.register
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +11,6 @@ import com.dicoding.projectcapstone.databinding.ActivityRegisterBuyerBinding
 import com.dicoding.projectcapstone.otp.OtpRegisterActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
 import com.dicoding.projectcapstone.ui.ButtonRegist
-import com.dicoding.projectcapstone.ui.MyButton
 
 class RegisterBuyerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBuyerBinding
@@ -32,7 +30,6 @@ class RegisterBuyerActivity : AppCompatActivity() {
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
 
-        // Initialize myButton
         buttonRegist = binding.btnRegister
 
         setupView()
@@ -40,7 +37,6 @@ class RegisterBuyerActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        // Existing setupView code
     }
 
     private fun setupAction() {
