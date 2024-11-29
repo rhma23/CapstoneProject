@@ -2,6 +2,7 @@ package com.dicoding.projectcapstone.password
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -40,8 +41,9 @@ class NewPasswordActivity : AppCompatActivity() {
             val newPassword = binding.etNewPassword.text.toString()
             val email = sessionManager.getEmailForgotPassword()
             val otp_code = sessionManager.getOtpForgotPassword()
+            Log.d("setupAction New Password", "setupAction: $email, $otp_code, $newPassword")
             if (newPassword != null && email != null && otp_code != null) {
-                otpModel.resetPassowrd(newPassword, email, otp_code) { success ->
+                otpModel.resetPassowrd(otp_code, email, newPassword) { success ->
                     if (success == true) {
                         AlertDialog.Builder(this).apply {
                             setTitle("Berhasil")
