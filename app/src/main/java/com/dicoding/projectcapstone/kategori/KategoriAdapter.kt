@@ -1,60 +1,48 @@
-package com.dicoding.projectcapstone.kategori;
+package com.dicoding.projectcapstone.kategori
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import com.dicoding.projectcapstone.R;
-import java.util.ArrayList;
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.projectcapstone.R
 
-public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.ViewHolder> {
+class KategoriAdapter(private val kategoriList: ArrayList<Kategori>) :
+    RecyclerView.Adapter<KategoriAdapter.ViewHolder>() {
 
-    private final ArrayList<Kategori> kategoriList;
-
-    public KategoriAdapter(ArrayList<Kategori> kategoriList) {
-        this.kategoriList = kategoriList;
+    // Membuat ViewHolder untuk item kategori
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_kategori, parent, false)
+        return ViewHolder(view)
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_kategori, parent, false);
-        return new ViewHolder(view);
+    // Mengikat data ke ViewHolder
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val kategori = kategoriList[position]
+
+        // Menetapkan data ke view-item sesuai dengan data kategori
+        holder.itemImage.setImageResource(kategori.imageResource)
+        holder.itemName.text = kategori.name
+        holder.itemRating.text = kategori.rating.toString()
+        holder.itemDistance.text = kategori.distance
+        holder.itemPrice.text = kategori.price
+        holder.itemStatus.text = if (kategori.isOpen) "Buka" else "Tutup"
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Kategori kategori = kategoriList.get(position);
-
-        holder.itemImage.setImageResource(kategori.getImageResource());
-        holder.itemName.setText(kategori.getName());
-        holder.itemRating.setText(String.valueOf(kategori.getRating()));
-        holder.itemDistance.setText(kategori.getDistance());
-        holder.itemPrice.setText(kategori.getPrice());
-        holder.itemStatus.setText(kategori.isOpen() ? "Buka" : "Tutup");
+    // Mengembalikan jumlah item
+    override fun getItemCount(): Int {
+        return kategoriList.size
     }
 
-    @Override
-    public int getItemCount() {
-        return kategoriList.size();
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView itemImage;
-        public TextView itemName, itemRating, itemDistance, itemPrice, itemStatus;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            itemImage = itemView.findViewById(R.id.item_image);
-            itemName = itemView.findViewById(R.id.item_name);
-            itemRating = itemView.findViewById(R.id.item_rating);
-            itemDistance = itemView.findViewById(R.id.item_distance);
-            itemPrice = itemView.findViewById(R.id.item_price);
-            itemStatus = itemView.findViewById(R.id.item_status);
-        }
+    // ViewHolder untuk item kategori
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val itemImage: ImageView = itemView.findViewById(R.id.item_image)
+        val itemName: TextView = itemView.findViewById(R.id.item_name)
+        val itemRating: TextView = itemView.findViewById(R.id.item_rating)
+        val itemDistance: TextView = itemView.findViewById(R.id.item_distance)
+        val itemPrice: TextView = itemView.findViewById(R.id.item_price)
+        val itemStatus: TextView = itemView.findViewById(R.id.item_status)
     }
 }

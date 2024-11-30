@@ -1,43 +1,53 @@
-package com.dicoding.projectcapstone.kategori;
+package com.dicoding.projectcapstone.kategori
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.dicoding.projectcapstone.R;
-import java.util.ArrayList;
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.projectcapstone.R
 
-public class KategoriActivity extends AppCompatActivity {
+class KategoriActivity : AppCompatActivity() {
 
-    private RecyclerView foodList;
-    private RecyclerView drinkList;
-    private ArrayList<Kategori> kategoriList;
-    private KategoriAdapter kategoriAdapter;
+    private lateinit var foodList: RecyclerView
+    private lateinit var drinkList: RecyclerView
+    private lateinit var kategoriAdapter: KategoriAdapter
+    private val kategoriList = ArrayList<Kategori>()
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kategori);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_kategori)
 
-        // Inisialisasi RecyclerView
-        foodList = findViewById(R.id.food_list);
-        drinkList = findViewById(R.id.drink_list);
+        foodList = findViewById(R.id.food_list)
+        drinkList = findViewById(R.id.drink_list)
 
-        // Membuat data kategori
-        kategoriList = new ArrayList<>();
-        kategoriList.add(new Kategori(R.drawable.ic_food, "Food", 4.5, "2 km", "$10", true));
-        kategoriList.add(new Kategori(R.drawable.ic_drink, "Drink", 4.0, "1.5 km", "$5", false));
+        kategoriList.add(
+            Kategori(
+                imageResource = R.drawable.ic_food,
+                name = "Food",
+                rating = 4.5,
+                distance = "2 km",
+                price = "$10",
+                isOpen = true
+            )
+        )
+        kategoriList.add(
+            Kategori(
+                imageResource = R.drawable.ic_drink,
+                name = "Drink",
+                rating = 4.0,
+                distance = "1.5 km",
+                price = "$5",
+                isOpen = false
+            )
+        )
 
+        kategoriAdapter = KategoriAdapter(kategoriList)
 
-        // Inisialisasi Adapter
-        kategoriAdapter = new KategoriAdapter(kategoriList);
-
-        // Atur RecyclerView untuk daftar makanan
-        foodList.setAdapter(kategoriAdapter);
-        foodList.setLayoutManager(new LinearLayoutManager(this));
+        foodList.adapter = kategoriAdapter
+        foodList.layoutManager = LinearLayoutManager(this)
 
         // Atur RecyclerView untuk daftar minuman
-        drinkList.setAdapter(kategoriAdapter);
-        drinkList.setLayoutManager(new LinearLayoutManager(this));
+        drinkList.adapter = kategoriAdapter
+        drinkList.layoutManager = LinearLayoutManager(this)
     }
 }

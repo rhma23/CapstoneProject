@@ -46,6 +46,14 @@
                 android:layout_height="wrap_content"
                 android:text="Waktu: 15 menit" />
 
+            <TextView
+                android:id="@+id/item_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buka"
+                android:textSize="14sp" />
+
+
             <RatingBar
                 android:id="@+id/rating_location"
                 style="@style/Widget.AppCompat.RatingBar.Small"
