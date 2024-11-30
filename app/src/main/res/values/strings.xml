@@ -26,6 +26,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="confirm_your_password">confirm your password</string>
     <string name="register">Register</string>
+    <string name="already_an_account">Already an account</string>
+    <string name="register_button">register button</string>
 
     <!-- page OTP -->
     <string name="code">Code</string>
@@ -48,6 +50,7 @@
     <string name="recommendations">Recommendations</string>
     <string name="profile_picture_description">profile_picture_description</string>
     <string name="popular">Popular</string>
+    <string name="click_here">click here</string>
 
     <!-- card -->
     <string name="nama_makanan">Soto</string>
@@ -63,12 +66,14 @@
     <string name="verify_button">Tombol Verifikasi</string>
     <string name="enter_your_email_to_reset_your_password">Enter your email to reset your password.</string>
     <string name="submit">Submit</string>
+    <string name="button_forgot_password">button forgot password</string>
 
     <!-- new password -->
     <string name="enter_your_new_password">Enter your new password!</string>
     <string name="new_password">New Password</string>
     <string name="confirm">Confirm</string>
     <string name="txt_new_password">New Password</string>
+    <string name="button_new_password">button new password</string>
 
     <!-- login -->
     <string name="log_in">Log In</string>
@@ -77,6 +82,7 @@
     <string name="don_t_have_account">Don\'t have account?</string>
     <string name="sign_up">Sign Up</string>
     <string name="logout">Logout</string>
+    <string name="login_button">login button</string>
 
 
     <!-- untuk activity_profile -->
