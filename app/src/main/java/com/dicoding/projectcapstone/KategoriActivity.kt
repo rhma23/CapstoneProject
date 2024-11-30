@@ -1,28 +1,20 @@
-package com.dicoding.projectcapstone;
+package com.dicoding.projectcapstone
 
-import static androidx.databinding.DataBindingUtil.setContentView;
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 
-import android.os.Bundle;
+class KategoriActivity {
+    inner class kategori_activity : AppCompatActivity() {
+        private val foodList: RecyclerView? = null
+        private val kategoriList: ArrayList<Kategori>? = null
+        private val kategoriAdapter: KategoriAdapter? = null
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.item_kategori)
 
-import java.util.ArrayList;
-
-public class KategoriActivity {
-    public class kategori_activity extends AppCompatActivity {
-
-        private RecyclerView foodList;
-        private ArrayList<Kategori> kategoriList;
-        private KategoriAdapter kategoriAdapter;
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.item_kategori);
-
-//            foodList = findViewById(R.id.food_list);
+            //            foodList = findViewById(R.id.food_list);
 //            foodList = findViewById(R.id.drink_list);
 //
 //            kategoriList = new ArrayList<>();
