@@ -10,13 +10,12 @@ import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityRegisterBuyerBinding
 import com.dicoding.projectcapstone.otp.OtpRegisterActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
-import com.dicoding.projectcapstone.ui.ButtonRegist
 
 class RegisterBuyerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBuyerBinding
     private lateinit var repository: AuthRepository
     private lateinit var sessionManager: SessionManager
-//    private lateinit var buttonRegist: ButtonRegist
+    private lateinit var buttonRegist: ButtonRegist
 
     private val registerModel: RegisterModel by viewModels {
         RegisterModelFactory(repository)
@@ -30,7 +29,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
 
-//        buttonRegist = binding.btnRegister
+        buttonRegist = binding.btnRegister
 
         setupView()
         setupAction()
@@ -45,7 +44,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
             startActivity(intentRegister)
         }
 
-//        buttonRegist.setOnClickListener {
+        buttonRegist.setOnClickListener {
         val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
         val username = binding.etYourName.text.toString()
         val email = binding.etEmail.text.toString()
@@ -87,4 +86,4 @@ class RegisterBuyerActivity : AppCompatActivity() {
             binding.etConfirmPassword.error = "Password tidak sama"
         }
     }
-}
+}}
