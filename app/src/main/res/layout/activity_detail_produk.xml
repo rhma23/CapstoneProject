@@ -144,7 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/add_to_cart"
+            android:text="@string/see_seller"
             android:backgroundTint="@color/blue"
             android:textColor="@android:color/white" />
     </LinearLayout>
