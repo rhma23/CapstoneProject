@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
-
-    <!-- MASUKKAN APIIIIIIIIIIIIIIIIII-->
-    <string name="google_maps_key">YOUR_API_KEY</string>
+    <string name="api_endpoint">https://da33-103-47-133-132.ngrok-free.app/api/</string>
 </resources>
