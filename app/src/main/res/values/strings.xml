@@ -91,20 +91,22 @@
     <string name="email_icon">Email Icon</string>
     <string name="password_icon">Password Icon</string>
     <string name="phone_icon">Phone Icon</string>
+    <string name="address_icon">Address Icon</string>
 
     <!-- Detail Produk -->
-    <string name="detail_produk_title">Detail Produk</string>
-    <string name="default_product_name">Nama Produk</string>
+    <string name="detail_produk_title">Produk Details</string>
+    <string name="default_product_name">Product Name</string>
     <string name="default_product_price">Rp 10.000</string>
     <string name="default_rating">4.5</string>
     <string name="default_distance">2,5 km</string>
     <string name="rating_icon">Rating Icon</string>
     <string name="distance_icon">Distance Icon</string>
-    <string name="status_open">Status: Buka</string>
-    <string name="description_label">Deskripsi</string>
+    <string name="status_open">Status: Open</string>
+    <string name="description_label">Description</string>
     <string name="default_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec magna a libero.</string>
     <string name="add_to_cart">Tambahkan ke Keranjang</string>
     <string name="button_forgot_password">button forgot password</string>
+    <string name="see_seller">See Seller</string>
 
 
 </resources>
