@@ -42,7 +42,7 @@
             android:name=".register.RegisterBuyerActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.LokasiActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
