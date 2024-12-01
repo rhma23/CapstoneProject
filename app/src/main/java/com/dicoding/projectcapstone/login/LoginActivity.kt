@@ -6,17 +6,13 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityLoginBinding
 import com.dicoding.projectcapstone.MainActivity
-import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.RetrofitClient
+import com.dicoding.projectcapstone.API.RetrofitClient
 import com.dicoding.projectcapstone.password.ForgotPasswordActivity
 import com.dicoding.projectcapstone.register.RegisterBuyerActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
-import com.dicoding.projectcapstone.ui.CustomText
-import com.dicoding.projectcapstone.ui.MyButton
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding

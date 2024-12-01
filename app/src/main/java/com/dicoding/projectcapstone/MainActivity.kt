@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.projectcapstone.API.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityMainBinding
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.user.UserModel

@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone
+package com.dicoding.projectcapstone.API
 
 import com.dicoding.projectcapstone.login.LoginRequest
 import com.dicoding.projectcapstone.login.LoginResponse

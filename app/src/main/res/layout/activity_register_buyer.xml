@@ -153,7 +153,7 @@
                         android:padding="15dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.dicoding.projectcapstone.ui.ButtonRegist
+                <com.dicoding.projectcapstone.ui.MyButton
                     android:id="@+id/btnRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

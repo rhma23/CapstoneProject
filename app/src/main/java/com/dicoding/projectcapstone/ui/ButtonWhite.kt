@@ -1,4 +1,4 @@
-package com.dicoding.ping.ui
+package com.dicoding.projectcapstone.ui
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
-import com.dicoding.ping.R
+import com.dicoding.projectcapstone.R
 
 
 class ButtonWhite @JvmOverloads constructor(

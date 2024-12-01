@@ -2,13 +2,10 @@ package com.dicoding.projectcapstone.password
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.RetrofitClient
+import com.dicoding.projectcapstone.API.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityOtpForgotPasswordBinding
 import com.dicoding.projectcapstone.otp.OtpModel
