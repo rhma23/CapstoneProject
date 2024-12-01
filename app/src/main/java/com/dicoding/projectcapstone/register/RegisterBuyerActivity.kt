@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.API.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityRegisterBuyerBinding
+import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.otp.OtpRegisterActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
 
@@ -42,8 +43,8 @@ class RegisterBuyerActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.txtLogin.setOnClickListener {
-            val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
-            startActivity(intentRegister)
+            val intentLogin = Intent(this, LoginActivity::class.java)
+            startActivity(intentLogin)
         }
 
         binding.btnRegister.setOnClickListener {
