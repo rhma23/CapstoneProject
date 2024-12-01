@@ -9,6 +9,7 @@ import com.dicoding.projectcapstone.otp.ResendOtpResponse
 import com.dicoding.projectcapstone.password.ForgotPasswordRequest
 import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.register.RegisterRequest
+import com.dicoding.projectcapstone.locations.LocationResponse
 import retrofit2.http.POST
 import com.dicoding.projectcapstone.register.RegisterResponse
 import com.dicoding.projectcapstone.user.UserDataResponse
@@ -37,4 +38,11 @@ interface ApiService {
         @Header("Authorization") authHeader: String
     ): UserDataResponse
 
+//    Product
+    @GET("product")
+    suspend fun getAllProducts(): List<GetAllProductResponse>
+
+    //    Location
+    @GET("api/locations")
+    suspend fun getAllLocations(): List<LocationResponse>
 }

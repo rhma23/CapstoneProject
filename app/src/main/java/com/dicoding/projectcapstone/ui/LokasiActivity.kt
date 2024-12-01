@@ -1,11 +1,18 @@
 package com.dicoding.projectcapstone.ui
 
+import LocationsModel
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.projectcapstone.ApiService
 import com.dicoding.projectcapstone.R
+import com.dicoding.projectcapstone.RetrofitClient.apiService
+import com.dicoding.projectcapstone.locations.LocationResponse
+import com.dicoding.projectcapstone.locations.LocationsModelFactory
+import com.dicoding.projectcapstone.locations.LocationsRepository
 import com.dicoding.projectcapstone.model.Lokasi
 import com.dicoding.projectcapstone.ui.adapter.LokasiAdapter
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -14,10 +21,14 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var recyclerView: RecyclerView
+    private lateinit var viewModel: LocationsModel
     private var googleMap: GoogleMap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,12 +58,38 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val adapter = LokasiAdapter(lokasiList)
         recyclerView.setAdapter(adapter)
+
+        val repository = LocationsRepository.getInstance(apiService)
+        viewModel = ViewModelProvider(
+            this,
+            LocationsModelFactory(repository)
+        )[LocationsModel::class.java]
+
+        viewModel.locations.observe(this) { locations ->
+            showMarkers(locations)
+        }
+        
+        viewModel.getAllLocations()
+
+    }
+
+    private fun showMarkers(locations: List<LocationResponse>) {
+        googleMap?.let { map ->
+            for (location in locations) {
+                val latLng = LatLng(location.latitude.toDouble(), location.longitude.toDouble())
+                map.addMarker(
+                    MarkerOptions()
+                        .position(latLng)
+                        .title(location.merchant.business_name)
+                )
+            }
+        }
     }
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
 
-        val lokasiPengguna = LatLng(-6.2088, 106.8456) // Jakarta
+        val lokasiPengguna = LatLng(-6.9175, 107.6191) // Bandung
         googleMap!!.addMarker(MarkerOptions().position(lokasiPengguna).title("Lokasi Anda"))
         googleMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasiPengguna, 15f))
     }
