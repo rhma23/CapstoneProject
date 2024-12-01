@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="api_endpoint">https://1858-149-113-230-49.ngrok-free.app</string>
+    <string name="google_maps_key">AIzaSyBARlnwbAR4w6OzqgAehUA5GueO7cxFs0g</string>
 </resources>
