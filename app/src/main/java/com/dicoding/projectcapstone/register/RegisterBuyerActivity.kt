@@ -106,8 +106,8 @@ class RegisterBuyerActivity : AppCompatActivity() {
                                     sessionManager.saveEmail(email)
                                     AlertDialog.Builder(this).apply {
                                         setTitle("Yeah!")
-                                        setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
-                                        setPositiveButton("Lanjut") { _, _ ->
+                                        setMessage("The account with $email has been successfully created. Please log in to continue.")
+                                        setPositiveButton("Continue") { _, _ ->
                                             finish()
                                             val intent = Intent(
                                                 this@RegisterBuyerActivity,
@@ -121,8 +121,8 @@ class RegisterBuyerActivity : AppCompatActivity() {
                                 } else {
                                     AlertDialog.Builder(this).apply {
                                         setTitle("Oops!")
-                                        setMessage("Akun dengan $email gagal dibuat. Coba lagi ya.")
-                                        setPositiveButton("Ulangi") { _, _ ->
+                                        setMessage("The account with $email failed to be created. Please try again.")
+                                        setPositiveButton("Retry") { _, _ ->
                                             startActivity(intentRegister)
                                             finish()
                                         }
@@ -134,29 +134,13 @@ class RegisterBuyerActivity : AppCompatActivity() {
                         }
                     }
                 } else {
-                    binding.etConfirmPassword.error = "Password tidak sama"
+                    binding.etConfirmPassword.error = "Password is not the same"
                 }
             }
         }
     }
 
     private fun setupEmailValidation() {
-        binding.etPassword.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null && s.length < 8) {
-                    binding.etPassword.error = "Password cannot be less than 8 characters"
-                } else {
-                    binding.etPassword.error = null
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
-    }
-
-    private fun setupPasswordValidation() {
         binding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -165,6 +149,22 @@ class RegisterBuyerActivity : AppCompatActivity() {
                     binding.etEmail.error = "Invalid email format"
                 } else {
                     binding.etEmail.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun setupPasswordValidation() {
+        binding.etPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s != null && s.length < 8) {
+                    binding.etPassword.error = "Password cannot be less than 8 characters"
+                } else {
+                    binding.etPassword.error = null
                 }
             }
 

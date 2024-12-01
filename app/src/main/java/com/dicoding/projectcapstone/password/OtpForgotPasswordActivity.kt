@@ -41,8 +41,8 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
                 if(otp_code == sessionManager.getOtpForgotPassword()) {
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
-                        setMessage("Otp benar")
-                        setPositiveButton("Lanjut") { _, _ ->
+                        setMessage("OTP is correct")
+                        setPositiveButton("Continue") { _, _ ->
                             startActivity(intentNewPasswordActivity)
                             finish()
                         }
@@ -52,8 +52,8 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
                 } else {
                     AlertDialog.Builder(this).apply {
                         setTitle("Oops!")
-                        setMessage("Otp salah")
-                        setPositiveButton("Ulangi", null)
+                        setMessage("Incorrect OTP")
+                        setPositiveButton("Retry", null)
                         create()
                         show()
                     }
@@ -61,8 +61,8 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
             } else {
                 AlertDialog.Builder(this).apply {
                     setTitle("Oops!")
-                    setMessage("Otp salah")
-                    setPositiveButton("Ulangi", null)
+                    setMessage("Incorrect OTP")
+                    setPositiveButton("Retry", null)
                     create()
                     show()
                 }
@@ -77,7 +77,7 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
                             AlertDialog.Builder(this).apply {
                                 setTitle("OTP Sent")
                                 setMessage("OTP has been resent to $email.")
-                                setPositiveButton("Lanjut", null)
+                                setPositiveButton("Continue", null)
                                 create()
                                 show()
                             }
