@@ -15,7 +15,7 @@ class KategoriMakananActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kategori_makanan)
 
-        recyclerView = findViewById(R.id.recycler_view_kategori_makanan)
+        recyclerView = findViewById(R.id.recycler_view_kategori_food)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val makananList = listOf(

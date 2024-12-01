@@ -8,6 +8,7 @@ import com.dicoding.projectcapstone.otp.ResendOtpRequest
 import com.dicoding.projectcapstone.otp.ResendOtpResponse
 import com.dicoding.projectcapstone.password.ForgotPasswordRequest
 import com.dicoding.projectcapstone.password.ForgotPasswordResponse
+import com.dicoding.projectcapstone.product.GetAllProductResponse
 import com.dicoding.projectcapstone.register.RegisterRequest
 import retrofit2.http.POST
 import com.dicoding.projectcapstone.register.RegisterResponse
@@ -17,6 +18,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 
 interface ApiService {
+//    Auth
     @POST("auth/register")
     suspend fun register(@Body request: RegisterRequest): RegisterResponse
 
@@ -36,5 +38,9 @@ interface ApiService {
     suspend fun getUserData(
         @Header("Authorization") authHeader: String
     ): UserDataResponse
+
+//    Product
+    @GET("product")
+    suspend fun getAllProducts(): List<GetAllProductResponse>
 
 }
