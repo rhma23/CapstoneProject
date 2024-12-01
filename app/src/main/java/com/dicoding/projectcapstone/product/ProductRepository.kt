@@ -1,7 +1,6 @@
 package com.dicoding.projectcapstone.product
 
-
-import com.dicoding.projectcapstone.ApiService
+import com.dicoding.projectcapstone.API.ApiService
 
 class ProductRepository(private val apiService: ApiService)  {
     suspend fun getAllProduct() = apiService.getAllProducts()
