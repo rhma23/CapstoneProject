@@ -69,9 +69,9 @@ class OtpRegisterActivity : AppCompatActivity() {
                     binding.txtResendOtp.text = SpannableString("Resend again")
                     binding.txtResendOtp.performClick() // Panggil performClick untuk aksesibilitas
 
-                    // Navigasi ke halaman Login
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
+                    // Navigasi ke popup
+//                    val intent = Intent(this, OtpRegisterActivity::class.java)
+//                    startActivity(intent)
                 }
             }
             true
@@ -123,17 +123,17 @@ class OtpRegisterActivity : AppCompatActivity() {
                 otpModel.resendOtp(email) { success ->
                     if (success) {
                         AlertDialog.Builder(this).apply {
-                            setTitle("OTP Dikirim Ulang")
-                            setMessage("OTP telah dikirim ulang ke $email.")
+                            setTitle("OTP Resent")
+                            setMessage("OTP has been resent to $email.")
                             setPositiveButton("OK", null)
                             create()
                             show()
                         }
                     } else {
                         AlertDialog.Builder(this).apply {
-                            setTitle("Gagal Mengirim Ulang OTP")
-                            setMessage("Gagal mengirim ulang OTP. Coba lagi.")
-                            setPositiveButton("Coba Lagi", null)
+                            setTitle("Failed to Resend OTP")
+                            setMessage("Failed to resend OTP. Try again.")
+                            setPositiveButton("Retry", null)
                             create()
                             show()
                         }
