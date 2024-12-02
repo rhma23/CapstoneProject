@@ -2,9 +2,9 @@ package com.dicoding.projectcapstone.product
 
 
 import android.util.Log
-import com.dicoding.projectcapstone.ApiService
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.dicoding.projectcapstone.API.ApiService
 
 class ProductRepository(private val apiService: ApiService) {
 
@@ -25,5 +25,3 @@ class ProductRepository(private val apiService: ApiService) {
         }
     }
 }
-
-

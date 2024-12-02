@@ -1,15 +1,23 @@
 package com.dicoding.projectcapstone.otp
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+import android.text.style.ForegroundColorSpan
+import android.text.style.UnderlineSpan
 import android.util.Log
+import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.projectcapstone.RetrofitClient
+import com.dicoding.projectcapstone.API.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityOtpRegisterBinding
 import com.dicoding.projectcapstone.login.LoginActivity
+import com.dicoding.projectcapstone.password.NewPasswordActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
 
 class OtpRegisterActivity : AppCompatActivity() {
@@ -21,12 +29,54 @@ class OtpRegisterActivity : AppCompatActivity() {
         OtpModelFactory(repository)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOtpRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
+
+        val resendOtpTextView = binding.txtResendOtp
+
+        // Membuat SpannableString untuk teks
+        val spannableStringSignUp = SpannableString("Resend again")
+        resendOtpTextView.text = spannableStringSignUp
+
+        binding.txtResendOtp.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
+
+                    // Ubah warna teks menjadi warna custom (#4DA0C1) dan tambahkan underline
+                    val spannableHover = SpannableString("Resend again")
+                    spannableHover.setSpan(
+                        ForegroundColorSpan(Color.parseColor("#4DA0C1")),
+                        0,
+                        spannableHover.length,
+                        SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    spannableHover.setSpan(
+                        UnderlineSpan(),
+                        0,
+                        spannableHover.length,
+                        SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    binding.txtResendOtp.text = spannableHover
+                }
+                MotionEvent.ACTION_UP -> {
+                    // Kembalikan teks ke tampilan awal (tanpa warna biru dan underline)
+                    binding.txtResendOtp.text = SpannableString("Resend again")
+                    binding.txtResendOtp.performClick() // Panggil performClick untuk aksesibilitas
+
+                    // Navigasi ke halaman Login
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
+
         setupAction()
     }
 
@@ -43,8 +93,8 @@ class OtpRegisterActivity : AppCompatActivity() {
                     if (success) {
                         AlertDialog.Builder(this).apply {
                             setTitle("Yeah!")
-                            setMessage("Akun dengan $email sudah jadi nih. Yuk, login segera")
-                            setPositiveButton("Lanjut") { _, _ ->
+                            setMessage("The account with $email has been successfully created. Please log in to continue.")
+                            setPositiveButton("Continue") { _, _ ->
                                 startActivity(intentLogin)
                                 finish()
                             }
@@ -53,9 +103,9 @@ class OtpRegisterActivity : AppCompatActivity() {
                         }
                     } else {
                         AlertDialog.Builder(this).apply {
-                            setTitle("Oops, verivkasi gagal!")
-                            setMessage("Akun dengan $email gagal verifikasi. Coba lagi ya.")
-                            setPositiveButton("Ulangi") { _, _ -> finish()
+                            setTitle("Oops, verification failed!")
+                            setMessage("Account with $email failed verification. Please try again.")
+                            setPositiveButton("Retry") { _, _ -> finish()
                                 startActivity(intentOtp)
                                 finish()
                             }

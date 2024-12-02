@@ -7,5 +7,4 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.dicoding.projectcapstone.R
 
-class RegisterPedagangActivity : AppCompatActivity() {
-}
+class RegisterPedagangActivity : AppCompatActivity()

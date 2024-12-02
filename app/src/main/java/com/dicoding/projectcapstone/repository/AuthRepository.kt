@@ -1,6 +1,6 @@
 package com.dicoding.projectcapstone.repository
 
-import com.dicoding.projectcapstone.ApiService
+import com.dicoding.projectcapstone.API.ApiService
 import com.dicoding.projectcapstone.login.LoginRequest
 import com.dicoding.projectcapstone.login.LoginResponse
 import com.dicoding.projectcapstone.otp.OtpRequest

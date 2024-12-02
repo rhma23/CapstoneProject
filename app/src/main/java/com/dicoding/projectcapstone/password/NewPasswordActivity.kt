@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.projectcapstone.RetrofitClient
+import com.dicoding.projectcapstone.API.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityNewPasswordBinding
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.otp.OtpModel
@@ -26,12 +26,13 @@ class NewPasswordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityNewPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
         otpModel.setSessionManager(sessionManager)
+
         setupAction()
     }
 
@@ -42,12 +43,13 @@ class NewPasswordActivity : AppCompatActivity() {
             val email = sessionManager.getEmailForgotPassword()
             val otp_code = sessionManager.getOtpForgotPassword()
             Log.d("setupAction New Password", "setupAction: $email, $otp_code, $newPassword")
-            if (newPassword != null && email != null && otp_code != null) {
+//            if (newPassword != null && email != null && otp_code != null)
+            if (email != null && otp_code != null) {
                 otpModel.resetPassowrd(otp_code, email, newPassword) { success ->
                     if (success == true) {
                         AlertDialog.Builder(this).apply {
-                            setTitle("Berhasil")
-                            setMessage("Password berhasil dirubah")
+                            setTitle("Success")
+                            setMessage("Password has been successfully changed")
                             setPositiveButton("Login") { _, _ ->
                                 startActivity(intent)
                                 finish()
@@ -57,9 +59,9 @@ class NewPasswordActivity : AppCompatActivity() {
                         }
                     } else {
                         AlertDialog.Builder(this).apply {
-                            setTitle("Galgal")
-                            setMessage("Gagal merubah password. Silahkan coba lagi")
-                            setPositiveButton("Coba lagi", null)
+                            setTitle("Failed")
+                            setMessage("Failed to change password. Please try again")
+                            setPositiveButton("Retry", null)
                             create()
                             show()
                         }

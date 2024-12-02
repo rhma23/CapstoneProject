@@ -1,8 +1,6 @@
 package com.dicoding.projectcapstone.ui
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatButton
@@ -19,7 +17,6 @@ class MyButton @JvmOverloads constructor(
     init {
         background = ContextCompat.getDrawable(context, R.drawable.register_button_selector)
         setTextColor(ContextCompat.getColor(context, android.R.color.white))
-        textSize = 20f
         gravity = Gravity.CENTER
         isAllCaps = false
     }

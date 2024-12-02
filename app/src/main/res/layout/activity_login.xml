@@ -55,6 +55,7 @@
                 android:layout_margin="24dp"
                 android:orientation="vertical">
 
+                <!-- Email Input -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,9 +77,12 @@
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
                         android:padding="15dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Password Input -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,20 +105,25 @@
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
                         android:padding="15dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Forgot Password -->
-                <com.dicoding.projectcapstone.ui.CustomViewText
+                <TextView
                     android:id="@+id/txtForgotPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="6dp"
+                    android:textColor="@color/black"
                     android:text="@string/ket_forgot_password"
                     android:textSize="14sp"
                     android:padding="5dp"
-                    android:layout_gravity="end" />
+                    android:layout_gravity="end"
+                    android:clickable="true"
+                    android:focusable="true" />
 
                 <!-- Login Button -->
                 <com.dicoding.projectcapstone.ui.MyButton
@@ -132,7 +141,7 @@
                     android:textSize="20sp"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false" />
 
                 <!-- Footer -->
                 <LinearLayout
@@ -150,7 +159,7 @@
                         android:textSize="14sp"
                         android:textColor="#000000" />
 
-                    <com.dicoding.projectcapstone.ui.CustomText
+                    <TextView
                         android:id="@+id/txtSignUp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -160,10 +169,10 @@
                         android:textStyle="bold"
                         android:clickable="true"
                         android:focusable="true"
-                        android:textAllCaps="false"/>
+                        android:textColor="#4DA0C1"
+                        android:textAllCaps="false" />
 
                 </LinearLayout>
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

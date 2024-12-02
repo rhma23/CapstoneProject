@@ -1,5 +1,6 @@
-package com.dicoding.projectcapstone
+package com.dicoding.projectcapstone.API
 
+import com.dicoding.projectcapstone.location.LocationResponse
 import com.dicoding.projectcapstone.login.LoginRequest
 import com.dicoding.projectcapstone.login.LoginResponse
 import com.dicoding.projectcapstone.otp.OtpRequest
@@ -43,4 +44,6 @@ interface ApiService {
     @GET("product")
     suspend fun getAllProducts(): GetAllProductResponse
 
+    @GET("location")
+    suspend fun getAllLocations(): List<LocationResponse>
 }
