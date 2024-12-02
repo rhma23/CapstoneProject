@@ -19,9 +19,11 @@ import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
 import com.dicoding.projectcapstone.utils.Helper
 import com.dicoding.projectcapstone.utils.SessionManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-    var helper: Helper = Helper()
+    private var helper: Helper = Helper()
+//    var helper: Helper = Helper()
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var userRepository: UserRepository
@@ -54,6 +56,30 @@ class MainActivity : AppCompatActivity() {
             val isHorizontal = true
             setupRecyclerView(isHorizontal)
             setupAction()
+        }
+
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+
+//        bottomNavigation.selectedItemId = R.id.home
+//        bottomNavigation.selectedItemId = R.id.location
+//        bottomNavigation.selectedItemId = R.id.profile
+
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    true
+                }
+                R.id.location -> {
+                    startActivity(Intent(this, LokasiActivity::class.java))
+                    true
+                }
+                R.id.profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
     }
 

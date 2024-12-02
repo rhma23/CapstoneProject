@@ -83,7 +83,6 @@
     <string name="logout">Logout</string>
     <string name="login_button">login button</string>
 
-
     <!-- untuk activity_profile -->
     <string name="profile_picture">Profile Picture</string>
     <string name="nama_icon">Nama Icon</string>
@@ -92,6 +91,14 @@
     <string name="password_icon">Password Icon</string>
     <string name="phone_icon">Phone Icon</string>
     <string name="address_icon">Address Icon</string>
+    <string name="profil">Profil</string>
+    <string name="username">Rania Maulidina</string>
+    <string name="edit_profil">Edit Profil</string>
+    <string name="change_email">Email</string>
+    <string name="change_password">Ubah Password</string>
+    <string name="no_handphone">No. Handphone</string>
+    <string name="address">Alamat</string>
+    <string name="log_out">Log out</string>
 
     <!-- Detail Produk -->
     <string name="detail_produk_title">Produk Details</string>
@@ -107,6 +114,12 @@
     <string name="add_to_cart">Tambahkan ke Keranjang</string>
     <string name="button_forgot_password">button forgot password</string>
     <string name="see_seller">See Seller</string>
+
+    <!-- Menu Navigation -->
+    <string name="home_navBottom">Home</string>
+    <string name="location_navBottom">Location</string>
+    <string name="profile_navBottom">Profile</string>
+
 
 
 </resources>

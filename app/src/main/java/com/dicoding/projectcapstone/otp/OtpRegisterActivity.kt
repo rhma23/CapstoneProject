@@ -13,11 +13,10 @@ import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.projectcapstone.API.RetrofitClient
+import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityOtpRegisterBinding
 import com.dicoding.projectcapstone.login.LoginActivity
-import com.dicoding.projectcapstone.password.NewPasswordActivity
 import com.dicoding.projectcapstone.repository.AuthRepository
 
 class OtpRegisterActivity : AppCompatActivity() {

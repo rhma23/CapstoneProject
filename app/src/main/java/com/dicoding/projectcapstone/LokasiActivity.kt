@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone.ui
+package com.dicoding.projectcapstone
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -11,8 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.projectcapstone.API.RetrofitClient.apiService
-import com.dicoding.projectcapstone.R
+import com.dicoding.projectcapstone.RetrofitClient.apiService
 import com.dicoding.projectcapstone.location.LocationModel
 import com.dicoding.projectcapstone.location.LocationModelFactory
 import com.dicoding.projectcapstone.location.LocationRepository
