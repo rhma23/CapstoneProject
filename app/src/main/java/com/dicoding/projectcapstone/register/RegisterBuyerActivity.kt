@@ -4,18 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
-import android.util.Patterns
 import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.API.RetrofitClient
+import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.otp.OtpRegisterActivity
 import com.dicoding.projectcapstone.databinding.ActivityRegisterBuyerBinding
@@ -36,7 +34,6 @@ class RegisterBuyerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBuyerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 //        setContentView(R.layout.activity_forgot_password)
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
@@ -97,7 +94,8 @@ class RegisterBuyerActivity : AppCompatActivity() {
         }
 
         binding.btnRegister.setOnClickListener {
-            val intentRegister = Intent(this, ActivityRegisterBuyerBinding::class.java)
+//            val intentRegister = Intent(this, ActivityRegisterBuyerBinding::class.java)
+            val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
             val username = binding.etYourName.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
