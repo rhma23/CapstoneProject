@@ -26,12 +26,13 @@ class NewPasswordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityNewPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
         otpModel.setSessionManager(sessionManager)
+
         setupAction()
     }
 
@@ -42,7 +43,8 @@ class NewPasswordActivity : AppCompatActivity() {
             val email = sessionManager.getEmailForgotPassword()
             val otp_code = sessionManager.getOtpForgotPassword()
             Log.d("setupAction New Password", "setupAction: $email, $otp_code, $newPassword")
-            if (newPassword != null && email != null && otp_code != null) {
+//            if (newPassword != null && email != null && otp_code != null)
+            if (email != null && otp_code != null) {
                 otpModel.resetPassowrd(otp_code, email, newPassword) { success ->
                     if (success == true) {
                         AlertDialog.Builder(this).apply {

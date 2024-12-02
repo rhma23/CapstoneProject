@@ -1,7 +1,14 @@
 package com.dicoding.projectcapstone.password
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+import android.text.style.ForegroundColorSpan
+import android.text.style.UnderlineSpan
+import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +28,7 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
         OtpModelFactory(repository)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOtpForgotPasswordBinding.inflate(layoutInflater)
@@ -29,6 +37,46 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
         otpModel.setSessionManager(sessionManager)
+
+        val resendOtpTextView = binding.txtResendOtp
+
+        // Membuat SpannableString untuk teks
+        val spannableStringSignUp = SpannableString("Resend again")
+        resendOtpTextView.text = spannableStringSignUp
+
+        binding.txtResendOtp.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
+
+                    // Ubah warna teks menjadi warna custom (#4DA0C1) dan tambahkan underline
+                    val spannableHover = SpannableString("Resend again")
+                    spannableHover.setSpan(
+                        ForegroundColorSpan(Color.parseColor("#4DA0C1")),
+                        0,
+                        spannableHover.length,
+                        SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    spannableHover.setSpan(
+                        UnderlineSpan(),
+                        0,
+                        spannableHover.length,
+                        SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    binding.txtResendOtp.text = spannableHover
+                }
+                MotionEvent.ACTION_UP -> {
+                    // Kembalikan teks ke tampilan awal (tanpa warna biru dan underline)
+                    binding.txtResendOtp.text = SpannableString("Resend again")
+                    binding.txtResendOtp.performClick() // Panggil performClick untuk aksesibilitas
+
+                    // Navigasi ke halaman New Password
+                    val intent = Intent(this, NewPasswordActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
+
         setupAction()
     }
 
