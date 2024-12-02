@@ -38,7 +38,7 @@ data class DataItem(
 	val id: Int? = null,
 
 	@field:SerializedName("merchant_id")
-	val merchantId: Int? = null,
+	val merchant_id: Int? = null,
 
 	@field:SerializedName("category")
 	val category: List<CategoryItem?>? = null,
@@ -56,16 +56,16 @@ data class CategoryItem(
 	val id: Int? = null,
 
 	@field:SerializedName("Product_Category_Mapping")
-	val productCategoryMapping: ProductCategoryMapping? = null
+	val Product_Category_Mapping: Product_Category_Mapping? = null
 )
 
-data class ProductCategoryMapping(
+data class Product_Category_Mapping(
 
 	@field:SerializedName("createdAt")
 	val createdAt: String? = null,
 
 	@field:SerializedName("category_id")
-	val categoryId: Int? = null,
+	val category_id: Int? = null,
 
 	@field:SerializedName("product_id")
 	val productId: Int? = null,
@@ -77,13 +77,13 @@ data class ProductCategoryMapping(
 data class Merchant(
 
 	@field:SerializedName("business_name")
-	val businessName: String? = null,
+	val business_name: String? = null,
 
 	@field:SerializedName("user_id")
-	val userId: Int? = null,
+	val user_id: Int? = null,
 
 	@field:SerializedName("average_rating")
-	val averageRating: Any? = null,
+	val average_rating: Any? = null,
 
 	@field:SerializedName("id")
 	val id: Int? = null,

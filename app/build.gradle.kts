@@ -65,7 +65,9 @@ dependencies {
     // Gmaps
     implementation("com.google.android.gms:play-services-maps:19.0.0")
 
-
+    // Glide
+    implementation(libs.glide)
+    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
 
 }
 

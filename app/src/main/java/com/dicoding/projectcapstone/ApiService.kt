@@ -41,6 +41,6 @@ interface ApiService {
 
 //    Product
     @GET("product")
-    suspend fun getAllProducts(): List<GetAllProductResponse>
+    suspend fun getAllProducts(): GetAllProductResponse
 
 }
