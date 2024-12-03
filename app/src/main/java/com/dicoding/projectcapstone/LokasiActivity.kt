@@ -76,7 +76,7 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
         // Setup BottomNavigationView
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        // Set the default selected menu to "Home"
+        // Set the default selected menu to "Location"
         bottomNavigationView.selectedItemId = R.id.location
 
         // Listener untuk navigasi

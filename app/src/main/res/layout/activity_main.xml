@@ -127,7 +127,6 @@
                         android:layout_height="40dp"
                         android:layout_marginStart="16dp"
                         android:text="@string/click_here"
-                        android:theme="@style/CustomButtonStyle"
                         android:textColor="@color/blue"
                         android:textSize="14sp"
                         android:textAllCaps="false" />

@@ -153,11 +153,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun replaceFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainer, fragment)
-        transaction.addToBackStack(null) // Opsional: Tambahkan ke back stack untuk navigasi
-        transaction.commit()
-    }
 }
