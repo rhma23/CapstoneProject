@@ -13,7 +13,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.MainActivity
-import com.dicoding.projectcapstone.API.RetrofitClient
+import com.dicoding.projectcapstone.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityLoginBinding
 import com.dicoding.projectcapstone.password.ForgotPasswordActivity
 import com.dicoding.projectcapstone.register.RegisterBuyerActivity
