@@ -16,8 +16,6 @@ import com.dicoding.projectcapstone.product.ProductAdapter
 import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
-import com.dicoding.projectcapstone.product.category.KategoriMakananFragment
-import com.dicoding.projectcapstone.product.category.KategoriMinumanFragment
 import com.dicoding.projectcapstone.ui.KategoriMakananActivity
 import com.dicoding.projectcapstone.ui.KategoriMinumanActivity
 import com.dicoding.projectcapstone.user.UserModel
@@ -83,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile -> {
-                        val intent = Intent(this, ProfileActivity::class.java)
+                        val intent = Intent(this, ProfileFragment::class.java)
                         startActivity(intent)
                     true
                 }
@@ -95,11 +93,12 @@ class MainActivity : AppCompatActivity() {
         val btnDrink = findViewById<Button>(R.id.btnDrink)
 
         btnFood.setOnClickListener {
-            replaceFragment(KategoriMakananFragment())
+            val intent = Intent(this,KategoriMakananActivity::class.java)
+            startActivity(intent)
         }
 
         btnDrink.setOnClickListener {
-            replaceFragment(KategoriMinumanFragment())
+            val intent = Intent(this, KategoriMinumanActivity::class.java)
         }
 
     }
@@ -157,9 +156,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainer, fragment)
-        transaction.addToBackStack(null) // Opsional: Tambahkan ke back stack untuk navigasi
-        transaction.commit()
+       supportFragmentManager.beginTransaction()
+           .replace(R.id.fragment_container, fragment)
+           .commit()
     }
 }

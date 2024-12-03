@@ -93,7 +93,7 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
                     true
                 }
                 R.id.profile -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
+                    val intent = Intent(this, ProfileFragment::class.java)
                     startActivity(intent)
                     true
                 }
