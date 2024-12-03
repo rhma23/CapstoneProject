@@ -57,31 +57,28 @@ class MainActivity : AppCompatActivity() {
             setupAction()
         }
 
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
+        // Setup BottomNavigationView
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        // Set the default selected menu to "Home"
+        bottomNavigationView.selectedItemId = R.id.home
+
+        // Listener untuk navigasi
+        bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
                 R.id.home -> {
-                    if (javaClass != MainActivity::class.java) { // Periksa apakah bukan MainActivity
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
-                        finish()
-                    }
                     true
                 }
                 R.id.location -> {
-                    if (javaClass != LokasiActivity::class.java) { // Periksa apakah bukan LokasiActivity
                         val intent = Intent(this, LokasiActivity::class.java)
                         startActivity(intent)
-                        finish()
-                    }
                     true
                 }
                 R.id.profile -> {
-                    if (javaClass != ProfileActivity::class.java) { // Periksa apakah bukan ProfileActivity
                         val intent = Intent(this, ProfileActivity::class.java)
                         startActivity(intent)
-                        finish()
-                    }
                     true
                 }
                 else -> false
