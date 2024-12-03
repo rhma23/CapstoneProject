@@ -16,11 +16,6 @@ class KategoriMinumanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kategori_minuman)
 
-        // Inisialisasi Toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_kategori_drink)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)  // Menampilkan tombol kembali
-
         recyclerView = findViewById(R.id.recycler_view_kategori_drink)
         recyclerView.layoutManager = LinearLayoutManager(this)
 

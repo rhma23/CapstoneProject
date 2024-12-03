@@ -16,10 +16,6 @@ class KategoriMakananActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kategori_makanan)
 
-        // Inisialisasi Toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_kategori_food)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)  // Menampilkan tombol kembali
 
         recyclerView = findViewById(R.id.recycler_view_kategori_food)
         recyclerView.layoutManager = LinearLayoutManager(this)
