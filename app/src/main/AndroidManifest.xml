@@ -25,17 +25,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
         <activity
-            android:name=".KategoriMinumanActivity"
+            android:name=".ui.kategori.KategoriMinumanActivity"
             android:exported="false" />
         <activity
-            android:name=".KategoriMakananActivity"
+            android:name=".ui.kategori.KategoriMakananActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false"
             tools:ignore="DuplicateActivity" />
         <activity
-            android:name=".LokasiActivity"
+            android:name=".ui.kategori.LokasiActivity"
             android:exported="false" />
         <activity
             android:name=".password.NewPasswordActivity"

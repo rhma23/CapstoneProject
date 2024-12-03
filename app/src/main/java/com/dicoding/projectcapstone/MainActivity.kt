@@ -16,8 +16,9 @@ import com.dicoding.projectcapstone.product.ProductAdapter
 import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
-import com.dicoding.projectcapstone.ui.KategoriMakananActivity
-import com.dicoding.projectcapstone.ui.KategoriMinumanActivity
+import com.dicoding.projectcapstone.ui.kategori.KategoriMakananActivity
+import com.dicoding.projectcapstone.ui.kategori.KategoriMinumanActivity
+import com.dicoding.projectcapstone.ui.kategori.LokasiActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -93,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         val btnDrink = findViewById<Button>(R.id.btnDrink)
 
         btnFood.setOnClickListener {
-            val intent = Intent(this,KategoriMakananActivity::class.java)
+            val intent = Intent(this, KategoriMakananActivity::class.java)
             startActivity(intent)
         }
 
