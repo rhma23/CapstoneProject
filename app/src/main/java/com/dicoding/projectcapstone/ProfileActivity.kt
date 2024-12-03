@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.projectcapstone.databinding.ActivityProfileBinding
 import com.dicoding.projectcapstone.login.LoginActivity
+import com.dicoding.projectcapstone.ui.kategori.LokasiActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -67,5 +68,5 @@ class ProfileActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-    
+
 }

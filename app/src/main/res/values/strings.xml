@@ -67,6 +67,7 @@
     <string name="verify_button">Tombol Verifikasi</string>
     <string name="enter_your_email_to_reset_your_password">Enter your email to reset your password.</string>
     <string name="submit">Submit</string>
+    <string name="button_forgot_password">Submit to your passsword</string>
 
     <!-- new password -->
     <string name="enter_your_new_password">Enter your new password!</string>
@@ -84,22 +85,22 @@
     <string name="logout">Logout</string>
     <string name="login_button">login button</string>
 
-    <!-- untuk activity_profile -->
+    <!-- activity_profile -->
     <string name="profile_picture">Profile Picture</string>
-    <string name="nama_icon">Nama Icon</string>
-    <string name="arrow_icon">Arrow Icon</string>
-    <string name="email_icon">Email Icon</string>
-    <string name="password_icon">Password Icon</string>
-    <string name="phone_icon">Phone Icon</string>
-    <string name="address_icon">Address Icon</string>
-    <string name="profil">Profil</string>
-    <string name="username">Rania Maulidina</string>
-    <string name="edit_profil">Edit Profil</string>
-    <string name="change_email">Email</string>
-    <string name="change_password">Ubah Password</string>
-    <string name="no_handphone">No. Handphone</string>
-    <string name="address">Alamat</string>
-    <string name="log_out">Log out</string>
+    <string name="nama_icon">Icon Name </string>
+    <string name="arrow_icon">Arrow Icon </string>
+    <string name="email_icon">Icon Email </string>
+    <string name="password_icon">Icon Password </string>
+    <string name="phone_icon">Icon Phone </string>
+    <string name="address_icon">Icon Address </string>
+    <string name="profil">Profile </string>
+    <string name="username">Rania Maulidina </string>
+    <string name="edit_profil">Edit Profile </string>
+    <string name="change_email">Email </string>
+    <string name="change_password">Change Password </string>
+    <string name="no_handphone">No.Handphone </string>
+    <string name="address">Address </string>
+    <string name="log_out">Log out </string>
 
     <!-- Detail Produk -->
     <string name="detail_produk_title">Produk Details</string>
@@ -109,12 +110,12 @@
     <string name="default_distance">2,5 km</string>
     <string name="rating_icon">Rating Icon</string>
     <string name="distance_icon">Distance Icon</string>
-    <string name="status_open">Status: Open</string>
+    <string name="status_open">Open</string>
+    <string name="status_closed">Closed</string>
     <string name="description_label">Description</string>
     <string name="default_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec magna a libero.</string>
-    <string name="add_to_cart">Tambahkan ke Keranjang</string>
-    <string name="button_forgot_password">button forgot password</string>
     <string name="see_seller">See Seller</string>
+
 
     <!-- Menu Navigation -->
     <string name="home_navBottom">Home</string>
