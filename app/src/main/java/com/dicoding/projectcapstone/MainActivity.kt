@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.projectcapstone.RetrofitClient.apiService
 import com.dicoding.projectcapstone.databinding.ActivityMainBinding
@@ -16,6 +15,7 @@ import com.dicoding.projectcapstone.product.ProductAdapter
 import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
+import com.dicoding.projectcapstone.profile.ProfileActivity
 import com.dicoding.projectcapstone.ui.kategori.KategoriMakananActivity
 import com.dicoding.projectcapstone.ui.kategori.KategoriMinumanActivity
 import com.dicoding.projectcapstone.ui.kategori.LokasiActivity
