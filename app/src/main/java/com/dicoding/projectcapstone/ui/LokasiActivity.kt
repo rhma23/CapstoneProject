@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.projectcapstone.ApiService
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient.apiService
 import com.dicoding.projectcapstone.locations.LocationResponse
@@ -21,9 +20,7 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mapView: MapView

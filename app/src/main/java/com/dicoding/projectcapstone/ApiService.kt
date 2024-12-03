@@ -38,11 +38,8 @@ interface ApiService {
         @Header("Authorization") authHeader: String
     ): UserDataResponse
 
-//    Product
-    @GET("product")
-    suspend fun getAllProducts(): List<GetAllProductResponse>
 
     //    Location
-    @GET("api/locations")
+    @GET("api/location")
     suspend fun getAllLocations(): List<LocationResponse>
 }

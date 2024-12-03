@@ -46,8 +46,11 @@ class KategoriActivity : AppCompatActivity() {
         foodList.adapter = kategoriAdapter
         foodList.layoutManager = LinearLayoutManager(this)
 
-        // Atur RecyclerView untuk daftar minuman
+        // Atur RecyclerView untuk daftar makanan / minuman
         drinkList.adapter = kategoriAdapter
         drinkList.layoutManager = LinearLayoutManager(this)
+
+        foodList.adapter = kategoriAdapter
+        foodList.layoutManager = LinearLayoutManager(this)
     }
 }
