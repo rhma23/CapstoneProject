@@ -3,9 +3,11 @@ package com.dicoding.projectcapstone
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.projectcapstone.RetrofitClient.apiService
 import com.dicoding.projectcapstone.databinding.ActivityMainBinding
@@ -14,6 +16,10 @@ import com.dicoding.projectcapstone.product.ProductAdapter
 import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
+import com.dicoding.projectcapstone.product.category.KategoriMakananFragment
+import com.dicoding.projectcapstone.product.category.KategoriMinumanFragment
+import com.dicoding.projectcapstone.ui.KategoriMakananActivity
+import com.dicoding.projectcapstone.ui.KategoriMinumanActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -85,6 +91,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val btnFood = findViewById<Button>(R.id.btnFood)
+        val btnDrink = findViewById<Button>(R.id.btnDrink)
+
+        btnFood.setOnClickListener {
+            replaceFragment(KategoriMakananFragment())
+        }
+
+        btnDrink.setOnClickListener {
+            replaceFragment(KategoriMinumanFragment())
+        }
+
     }
 
     private fun setupAction() {
@@ -137,5 +154,12 @@ class MainActivity : AppCompatActivity() {
                 Log.d("MainActivity", "Product list is null or empty")
             }
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragmentContainer, fragment)
+        transaction.addToBackStack(null) // Opsional: Tambahkan ke back stack untuk navigasi
+        transaction.commit()
     }
 }
