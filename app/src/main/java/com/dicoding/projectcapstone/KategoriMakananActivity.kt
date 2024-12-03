@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone.ui
+package com.dicoding.projectcapstone
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

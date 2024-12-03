@@ -16,10 +16,6 @@ import com.dicoding.projectcapstone.product.ProductAdapter
 import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
-import com.dicoding.projectcapstone.product.category.KategoriMakananFragment
-import com.dicoding.projectcapstone.product.category.KategoriMinumanFragment
-import com.dicoding.projectcapstone.ui.KategoriMakananActivity
-import com.dicoding.projectcapstone.ui.KategoriMinumanActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -95,11 +91,13 @@ class MainActivity : AppCompatActivity() {
         val btnDrink = findViewById<Button>(R.id.btnDrink)
 
         btnFood.setOnClickListener {
-            replaceFragment(KategoriMakananFragment())
+            val intent = Intent(this, KategoriMakananActivity::class.java)
+            startActivity(intent)
         }
 
         btnDrink.setOnClickListener {
-            replaceFragment(KategoriMinumanFragment())
+            val intent = Intent(this, KategoriMinumanActivity::class.java)
+            startActivity(intent)
         }
 
     }
