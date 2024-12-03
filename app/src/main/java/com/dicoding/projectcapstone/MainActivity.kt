@@ -23,7 +23,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private var helper: Helper = Helper()
-//    var helper: Helper = Helper()
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var userRepository: UserRepository
@@ -59,32 +58,39 @@ class MainActivity : AppCompatActivity() {
         }
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-
-//        bottomNavigation.selectedItemId = R.id.home
-//        bottomNavigation.selectedItemId = R.id.location
-//        bottomNavigation.selectedItemId = R.id.profile
-
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    if (javaClass != MainActivity::class.java) { // Periksa apakah bukan MainActivity
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                     true
                 }
                 R.id.location -> {
-                    startActivity(Intent(this, LokasiActivity::class.java))
+                    if (javaClass != LokasiActivity::class.java) { // Periksa apakah bukan LokasiActivity
+                        val intent = Intent(this, LokasiActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                     true
                 }
                 R.id.profile -> {
-                    startActivity(Intent(this, ProfileActivity::class.java))
+                    if (javaClass != ProfileActivity::class.java) { // Periksa apakah bukan ProfileActivity
+                        val intent = Intent(this, ProfileActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                     true
                 }
                 else -> false
             }
         }
+
     }
 
     private fun setupAction() {
-
         // Atur nama pengguna dari sesi
         binding.txtName.text = sessionManager.getUsername()
 
@@ -93,6 +99,7 @@ class MainActivity : AppCompatActivity() {
             userModel.logout()
             navigateToLogin()
         }
+
         // Memuat data produk
         productViewModel.fetchAllProducts()
     }
@@ -106,11 +113,9 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecyclerView(isHorizontal: Boolean) {
         // Initialize the adapter with an empty list and a click handler
         val productAdapter = ProductAdapter(
-            events = listOf(), // Pass an empty list initially
+            events = listOf(),
             onItemClick = { dataItem ->
-                // Handle item click here
                 Log.d("MainActivity", "Clicked item: ${dataItem.image?.let { helper.removePath(it) }}")
-                // Handle the item click
                 Toast.makeText(this, "Clicked: ${dataItem.name}", Toast.LENGTH_SHORT).show()
             }
         )
@@ -130,12 +135,10 @@ class MainActivity : AppCompatActivity() {
         // Observe data and update the adapter
         productViewModel.products.observe(this) { productList ->
             productList?.let {
-                productAdapter.updateData(it) // Update adapter's data
+                productAdapter.updateData(it)
             } ?: run {
                 Log.d("MainActivity", "Product list is null or empty")
             }
         }
     }
-
-
 }

@@ -48,7 +48,5 @@ class ProductAdapter(private var events: List<DataItem>, private val onItemClick
         events = newEvents
         notifyDataSetChanged()
     }
-
-
 }
 
