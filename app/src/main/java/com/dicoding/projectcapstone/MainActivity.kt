@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile -> {
-                        val intent = Intent(this, ProfileFragment::class.java)
+                        val intent = Intent(this, ProfileActivity::class.java)
                         startActivity(intent)
                     true
                 }
@@ -100,6 +100,7 @@ class MainActivity : AppCompatActivity() {
 
         btnDrink.setOnClickListener {
             val intent = Intent(this, KategoriMinumanActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -154,11 +155,5 @@ class MainActivity : AppCompatActivity() {
                 Log.d("MainActivity", "Product list is null or empty")
             }
         }
-    }
-
-    private fun replaceFragment(fragment: Fragment) {
-       supportFragmentManager.beginTransaction()
-           .replace(R.id.fragment_container, fragment)
-           .commit()
     }
 }

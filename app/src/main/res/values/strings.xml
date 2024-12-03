@@ -58,7 +58,8 @@
     <string name="rating_star_icon">Rating Star Icon</string>
     <string name="status_dagangan">Buka</string>
     <string name="jarak">1.5 km</string>
-    <string name="harga">Rp 15.000</string>
+    <string name="harga">15.000</string>
+    <string name="rupiah">Rp</string>
 
     <!-- forgot password -->
     <string name="forgot">Forgot</string>
@@ -120,8 +121,10 @@
     <string name="home_navBottom">Home</string>
     <string name="location_navBottom">Location</string>
     <string name="profile_navBottom">Profile</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 </resources>
