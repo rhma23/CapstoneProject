@@ -33,7 +33,6 @@ class RegisterBuyerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBuyerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 //        setContentView(R.layout.activity_forgot_password)
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
@@ -94,7 +93,8 @@ class RegisterBuyerActivity : AppCompatActivity() {
         }
 
         binding.btnRegister.setOnClickListener {
-            val intentRegister = Intent(this, ActivityRegisterBuyerBinding::class.java)
+//            val intentRegister = Intent(this, ActivityRegisterBuyerBinding::class.java)
+            val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
             val username = binding.etYourName.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()

@@ -1,7 +1,8 @@
-package com.dicoding.projectcapstone.ui
+package com.dicoding.projectcapstone.ui.kategori
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.projectcapstone.R
@@ -14,6 +15,7 @@ class KategoriMakananActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kategori_makanan)
+
 
         recyclerView = findViewById(R.id.recycler_view_kategori_food)
         recyclerView.layoutManager = LinearLayoutManager(this)

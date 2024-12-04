@@ -64,6 +64,7 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
                     )
                     binding.txtResendOtp.text = spannableHover
                 }
+
                 MotionEvent.ACTION_UP -> {
                     // Kembalikan teks ke tampilan awal (tanpa warna biru dan underline)
                     binding.txtResendOtp.text = SpannableString("Resend again")
@@ -86,7 +87,7 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
             val otp_code = binding.etOtp.text.toString()
 
             if (binding.etOtp.error == null) {
-                if(otp_code == sessionManager.getOtpForgotPassword()) {
+                if (otp_code == sessionManager.getOtpForgotPassword()) {
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
                         setMessage("OTP is correct")
@@ -121,23 +122,23 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
             val email = sessionManager.getEmailForgotPassword()
             if (email != null) {
                 otpModel.resendOtpForgotPassword(email) { success ->
-                        if (success ) {
-                            AlertDialog.Builder(this).apply {
-                                setTitle("OTP Sent")
-                                setMessage("OTP has been resent to $email.")
-                                setPositiveButton("Continue", null)
-                                create()
-                                show()
-                            }
-                        } else {
-                            AlertDialog.Builder(this).apply {
-                                setTitle("Error")
-                                setMessage("Failed to resend OTP. Please try again.")
-                                setPositiveButton("Retry", null)
-                                create()
-                                show()
-                            }
+                    if (success) {
+                        AlertDialog.Builder(this).apply {
+                            setTitle("OTP Sent")
+                            setMessage("OTP has been resent to $email.")
+                            setPositiveButton("Continue", null)
+                            create()
+                            show()
                         }
+                    } else {
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Error")
+                            setMessage("Failed to resend OTP. Please try again.")
+                            setPositiveButton("Retry", null)
+                            create()
+                            show()
+                        }
+                    }
 
                 }
             }

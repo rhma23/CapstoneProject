@@ -3,9 +3,11 @@ package com.dicoding.projectcapstone
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.projectcapstone.RetrofitClient.apiService
 import com.dicoding.projectcapstone.databinding.ActivityMainBinding
@@ -14,14 +16,18 @@ import com.dicoding.projectcapstone.product.ProductAdapter
 import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
+import com.dicoding.projectcapstone.ui.kategori.KategoriMakananActivity
+import com.dicoding.projectcapstone.ui.kategori.KategoriMinumanActivity
+import com.dicoding.projectcapstone.ui.kategori.LokasiActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
 import com.dicoding.projectcapstone.utils.Helper
 import com.dicoding.projectcapstone.utils.SessionManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-    var helper: Helper = Helper()
+    private var helper: Helper = Helper()
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var userRepository: UserRepository
@@ -55,10 +61,51 @@ class MainActivity : AppCompatActivity() {
             setupRecyclerView(isHorizontal)
             setupAction()
         }
+
+        // Setup BottomNavigationView
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        // Set the default selected menu to "Home"
+        bottomNavigationView.selectedItemId = R.id.home
+
+        // Listener untuk navigasi
+        bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home -> {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    true
+                }
+                R.id.location -> {
+                        val intent = Intent(this, LokasiActivity::class.java)
+                        startActivity(intent)
+                    true
+                }
+                R.id.profile -> {
+                        val intent = Intent(this, ProfileActivity::class.java)
+                        startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
+        val btnFood = findViewById<Button>(R.id.btnFood)
+        val btnDrink = findViewById<Button>(R.id.btnDrink)
+
+        btnFood.setOnClickListener {
+            val intent = Intent(this, KategoriMakananActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnDrink.setOnClickListener {
+            val intent = Intent(this, KategoriMinumanActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun setupAction() {
-
         // Atur nama pengguna dari sesi
         binding.txtName.text = sessionManager.getUsername()
 
@@ -67,6 +114,7 @@ class MainActivity : AppCompatActivity() {
             userModel.logout()
             navigateToLogin()
         }
+
         // Memuat data produk
         productViewModel.fetchAllProducts()
     }
@@ -80,11 +128,9 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecyclerView(isHorizontal: Boolean) {
         // Initialize the adapter with an empty list and a click handler
         val productAdapter = ProductAdapter(
-            events = listOf(), // Pass an empty list initially
+            events = listOf(),
             onItemClick = { dataItem ->
-                // Handle item click here
                 Log.d("MainActivity", "Clicked item: ${dataItem.image?.let { helper.removePath(it) }}")
-                // Handle the item click
                 Toast.makeText(this, "Clicked: ${dataItem.name}", Toast.LENGTH_SHORT).show()
             }
         )
@@ -104,12 +150,10 @@ class MainActivity : AppCompatActivity() {
         // Observe data and update the adapter
         productViewModel.products.observe(this) { productList ->
             productList?.let {
-                productAdapter.updateData(it) // Update adapter's data
+                productAdapter.updateData(it)
             } ?: run {
                 Log.d("MainActivity", "Product list is null or empty")
             }
         }
     }
-
-
 }

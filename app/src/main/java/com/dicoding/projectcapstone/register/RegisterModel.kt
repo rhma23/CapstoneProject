@@ -19,7 +19,7 @@ class RegisterModel (private val repository: AuthRepository) : ViewModel() {
                 val response: RegisterResponse = repository.register(username, email, password, role)
                 if (response.success == true) {
                     Log.d(TAG, "Registration successful: ${response.message}")
-                    Log.d(TAG, "register: ${response.result}")
+                    Log.d("RegisterModel", "register: ${response.result}")
                     onResult(true)
                 } else {
                     Log.d(TAG, "Registration failed: ${response.message}")

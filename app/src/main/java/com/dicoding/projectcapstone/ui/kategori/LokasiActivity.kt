@@ -1,6 +1,7 @@
-package com.dicoding.projectcapstone.ui
+package com.dicoding.projectcapstone.ui.kategori
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
@@ -11,6 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.projectcapstone.MainActivity
+import com.dicoding.projectcapstone.ProfileActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.RetrofitClient.apiService
 import com.dicoding.projectcapstone.location.LocationModel
@@ -27,6 +30,7 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mapView: MapView
@@ -71,6 +75,35 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
         viewModel.locations.observe(this) { locations ->
             showMarkers(locations)
         }
+
+        // Setup BottomNavigationView
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        // Set the default selected menu to "Location"
+        bottomNavigationView.selectedItemId = R.id.location
+
+        // Listener untuk navigasi
+        bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.location -> {
+                    val intent = Intent(this, LokasiActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.profile -> {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
         checkLocationPermission()
         viewModel.getAllLocations()
     }
