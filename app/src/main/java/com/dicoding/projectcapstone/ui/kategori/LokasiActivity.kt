@@ -23,6 +23,7 @@ import com.dicoding.projectcapstone.location.LocationRepository
 import com.dicoding.projectcapstone.location.LocationResponse
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.model.Lokasi
+import com.dicoding.projectcapstone.profile.ProfileFragment
 import com.dicoding.projectcapstone.ui.adapter.LokasiAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
