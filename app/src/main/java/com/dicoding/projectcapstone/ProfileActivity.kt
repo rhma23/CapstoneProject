@@ -35,18 +35,15 @@ class ProfileActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    navigateWithLoading(MainActivity::class.java)
                     true
                 }
                 R.id.location -> {
-                    val intent = Intent(this, LokasiActivity::class.java)
-                    startActivity(intent)
+                    navigateWithLoading(LokasiActivity::class.java)
                     true
                 }
                 R.id.profile -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    navigateWithLoading(ProfileActivity::class.java)
                     true
                 }
                 else -> false
@@ -64,9 +61,15 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun navigateToLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
+        navigateWithLoading(LoginActivity::class.java)
+    }
+
+    private fun navigateWithLoading(targetActivity: Class<*>) {
+        val targetIntent = Intent(this, targetActivity)
+        val loadingIntent = Intent(this, LoadingActivity::class.java).apply {
+            putExtra("target_intent", targetIntent)
+        }
+        startActivity(loadingIntent)
     }
 
 }
