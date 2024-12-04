@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.dicoding.projectcapstone.LoadingActivity
 import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.databinding.ActivityProfileBinding

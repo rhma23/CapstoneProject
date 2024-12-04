@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.projectcapstone.MainActivity
-import com.dicoding.projectcapstone.ProfileActivity
+import com.dicoding.projectcapstone.profile.ProfileActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.API.RetrofitClient.apiService
 import com.dicoding.projectcapstone.LoadingActivity
@@ -21,9 +21,7 @@ import com.dicoding.projectcapstone.location.LocationModel
 import com.dicoding.projectcapstone.location.LocationModelFactory
 import com.dicoding.projectcapstone.location.LocationRepository
 import com.dicoding.projectcapstone.location.LocationResponse
-import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.model.Lokasi
-import com.dicoding.projectcapstone.profile.ProfileFragment
 import com.dicoding.projectcapstone.ui.adapter.LokasiAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
