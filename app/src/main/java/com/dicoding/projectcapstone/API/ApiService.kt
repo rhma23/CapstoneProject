@@ -41,8 +41,8 @@ interface ApiService {
     @GET("product")
     suspend fun getAllProducts(): GetAllProductResponse
 
-    @GET("product/recomendations")
-    suspend fun getAllRecomendationProducts(): GetAllProductResponse
+    @GET("product/recommendations")
+    suspend fun getAllRecommendationProducts(): GetAllProductResponse
 
     @GET("location")
     suspend fun getAllLocations(): List<LocationResponse>

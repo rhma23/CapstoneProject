@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             navigateToLogin()
         } else {
             val isHorizontal = true
-            productRecomendationAdapter(isHorizontal)
+            productRecommendationAdapter(isHorizontal)
             allProductAdapter(isHorizontal)
             setupViewBaner()
             setupAction()
@@ -142,13 +142,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         productViewModel.fetchAllProducts()
+        productViewModel.fetchAllProductsRecommendations()
     }
 
     private fun navigateToLogin() {
         navigateWithLoading(LoginActivity::class.java)
     }
 
-    private fun productRecomendationAdapter(isHorizontal: Boolean) {
+    private fun productRecommendationAdapter(isHorizontal: Boolean) {
         val productAdapter = ProductRecomendationAdapter(
             events = listOf(),
             onItemClick = { dataItem ->
@@ -172,7 +173,7 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-        productViewModel.products.observe(this) { productList ->
+        productViewModel.productsRecommendations.observe(this) { productList ->
             productList?.let {
                 productAdapter.updateData(it)
             } ?: run {
