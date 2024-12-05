@@ -12,7 +12,7 @@ class ProductModel(private val repository: ProductRepository) : ViewModel() {
 
     fun fetchAllProducts() {
         viewModelScope.launch {
-            repository.getAllData()
+            repository.getAllProducts()
         }
     }
 }

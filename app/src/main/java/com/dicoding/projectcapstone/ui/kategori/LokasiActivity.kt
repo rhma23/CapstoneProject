@@ -13,14 +13,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.projectcapstone.MainActivity
-import com.dicoding.projectcapstone.ProfileActivity
-import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.RetrofitClient.apiService
+ import com.dicoding.projectcapstone.R
+import com.dicoding.projectcapstone.API.RetrofitClient.apiService
+import com.dicoding.projectcapstone.LoadingActivity
 import com.dicoding.projectcapstone.location.LocationModel
 import com.dicoding.projectcapstone.location.LocationModelFactory
 import com.dicoding.projectcapstone.location.LocationRepository
 import com.dicoding.projectcapstone.location.LocationResponse
 import com.dicoding.projectcapstone.model.Lokasi
+import com.dicoding.projectcapstone.profile.ProfileActivity
 import com.dicoding.projectcapstone.ui.adapter.LokasiAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -86,18 +87,15 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    navigateWithLoading(MainActivity::class.java)
                     true
                 }
                 R.id.location -> {
-                    val intent = Intent(this, LokasiActivity::class.java)
-                    startActivity(intent)
+                    navigateWithLoading(LokasiActivity::class.java)
                     true
                 }
                 R.id.profile -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    navigateWithLoading(ProfileActivity::class.java)
                     true
                 }
                 else -> false
@@ -194,5 +192,13 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
                 locationPermissionCode
             )
         }
+    }
+
+    private fun navigateWithLoading(targetActivity: Class<*>) {
+        val targetIntent = Intent(this, targetActivity)
+        val loadingIntent = Intent(this, LoadingActivity::class.java).apply {
+            putExtra("target_intent", targetIntent)
+        }
+        startActivity(loadingIntent)
     }
 }

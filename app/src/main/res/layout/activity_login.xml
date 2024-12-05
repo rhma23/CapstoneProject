@@ -175,5 +175,10 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
+        <ProgressBar
+            android:id="@+id/progressBarLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
     </LinearLayout>
 </layout>

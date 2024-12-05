@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.dicoding.projectcapstone"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.dicoding.projectcapstone"
@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.media3.common.ktx)
 
 
     // Testing libraries
