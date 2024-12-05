@@ -1,5 +1,5 @@
 package com.dicoding.projectcapstone.location
-import com.dicoding.projectcapstone.API.ApiService
+import com.dicoding.projectcapstone.api.ApiService
 
 class LocationRepository(private val apiService: ApiService)  {
     suspend fun getAllLocations() = apiService.getAllLocations()

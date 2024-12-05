@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone.ui.kategori
+package com.dicoding.projectcapstone.kategori
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

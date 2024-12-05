@@ -30,17 +30,17 @@
             android:name=".LoadingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.kategori.KategoriMinumanActivity"
+            android:name=".kategori.KategoriMinumanActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.kategori.KategoriMakananActivity"
+            android:name=".kategori.KategoriMakananActivity"
             android:exported="false" />
         <activity
             android:name=".profile.ProfileActivity"
             android:exported="false"
             tools:ignore="DuplicateActivity" />
         <activity
-            android:name=".ui.kategori.LokasiActivity"
+            android:name=".kategori.LokasiActivity"
             android:exported="false" />
         <activity
             android:name=".password.NewPasswordActivity"

@@ -10,7 +10,7 @@ import android.util.Log
 class LoadingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.loading_screen)
+        setContentView(R.layout.activity_loading)
 
         // Ambil intent halaman tujuan dari extra
         val targetIntent = intent.getParcelableExtra<Intent>("target_intent")
@@ -19,7 +19,7 @@ class LoadingActivity : AppCompatActivity() {
         if (targetIntent != null) {
             // Tambahkan delay untuk melihat loading screen
             Handler(Looper.getMainLooper()).postDelayed({
-                targetIntent?.let {
+                targetIntent.let {
                     startActivity(it)
                     finish() // Menutup LoadingActivity setelah halaman tujuan dimulai
                 } ?: run {

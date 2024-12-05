@@ -13,7 +13,7 @@ import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.projectcapstone.API.RetrofitClient
+import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.utils.SessionManager
 import com.dicoding.projectcapstone.databinding.ActivityOtpRegisterBinding
 import com.dicoding.projectcapstone.login.LoginActivity
@@ -104,10 +104,7 @@ class OtpRegisterActivity : AppCompatActivity() {
                         AlertDialog.Builder(this).apply {
                             setTitle("Oops, verification failed!")
                             setMessage("Account with $email failed verification. Please try again.")
-                            setPositiveButton("Retry") { _, _ -> finish()
-                                startActivity(intentOtp)
-                                finish()
-                            }
+                            setPositiveButton("Retry", null)
                             create()
                             show()
                         }

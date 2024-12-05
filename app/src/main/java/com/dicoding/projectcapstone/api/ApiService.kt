@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone.API
+package com.dicoding.projectcapstone.api
 
 import com.dicoding.projectcapstone.location.LocationResponse
 import com.dicoding.projectcapstone.login.LoginRequest
