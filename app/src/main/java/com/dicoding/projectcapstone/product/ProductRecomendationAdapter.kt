@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.utils.Helper
 
-class ProductAdapter(private var events: List<DataItem>, private val onItemClick: (DataItem) -> Unit) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductRecomendationAdapter(private var events: List<DataItem>, private val onItemClick: (DataItem) -> Unit) : RecyclerView.Adapter<ProductRecomendationAdapter.ProductViewHolder>() {
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var helper: Helper = Helper()
         val productImage: ImageView = itemView.findViewById(R.id.imageLogo)

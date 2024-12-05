@@ -20,7 +20,7 @@ class LoginModel(private val repository: AuthRepository) : ViewModel() {
                 Log.d("Login model 1", "Email: $email, Password: $password")
                 val result = repository.login(email, password)
                 if (result.success == true) {
-                    val userData = result.result?.token?.let { repository.getUserData(it) }
+                    val userData = result.result?.token?.let { repository.getUserData() }
                     if (userData != null) {
                         if(userData.result?.is_verified == true) {
                             userData.result.id?.let { sessionManager.saveUserId(it) }

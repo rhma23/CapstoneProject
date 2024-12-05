@@ -17,4 +17,24 @@
         android:id="@+id/profileFragment"
         android:name="com.example.app.ProfileFragment"
         android:label="Profile" />
+
+    <fragment
+        android:id="@+id/editEmailFragment"
+        android:name="com.example.app.FragmentEditEmail"
+        android:label="Edit Email" >
+            <action
+               android:id="@+id/action_editEmail_to_verifyOtp"
+               app:destination="@id/verifyOtpFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/verifyOtpFragment"
+        android:name="com.example.app.FragmentVerifyOtp"
+        android:label="Verify OTP" >
+            <argument
+                 android:name="email"
+                 app:argType="string" />
+    </fragment>
+
+
 </navigation>

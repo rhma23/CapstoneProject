@@ -16,7 +16,6 @@ import com.dicoding.projectcapstone.register.RegisterResponse
 import com.dicoding.projectcapstone.user.UserDataResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
 
 interface ApiService {
 //    Auth
@@ -36,13 +35,14 @@ interface ApiService {
     suspend fun resetPassword(@Body request: ForgotPasswordRequest): ForgotPasswordResponse
 
     @GET("auth/userData")
-    suspend fun getUserData(
-        @Header("Authorization") authHeader: String
-    ): UserDataResponse
+    suspend fun getUserData(): UserDataResponse
 
 //    Product
     @GET("product")
     suspend fun getAllProducts(): GetAllProductResponse
+
+    @GET("product/recommendations")
+    suspend fun getAllRecommendationProducts(): GetAllProductResponse
 
     @GET("location")
     suspend fun getAllLocations(): List<LocationResponse>

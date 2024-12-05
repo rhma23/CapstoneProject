@@ -47,8 +47,8 @@ class AuthRepository(
         return apiService.resetPassword(request)
     }
 
-    suspend fun getUserData(token: String): UserDataResponse {
-        return apiService.getUserData("Bearer $token")
+    suspend fun getUserData(): UserDataResponse {
+        return apiService.getUserData()
     }
 
     companion object {
