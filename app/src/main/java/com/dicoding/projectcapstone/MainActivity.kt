@@ -25,7 +25,6 @@ import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.profile.ProfileActivity
 import com.dicoding.projectcapstone.location.LokasiActivity
-import com.dicoding.projectcapstone.product.DetailProductActivity
 import com.dicoding.projectcapstone.ui.LoadingActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
