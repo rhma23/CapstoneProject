@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProjectCapstone</string>
+    <string name="app_name">Ping</string>
 
     <!-- weelcome -->
     <string name="tap_next">Tap Next</string>
@@ -67,7 +67,7 @@
     <string name="verify_button">Tombol Verifikasi</string>
     <string name="enter_your_email_to_reset_your_password">Enter your email to reset your password.</string>
     <string name="submit">Submit</string>
-    <string name="button_forgot_password">Submit to your passsword</string>
+    <string name="button_forgot_password">button forgot password</string>
 
     <!-- new password -->
     <string name="enter_your_new_password">Enter your new password!</string>
@@ -84,6 +84,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="logout">Logout</string>
     <string name="login_button">login button</string>
+
 
     <!-- activity_profile -->
     <string name="profile_picture">Profile Picture</string>
@@ -102,29 +103,20 @@
     <string name="address">Address </string>
     <string name="log_out">Log out </string>
 
-    <!-- Detail Produk -->
-    <string name="detail_produk_title">Produk Details</string>
+    <!-- Detail Product -->
+    <string name="detail_produk_title">Product Details</string>
     <string name="default_product_name">Product Name</string>
     <string name="default_product_price">Rp 10.000</string>
     <string name="default_rating">4.5</string>
     <string name="default_distance">2,5 km</string>
     <string name="rating_icon">Rating Icon</string>
+    <string name="default_merchant_name">Merchant Name</string>
+    <string name="default_address">Jl. Lorem Ipsum No. 123</string>
     <string name="distance_icon">Distance Icon</string>
     <string name="status_open">Open</string>
     <string name="status_closed">Closed</string>
-    <string name="description_label">Description</string>
+    <string name="description_label">Deskription</string>
     <string name="default_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec magna a libero.</string>
     <string name="see_seller">See Seller</string>
-
-
-    <!-- Menu Navigation -->
-    <string name="home_navBottom">Home</string>
-    <string name="location_navBottom">Location</string>
-    <string name="profile_navBottom">Profile</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
 
 </resources>

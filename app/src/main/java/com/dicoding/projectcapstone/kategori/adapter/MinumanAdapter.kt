@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.model.Minuman
+import com.dicoding.projectcapstone.kategori.model.Minuman
 
 class MinumanAdapter(private val minumanList: List<Minuman>) :
     RecyclerView.Adapter<MinumanAdapter.ViewHolder>() {

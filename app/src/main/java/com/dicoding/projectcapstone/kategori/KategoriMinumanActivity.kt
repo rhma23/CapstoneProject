@@ -6,7 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.model.Minuman
+import com.dicoding.projectcapstone.kategori.model.Minuman
 import com.dicoding.projectcapstone.ui.adapter.MinumanAdapter
 
 class KategoriMinumanActivity : AppCompatActivity() {

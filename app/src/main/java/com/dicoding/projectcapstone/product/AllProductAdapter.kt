@@ -29,6 +29,7 @@ class AllProductAdapter(private var events: List<DataItem>, private val onItemCl
                 .load(event.image?.let { helper.removePath(it) })
                 .into(productImage)
             itemView.setOnClickListener { onItemClick(event) }
+
         }
     }
 

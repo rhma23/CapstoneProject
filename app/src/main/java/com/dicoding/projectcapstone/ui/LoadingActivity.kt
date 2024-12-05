@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone
+package com.dicoding.projectcapstone.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
+import com.dicoding.projectcapstone.R
 
 class LoadingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +23,6 @@ class LoadingActivity : AppCompatActivity() {
                 targetIntent.let {
                     startActivity(it)
                     finish() // Menutup LoadingActivity setelah halaman tujuan dimulai
-                } ?: run {
-                    Log.e("LoadingActivity", "Target intent is null")
                 }
             }, 1500)
         }

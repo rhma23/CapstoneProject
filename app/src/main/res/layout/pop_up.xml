@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/bg_modal_rek"
+    android:background="@drawable/pop_up"
     android:gravity="center">
 
     <TextView

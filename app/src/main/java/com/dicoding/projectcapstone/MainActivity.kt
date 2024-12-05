@@ -24,7 +24,9 @@ import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.profile.ProfileActivity
-import com.dicoding.projectcapstone.ui.kategori.LokasiActivity
+import com.dicoding.projectcapstone.location.LokasiActivity
+import com.dicoding.projectcapstone.product.DetailProductActivity
+import com.dicoding.projectcapstone.ui.LoadingActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -191,6 +193,10 @@ class MainActivity : AppCompatActivity() {
                     "Clicked item: ${dataItem.image?.let { helper.removePath(it) }}"
                 )
                 Toast.makeText(this, "Clicked: ${dataItem.name}", Toast.LENGTH_SHORT).show()
+
+//                val intent = Intent(this, DetailProductActivity::class.java)
+//                intent.putExtra("product_id", products.id)
+//                startActivity(intent)
             }
         )
 

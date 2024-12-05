@@ -10,12 +10,15 @@ import com.dicoding.projectcapstone.otp.ResendOtpResponse
 import com.dicoding.projectcapstone.password.ForgotPasswordRequest
 import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.product.GetAllProductResponse
+import com.dicoding.projectcapstone.product.ProductDetail
 import com.dicoding.projectcapstone.register.RegisterRequest
 import retrofit2.http.POST
 import com.dicoding.projectcapstone.register.RegisterResponse
 import com.dicoding.projectcapstone.user.UserDataResponse
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
 //    Auth
@@ -43,6 +46,9 @@ interface ApiService {
 
     @GET("product/recommendations")
     suspend fun getAllRecommendationProducts(): GetAllProductResponse
+
+    @GET("product/{id}")
+    suspend fun getProductById(@Path("id") id: Int): Response<ProductDetail>
 
     @GET("location")
     suspend fun getAllLocations(): List<LocationResponse>

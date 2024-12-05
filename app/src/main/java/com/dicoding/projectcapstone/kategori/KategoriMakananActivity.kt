@@ -6,7 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.model.Makanan
+import com.dicoding.projectcapstone.kategori.model.Makanan
 import com.dicoding.projectcapstone.ui.adapter.MakananAdapter
 
 class KategoriMakananActivity : AppCompatActivity() {

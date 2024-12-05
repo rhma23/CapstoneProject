@@ -28,7 +28,7 @@ class ModalRecFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_modal_rec, container, false)
+        return inflater.inflate(R.layout.pop_up, container, false)
     }
 
     companion object {

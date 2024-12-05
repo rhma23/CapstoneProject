@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone.ui.adapter
+package com.dicoding.projectcapstone.location.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.model.Lokasi
+import com.dicoding.projectcapstone.location.model.Lokasi
 
 class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>) :
     RecyclerView.Adapter<LokasiAdapter.LokasiViewHolder>() {

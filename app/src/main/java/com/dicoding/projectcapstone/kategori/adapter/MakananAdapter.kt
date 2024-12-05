@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.model.Makanan
+import com.dicoding.projectcapstone.kategori.model.Makanan
 
 class MakananAdapter(private val makananList: List<Makanan>) :
     RecyclerView.Adapter<MakananAdapter.ViewHolder>() {

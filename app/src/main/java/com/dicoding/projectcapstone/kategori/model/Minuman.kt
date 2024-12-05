@@ -1,6 +1,6 @@
-package com.dicoding.projectcapstone.model
+package com.dicoding.projectcapstone.kategori.model
 
-data class Makanan(
+data class Minuman(
     val name: String,
     val description: String,
     val price: String,

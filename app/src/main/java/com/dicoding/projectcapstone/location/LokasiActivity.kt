@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone.ui.kategori
+package com.dicoding.projectcapstone.location
 
 import android.Manifest
 import android.content.Intent
@@ -16,13 +16,9 @@ import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.profile.ProfileActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.api.RetrofitClient.apiService
-import com.dicoding.projectcapstone.LoadingActivity
-import com.dicoding.projectcapstone.location.LocationModel
-import com.dicoding.projectcapstone.location.LocationModelFactory
-import com.dicoding.projectcapstone.location.LocationRepository
-import com.dicoding.projectcapstone.location.LocationResponse
-import com.dicoding.projectcapstone.model.Lokasi
-import com.dicoding.projectcapstone.ui.adapter.LokasiAdapter
+import com.dicoding.projectcapstone.ui.LoadingActivity
+import com.dicoding.projectcapstone.location.model.Lokasi
+import com.dicoding.projectcapstone.location.adapter.LokasiAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -62,9 +58,11 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
         val lokasiList = ArrayList<Lokasi>()
         lokasiList.add(
             Lokasi(
-                "Restoran A", "1.5 km", "15 menit", R.drawable.ic_launcher_background, 4.5, true))
+                "Restoran A", "1.5 km", "15 menit", R.drawable.ic_launcher_background, 4.5, true)
+        )
         lokasiList.add(
-            Lokasi("Cafe B", "2.0 km", "20 menit", R.drawable.ic_launcher_background, 4.0, false))
+            Lokasi("Cafe B", "2.0 km", "20 menit", R.drawable.ic_launcher_background, 4.0, false)
+        )
 
         val adapter = LokasiAdapter(lokasiList)
         recyclerView.setAdapter(adapter)

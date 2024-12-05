@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone.model
+package com.dicoding.projectcapstone.location.model
 
 class Lokasi(
     @JvmField val name: String,
