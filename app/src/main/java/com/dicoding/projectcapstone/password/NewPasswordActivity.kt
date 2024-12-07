@@ -46,7 +46,7 @@ class NewPasswordActivity : AppCompatActivity() {
                 binding.btnSubmitNewPass.showLoading(true)
                 otpModel.resetPassowrd(otp_code, email, newPassword) { success ->
                     binding.btnSubmitNewPass.showLoading(false)
-                        if (success == true) {
+                    if (success == true) {
                         AlertDialog.Builder(this).apply {
                             setTitle("Success")
                             setMessage("Password has been successfully changed")

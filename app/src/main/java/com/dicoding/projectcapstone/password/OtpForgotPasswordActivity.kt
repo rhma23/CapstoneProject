@@ -79,72 +79,69 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.btnVerify.setOnClickListener {
-            val intentNewPasswordActivity = Intent(this, NewPasswordActivity::class.java)
-            val otp_code = binding.etOtp.text.toString()
+            val otpCode = "${binding.etBox1.text}${binding.etBox2.text}${binding.etBox3.text}" +
+                    "${binding.etBox4.text}${binding.etBox5.text}${binding.etBox6.text}"
 
-            if (binding.etOtp.error == null) {
-                binding.btnVerify.showLoading(true)
-                binding.btnVerify.postDelayed({
-                    binding.btnVerify.showLoading(false)
-                    if (otp_code == sessionManager.getOtpForgotPassword()) {
-                        AlertDialog.Builder(this).apply {
-                            setTitle("Yeah!")
-                            setMessage("OTP is correct")
-                            setPositiveButton("Continue") { _, _ ->
-                                binding.btnVerify.showLoading(false)
-                                startActivity(intentNewPasswordActivity)
-                                finish()
-                            }
-                            create()
-                            show()
-                        }
-                    } else {
-                        binding.btnVerify.showLoading(false)
-                        AlertDialog.Builder(this).apply {
-                            setTitle("Oops!")
-                            setMessage("Incorrect OTP")
-                            setPositiveButton("Retry", null)
-                            create()
-                            show()
-                        }
-                    }
-                }, 2000)
-            } else {
-                binding.btnVerify.showLoading(false)
-                AlertDialog.Builder(this).apply {
-                    setTitle("Oops!")
-                    setMessage("Incorrect OTP")
-                    setPositiveButton("Retry", null)
-                    create()
-                    show()
-                }
+            if (otpCode.isEmpty()) {
+                showAlertDialog("Oops!", "Please enter OTP.", false)
+                return@setOnClickListener
             }
-        }
+
+            val expectedOtp = sessionManager.getOtpForgotPassword()
+            binding.btnVerify.showLoading(true)
+
+            binding.btnVerify.postDelayed({
+            if (otpCode == expectedOtp) {
+                showAlertDialog("Yeah!", "OTP is correct", true) {
+                    binding.btnVerify.showLoading(false)
+                    startActivity(Intent(this, NewPasswordActivity::class.java))
+                    finish()
+                }
+            } else {
+                showAlertDialog("Oops!", "Incorrect OTP", false)
+                binding.btnVerify.showLoading(false)
+            }
+        }, 2000)
+    }
 
         binding.txtResendOtp.setOnClickListener {
             val email = sessionManager.getEmailForgotPassword()
-            if (email != null) {
-                otpModel.resendOtpForgotPassword(email) { success ->
-                    if (success) {
-                        AlertDialog.Builder(this).apply {
-                            setTitle("OTP Sent")
-                            setMessage("OTP has been resent to $email.")
-                            setPositiveButton("Continue", null)
-                            create()
-                            show()
-                        }
-                    } else {
-                        AlertDialog.Builder(this).apply {
-                            setTitle("Error")
-                            setMessage("Failed to resend OTP. Please try again.")
-                            setPositiveButton("Retry", null)
-                            create()
-                            show()
-                        }
-                    }
-
-                }
+            if (email.isNullOrEmpty()) {
+                showAlertDialog("Error", "Email is missing. Please try again.", false)
+                return@setOnClickListener
             }
+
+            binding.txtResendOtp.isEnabled = false
+            binding.btnVerify.showLoading(true)
+
+            otpModel.resendOtpForgotPassword(email) { success ->
+                binding.btnVerify.showLoading(false) // Hilangkan loading setelah selesai
+                binding.txtResendOtp.isEnabled = true
+
+                val title = if (success) "OTP Sent" else "Error"
+                val message = if (success) {
+                    "OTP has been resent to $email."
+                } else {
+                    "Failed to resend OTP. Please try again."
+                }
+                showAlertDialog(title, message, false)
+            }
+        }
+    }
+
+    private fun showAlertDialog(
+        title: String,
+        message: String,
+        isSuccess: Boolean,
+        onContinue: (() -> Unit)? = null
+    ) {
+        binding.btnVerify.showLoading(false) // Pastikan loading dihentikan sebelum dialog
+        AlertDialog.Builder(this).apply {
+            setTitle(title)
+            setMessage(message)
+            setPositiveButton(if (isSuccess) "Continue" else "Retry") { _, _ -> onContinue?.invoke() }
+            create()
+            show()
         }
     }
 }
