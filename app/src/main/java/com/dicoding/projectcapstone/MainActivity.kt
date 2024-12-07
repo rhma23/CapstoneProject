@@ -2,11 +2,15 @@ package com.dicoding.projectcapstone
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.api.RetrofitClient.apiService
@@ -25,8 +29,6 @@ import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.profile.ProfileActivity
 import com.dicoding.projectcapstone.location.LokasiActivity
-import com.dicoding.projectcapstone.product.DetailProductActivity
-import com.dicoding.projectcapstone.ui.LoadingActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -99,9 +101,9 @@ class MainActivity : AppCompatActivity() {
             navigateToLogin()
         } else {
             val isHorizontal = true
-            productRecommendationAdapter(isHorizontal)
-            allProductAdapter(isHorizontal)
-            setupViewBaner()
+            productRecommendationAdapter(true)
+            allProductAdapter()
+            setupViewBanner()
             setupAction()
         }
 
@@ -114,14 +116,17 @@ class MainActivity : AppCompatActivity() {
                     navigateWithLoading(MainActivity::class.java)
                     true
                 }
+
                 R.id.location -> {
                     navigateWithLoading(LokasiActivity::class.java)
                     true
                 }
+
                 R.id.profile -> {
                     navigateWithLoading(ProfileActivity::class.java)
                     true
                 }
+
                 else -> false
             }
         }
@@ -184,7 +189,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun allProductAdapter(isHorizontal: Boolean) {
+    private fun allProductAdapter() {
         val allProductAdapter = AllProductAdapter(
             events = listOf(),
             onItemClick = { dataItem ->
@@ -193,20 +198,16 @@ class MainActivity : AppCompatActivity() {
                     "Clicked item: ${dataItem.image?.let { helper.removePath(it) }}"
                 )
                 Toast.makeText(this, "Clicked: ${dataItem.name}", Toast.LENGTH_SHORT).show()
-
-//                val intent = Intent(this, DetailProductActivity::class.java)
-//                intent.putExtra("product_id", products.id)
-//                startActivity(intent)
             }
         )
 
-        val layoutManager = if (isHorizontal) {
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        } else {
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        }
+        // Menggunakan StaggeredGridLayoutManager
+        val layoutManager = StaggeredGridLayoutManager(
+            2, // Jumlah kolom
+            StaggeredGridLayoutManager.VERTICAL // Orientasi vertikal
+        )
 
-        binding.rvPopular.apply {
+        binding.rvAllProduct.apply {
             this.layoutManager = layoutManager
             adapter = allProductAdapter
             setHasFixedSize(true)
@@ -222,7 +223,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun setupViewBaner() {
+//    fun setupViewBaner()
+    private fun setupViewBanner(){
         val handler = android.os.Handler()
         val runnable = object : Runnable {
             override fun run() {
@@ -240,10 +242,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateWithLoading(targetActivity: Class<*>) {
-        val targetIntent = Intent(this, targetActivity)
-        val loadingIntent = Intent(this, LoadingActivity::class.java).apply {
-            putExtra("target_intent", targetIntent)
-        }
-        startActivity(loadingIntent)
+        binding.loading.visibility = View.VISIBLE // Tampilkan ProgressBar
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, targetActivity))
+            binding.loading.visibility = View.GONE // Sembunyikan ProgressBar
+        }, 1500)
     }
+
+//    private fun navigateWithLoading(targetActivity: Class<*>) {
+//        val targetIntent = Intent(this, targetActivity)
+//        val loadingIntent = Intent(this, LoadingActivity::class.java).apply {
+//            putExtra("target_intent", targetIntent)
+//        }
+//        startActivity(loadingIntent)
+//    }
 }

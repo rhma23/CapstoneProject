@@ -2,11 +2,14 @@ package com.dicoding.projectcapstone.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.dicoding.projectcapstone.ui.LoadingActivity
 import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.databinding.ActivityProfileBinding
@@ -29,7 +32,7 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_profile)
+        setContentView(binding.root)
 
         findViewById<TextView>(R.id.edit_profile).setOnClickListener {
             navigateToFragment(EditProfileFragment())
@@ -74,14 +77,16 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun navigateToLogin() {
         navigateWithLoading(LoginActivity::class.java)
+        finish()
     }
 
     private fun navigateWithLoading(targetActivity: Class<*>) {
-        val targetIntent = Intent(this, targetActivity)
-        val loadingIntent = Intent(this, LoadingActivity::class.java).apply {
-            putExtra("target_intent", targetIntent)
-        }
-        startActivity(loadingIntent)
+        Log.d("ProfileActivity", "Loading started")
+        binding.loadingProfile.visibility = View.VISIBLE // Tampilkan ProgressBar
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, targetActivity))
+            binding.loadingProfile.visibility = View.GONE // Sembunyikan ProgressBar
+        }, 1500)
     }
 
     // Fungsi untuk berpindah fragment

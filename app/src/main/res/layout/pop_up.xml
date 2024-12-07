@@ -8,7 +8,7 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/txtProductTitle"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Product Title"
@@ -18,7 +18,7 @@
         android:layout_marginBottom="8dp" />
 
     <TextView
-        android:id="@+id/txtProductDescription"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is a product description."
@@ -27,7 +27,7 @@
         android:layout_marginBottom="16dp" />
 
     <com.dicoding.projectcapstone.ui.MyButton
-        android:id="@+id/btnClose"
+        android:id="@+id/btnPopUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="OK"

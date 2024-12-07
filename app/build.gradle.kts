@@ -76,6 +76,9 @@ dependencies {
     // Gmaps
     implementation("com.google.android.gms:play-services-maps:19.0.0")
 
+    // Shimmer u. menampilkan wireframe (skeleton)
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
+
 }
 
 

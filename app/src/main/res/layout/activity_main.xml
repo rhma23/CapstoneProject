@@ -202,26 +202,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="@string/popular"
+                android:text="@string/all_product"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif-medium" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPopular"
+                android:id="@+id/rvAllProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-<!--            <FrameLayout-->
-<!--                android:id="@+id/fragment_container"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="0dp"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintBottom_toTopOf="@id/bottom_navigation" />-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -234,5 +227,23 @@
         app:itemIconTint="@color/bottom_nav"
         app:itemTextColor="@color/bottom_nav"
         app:itemRippleColor="@color/bottom_nav_ripple"
-        app:menu="@menu/bottom_navigation_menu"/>
+        app:menu="@menu/bottom_navigation_menu"
+        style="@style/CustomBottomNav"/>
+
+    <!-- Tambahkan View untuk loading -->
+    <FrameLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CustomProgressBar"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
