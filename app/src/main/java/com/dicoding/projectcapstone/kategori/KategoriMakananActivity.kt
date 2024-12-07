@@ -7,12 +7,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.api.ApiService
 import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
-import com.dicoding.projectcapstone.ui.adapter.MakananAdapter
+import com.dicoding.projectcapstone.ui.adapter.CategoryAdapter
 
 class KategoriMakananActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -21,7 +20,6 @@ class KategoriMakananActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kategori_makanan)
-        RetrofitClient.initialize(applicationContext)
         recyclerView = findViewById(R.id.recycler_view_kategori_food)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val apiService = RetrofitClient.apiService
@@ -30,7 +28,7 @@ class KategoriMakananActivity : AppCompatActivity() {
         viewModel.fetchProductsByCategory("Makanan")
         viewModel.categoryProducts.observe(this) { products ->
             if (products != null) {
-                val adapter = MakananAdapter(products)
+                val adapter = CategoryAdapter(products)
                 recyclerView.adapter = adapter
             } else {
                 Toast.makeText(this, "Gagal memuat data", Toast.LENGTH_SHORT).show()

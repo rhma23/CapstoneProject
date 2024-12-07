@@ -11,8 +11,8 @@ import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.product.DataItem
 
-class MakananAdapter(private val productList: List<DataItem>) :
-    RecyclerView.Adapter<MakananAdapter.MakananViewHolder>() {
+class CategoryAdapter(private val productList: List<DataItem>) :
+    RecyclerView.Adapter<CategoryAdapter.MakananViewHolder>() {
     inner class MakananViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.item_name)
         val price: TextView = itemView.findViewById(R.id.item_price)
