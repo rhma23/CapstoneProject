@@ -151,7 +151,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal">
 
-                <com.dicoding.projectcapstone.ui.MyButton
+                <com.dicoding.projectcapstone.ui.BtnLogin
                     android:id="@+id/btnFood"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
                     android:textColor="@android:color/white"
                     android:textAllCaps="false"/>
 
-                <com.dicoding.projectcapstone.ui.MyButton
+                <com.dicoding.projectcapstone.ui.BtnLogin
                     android:id="@+id/btnDrink"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

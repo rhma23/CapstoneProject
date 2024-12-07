@@ -69,10 +69,6 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
                     // Kembalikan teks ke tampilan awal (tanpa warna biru dan underline)
                     binding.txtResendOtp.text = SpannableString("Resend again")
                     binding.txtResendOtp.performClick() // Panggil performClick untuk aksesibilitas
-
-                    // Navigasi ke halaman New Password
-                    val intent = Intent(this, NewPasswordActivity::class.java)
-                    startActivity(intent)
                 }
             }
             true
@@ -87,27 +83,34 @@ class OtpForgotPasswordActivity : AppCompatActivity() {
             val otp_code = binding.etOtp.text.toString()
 
             if (binding.etOtp.error == null) {
-                if (otp_code == sessionManager.getOtpForgotPassword()) {
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
-                        setMessage("OTP is correct")
-                        setPositiveButton("Continue") { _, _ ->
-                            startActivity(intentNewPasswordActivity)
-                            finish()
+                binding.btnVerify.showLoading(true)
+                binding.btnVerify.postDelayed({
+                    binding.btnVerify.showLoading(false)
+                    if (otp_code == sessionManager.getOtpForgotPassword()) {
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Yeah!")
+                            setMessage("OTP is correct")
+                            setPositiveButton("Continue") { _, _ ->
+                                binding.btnVerify.showLoading(false)
+                                startActivity(intentNewPasswordActivity)
+                                finish()
+                            }
+                            create()
+                            show()
                         }
-                        create()
-                        show()
+                    } else {
+                        binding.btnVerify.showLoading(false)
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Oops!")
+                            setMessage("Incorrect OTP")
+                            setPositiveButton("Retry", null)
+                            create()
+                            show()
+                        }
                     }
-                } else {
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Oops!")
-                        setMessage("Incorrect OTP")
-                        setPositiveButton("Retry", null)
-                        create()
-                        show()
-                    }
-                }
+                }, 2000)
             } else {
+                binding.btnVerify.showLoading(false)
                 AlertDialog.Builder(this).apply {
                     setTitle("Oops!")
                     setMessage("Incorrect OTP")

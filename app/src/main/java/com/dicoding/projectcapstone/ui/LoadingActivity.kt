@@ -13,23 +13,23 @@ class LoadingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
 
-//        // Ambil intent halaman tujuan dari extra
-//        val targetIntent = intent.getParcelableExtra<Intent>("target_intent")
-//
-//        // Pastikan hanya ada satu aktivitas loading yang berjalan
-//        if (targetIntent != null) {
-//            // Tambahkan delay untuk melihat loading screen
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                targetIntent.let {
-//                    startActivity(it)
-//                    finish() // Menutup LoadingActivity setelah halaman tujuan dimulai
-//                }
-//            }, 1500)
-//        }
-//    }
-//
-//    override fun finish() {
-//        super.finish()
-//        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out) // Animasi transisi
+        // Ambil intent halaman tujuan dari extra
+        val targetIntent = intent.getParcelableExtra<Intent>("target_intent")
+
+        // Pastikan hanya ada satu aktivitas loading yang berjalan
+        if (targetIntent != null) {
+            // Tambahkan delay untuk melihat loading screen
+            Handler(Looper.getMainLooper()).postDelayed({
+                targetIntent.let {
+                    startActivity(it)
+                    finish() // Menutup LoadingActivity setelah halaman tujuan dimulai
+                }
+            }, 1500)
+        }
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out) // Animasi transisi
     }
 }
