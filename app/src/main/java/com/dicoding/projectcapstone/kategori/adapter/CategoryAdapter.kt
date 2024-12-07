@@ -17,6 +17,7 @@ class CategoryAdapter(private val productList: List<DataItem>) :
         val name: TextView = itemView.findViewById(R.id.item_name)
         val price: TextView = itemView.findViewById(R.id.item_price)
         val image: ImageView = itemView.findViewById(R.id.item_image)
+        val decs: TextView = itemView.findViewById(R.id.item_description)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MakananViewHolder {
@@ -28,6 +29,7 @@ class CategoryAdapter(private val productList: List<DataItem>) :
         val product = productList[position]
         val fullImageUrl = RetrofitClient.getBaseIp() + "/images/products/" + product.image
         holder.name.text = product.name
+        holder.decs.text = product.description
         holder.price.text = product.price
 
         Glide.with(holder.itemView.context).load(fullImageUrl).into(holder.image)
