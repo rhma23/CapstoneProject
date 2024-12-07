@@ -115,12 +115,8 @@ class MainActivity : AppCompatActivity() {
             allProductAdapter(isHorizontal)
             setupViewBaner()
             setupAction()
+            setupHome()
             val address = sessionManager.getAddressUser()
-            if (address.isNullOrEmpty()) {
-                navigateToFragment(EditAddressFragment()) // Navigate to add address
-            } else {
-                setupHome()// Initialize the main home setup
-            }
         }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -270,10 +266,4 @@ class MainActivity : AppCompatActivity() {
         }, 1500)
     }
 
-    private fun navigateToFragment(fragment: Fragment) {
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
 }

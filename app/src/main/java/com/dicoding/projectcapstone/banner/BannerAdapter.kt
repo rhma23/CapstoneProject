@@ -13,7 +13,7 @@ class BannerAdapter(private val weatherList: List<Weather>) : RecyclerView.Adapt
 
     inner class BannerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageWeather: ImageView = view.findViewById(R.id.overlay)
-        val textDescription: TextView = view.findViewById(R.id.fragment_container)
+        val textDescription: TextView = view.findViewById(R.id.txtWeatherMessage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerViewHolder {
