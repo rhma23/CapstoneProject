@@ -1,5 +1,6 @@
 package com.dicoding.projectcapstone.repository
 
+import GetAddressResponse
 import com.dicoding.projectcapstone.API.ApiService
 import com.dicoding.projectcapstone.login.LoginRequest
 import com.dicoding.projectcapstone.login.LoginResponse
@@ -49,6 +50,10 @@ class AuthRepository(
 
     suspend fun getUserData(): UserDataResponse {
         return apiService.getUserData()
+    }
+
+    suspend fun getAddres(): GetAddressResponse? {
+        return apiService.getAddress()
     }
 
     companion object {

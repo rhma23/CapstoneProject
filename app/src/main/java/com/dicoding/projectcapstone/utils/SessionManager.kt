@@ -18,8 +18,19 @@ class SessionManager(context: Context) {
         private const val USERNAME_KEY = "username"
         private const val EMAil_USER = "email_user"
         private const val ROLE_USER = "role_user"
+        private const val ADDRESS_USER = "address_user"
         private const val IS_LOGIN = "is_login"
         private const val USER_ID = "user_id"
+    }
+
+    fun saveAddressUser(address: String) {
+        val editor = prefs.edit()
+        editor.putString(ADDRESS_USER, address)
+        editor.apply()
+    }
+
+    fun getAddressUser(): String? {
+        return prefs.getString(ADDRESS_USER, null)
     }
 
     fun saveUserId(userId: Int) {

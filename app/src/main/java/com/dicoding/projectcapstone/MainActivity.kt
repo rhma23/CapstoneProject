@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.dicoding.projectcapstone.API.RetrofitClient
@@ -14,6 +16,9 @@ import com.dicoding.projectcapstone.banner.BannerFactory
 import com.dicoding.projectcapstone.banner.BannerModel
 import com.dicoding.projectcapstone.banner.BannerRepository
 import com.dicoding.projectcapstone.banner.Weather
+import com.dicoding.projectcapstone.banner.weather.WeatherModel
+import com.dicoding.projectcapstone.banner.weather.WeatherModelFactory
+import com.dicoding.projectcapstone.banner.weather.WeatherRepository
 import com.dicoding.projectcapstone.databinding.ActivityMainBinding
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.product.AllProductAdapter
@@ -22,6 +27,10 @@ import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.profile.ProfileActivity
+import com.dicoding.projectcapstone.profile.ProfileModel
+import com.dicoding.projectcapstone.profile.ProfileModelFactory
+import com.dicoding.projectcapstone.profile.ProfileRepository
+import com.dicoding.projectcapstone.profile.address.EditAddressFragment
 import com.dicoding.projectcapstone.ui.kategori.KategoriMakananActivity
 import com.dicoding.projectcapstone.ui.kategori.KategoriMinumanActivity
 import com.dicoding.projectcapstone.ui.kategori.LokasiActivity
@@ -38,30 +47,31 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var userRepository: UserRepository
     private lateinit var sessionManager: SessionManager
+    private lateinit var weatherRepository: WeatherRepository
+    private lateinit var weather_main: String
 
-    private val category = listOf("Hujan", "Mendung", "Panas", "Cerah")
     private val weatherData = listOf(
         Weather(
             id = 1,
-            category = "Hujan",
+            category = "Rain",
             description = "Cuaca hujan bikin suasana lebih nyaman, ayo lengkapi harimu dengan yang terbaik! Jangan sampai terlewat.",
             imageUrl = "https://i.pinimg.com/736x/7a/44/19/7a44199aff3fd42c45b1807feb518fa4.jpg"
         ),
         Weather(
             id = 2,
-            category = "Mendung",
+            category = "Drizzle",
             description = "Langit mendung, tapi semangat tetap harus cerah! Buat harimu lebih seru dengan hal istimewa ini!",
             imageUrl = "https://i.pinimg.com/736x/28/85/71/28857188f7a6757d5dba9d3f339f1bec.jpg"
         ),
         Weather(
             id = 3,
-            category = "Panas",
+            category = "Clear",
             description = "Cuaca panas? Waktunya cari sesuatu yang bikin segar dan nyaman. Yuk, jangan tunggu lama-lama!",
             imageUrl = "https://i.pinimg.com/736x/b9/39/79/b939794266cf899fbbd55435efd2a402.jpg"
         ),
         Weather(
             id = 4,
-            category = "Cerah",
+            category = "Clouds",
             description = "Matahari bersinar terang, saatnya menikmati hari dengan penuh semangat. Temukan pilihan yang bikin harimu lebih spesial!",
             imageUrl = "https://i.pinimg.com/736x/ff/08/a6/ff08a64470b936483bc51b823cb726eb.jpg"
         )
@@ -71,12 +81,21 @@ class MainActivity : AppCompatActivity() {
         UserModelFactory(userRepository)
     }
 
+    private val weatherModel: WeatherModel by viewModels {
+        WeatherModelFactory(WeatherRepository(apiService))
+    }
+
     private val productViewModel: ProductModel by viewModels {
         ProductViewModelFactory(ProductRepository(apiService))
     }
 
     private val bannerModel: BannerModel by viewModels {
         BannerFactory(BannerRepository(apiService))
+    }
+
+    private val profileViewModel: ProfileModel by viewModels {
+        // Assuming you have a ViewModelFactory to provide the repository
+        ProfileModelFactory(ProfileRepository(apiService))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,15 +111,17 @@ class MainActivity : AppCompatActivity() {
         userRepository = UserRepository.getInstance(apiService)
 
         userModel.setSessionManager(sessionManager)
+        profileViewModel.fetchAddress()
 
         if (!sessionManager.getIsLogin()) {
             navigateToLogin()
         } else {
-            val isHorizontal = true
-            productRecommendationAdapter(isHorizontal)
-            allProductAdapter(isHorizontal)
-            setupViewBaner()
-            setupAction()
+            val address = sessionManager.getAddressUser()
+            if (address.isNullOrEmpty()) {
+                navigateToFragment(EditAddressFragment()) // Navigate to add address
+            } else {
+                setupHome() // Initialize the main home setup
+            }
         }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -133,7 +154,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupHome() {
+        val isHorizontal = true
+        productRecommendationAdapter(isHorizontal)
+        allProductAdapter(isHorizontal)
+        setupViewBaner()
+        setupAction()
+    }
+
+    private fun navigateToFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
     private fun setupAction() {
+
         binding.txtName.text = sessionManager.getUsername()
 
         binding.button.setOnClickListener {
@@ -143,6 +180,7 @@ class MainActivity : AppCompatActivity() {
 
         productViewModel.fetchAllProducts()
         productViewModel.fetchAllProductsRecommendations()
+        weatherModel.fetchDataWeather()
     }
 
     private fun navigateToLogin() {
@@ -215,19 +253,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     fun setupViewBaner() {
         val handler = android.os.Handler()
         val runnable = object : Runnable {
             override fun run() {
-                val category = category.random()
+                weather_main = weatherModel.weather.value?.weather_main.toString()
                 weatherData.forEach {
-                    if (it.category == category) {
+                    if (it.category == weather_main) {
                         Glide.with(this@MainActivity).load(it.imageUrl).into(binding.imgBackground)
                         binding.txtWeatherMessage.text = it.description
                     }
                 }
-                handler.postDelayed(this, 5000) // Interval 5 detik
+                handler.postDelayed(this, 1000)
             }
         }
         handler.post(runnable)

@@ -2,7 +2,6 @@ package com.dicoding.projectcapstone.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +11,7 @@ import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.databinding.ActivityProfileBinding
 import com.dicoding.projectcapstone.login.LoginActivity
+import com.dicoding.projectcapstone.profile.address.EditAddressFragment
 import com.dicoding.projectcapstone.ui.kategori.LokasiActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory

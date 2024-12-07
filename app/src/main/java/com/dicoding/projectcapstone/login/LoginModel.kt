@@ -20,6 +20,7 @@ class LoginModel(private val repository: AuthRepository) : ViewModel() {
                 Log.d("Login model 1", "Email: $email, Password: $password")
                 val result = repository.login(email, password)
                 if (result.success == true) {
+                    result.result?.token?.let { sessionManager.saveToken(it) }
                     val userData = result.result?.token?.let { repository.getUserData() }
                     if (userData != null) {
                         if(userData.result?.is_verified == true) {
@@ -27,13 +28,17 @@ class LoginModel(private val repository: AuthRepository) : ViewModel() {
                             userData.result.username?.let { sessionManager.saveUsername(it) }
                             userData.result.email?.let { sessionManager.saveEmailUser(it) }
                             userData.result.role?.let { sessionManager.saveRole(it) }
+                            userData.result.address?.let { sessionManager.saveAddressUser(it.toString()) }
                             sessionManager.saveIsLogin(true)
                             callback(result.success)
                         } else {
                             Log.d("C-Login Model F-login", "User belum register")
                             callback(false)
                         }
+                        val address = repository.getAddres()
+                        address?.address_name?.let { sessionManager.saveAddressUser(it) }
                     }
+
                 }
             } catch (e: Exception) {
                 Log.e("Login", "Error: ${e.message}", e)
