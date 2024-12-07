@@ -93,7 +93,6 @@ class RegisterBuyerActivity : AppCompatActivity() {
         }
 
         binding.btnRegister.setOnClickListener {
-//            val intentRegister = Intent(this, ActivityRegisterBuyerBinding::class.java)
             val intentRegister = Intent(this, RegisterBuyerActivity::class.java)
             val username = binding.etYourName.text.toString()
             val email = binding.etEmail.text.toString()
@@ -102,7 +101,9 @@ class RegisterBuyerActivity : AppCompatActivity() {
             val role = "buyer"
             if (password == confirmPassword) {
                 if (binding.etEmail.error == null && binding.etPassword.error == null) {
+                    binding.btnRegister.showLoading(true)
                     registerModel.register(username, email, password, role) { success ->
+                        binding.btnRegister.showLoading(false)
                         if (!isFinishing && !isDestroyed) {
                             if (success) {
                                 sessionManager.saveEmail(email)

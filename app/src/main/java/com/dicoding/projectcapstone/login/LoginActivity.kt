@@ -145,12 +145,12 @@ class LoginActivity : AppCompatActivity() {
                     show()
                 }
             } else {
-                // Menampilkan ProgressBar saat login
-                binding.progressBarLogin.visibility = android.view.View.VISIBLE
+                // Tampilkan loading di tombol
+                binding.btnLogin.showLoading(true)
 
                 loginModel.login(email, password) { success ->
-                    // Menyembunyikan ProgressBar setelah proses login selesai
-                    binding.progressBarLogin.visibility = android.view.View.GONE
+                    // Sembunyikan loading di tombol
+                    binding.btnLogin.showLoading(false)
 
                     if (success) {
                         val intent = Intent(this, MainActivity::class.java)
