@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
+import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityProfileBinding
 import com.dicoding.projectcapstone.location.LokasiActivity
 import com.dicoding.projectcapstone.login.LoginActivity
@@ -19,20 +20,31 @@ import com.dicoding.projectcapstone.profile.address.EditAddressFragment
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
+import com.dicoding.projectcapstone.utils.SessionManager
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
     private lateinit var userRepository: UserRepository
+    private lateinit var sessionManager: SessionManager
 
-    private val userModel: UserModel by viewModels {
-        UserModelFactory(userRepository)
+    private val userModel: UserModel by lazy {
+        val apiService = RetrofitClient.apiService
+        userRepository = UserRepository(apiService)
+
+        // Create the ViewModel with the repository
+        val viewModelFactory = UserModelFactory(userRepository)
+        viewModelFactory.create(UserModel::class.java).apply {
+            // Explicitly set the SessionManager
+            setSessionManager(SessionManager(this@ProfileActivity))
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        sessionManager = SessionManager(this)
+        binding.profileName.text = sessionManager.getUsername()
         // Navigasi ke fragment edit profil atau edit alamat
         binding.editProfile.setOnClickListener {
             navigateToFragment(EditProfileFragment())
