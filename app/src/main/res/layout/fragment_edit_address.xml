@@ -34,8 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="16dp" />
 
-    <!-- Nomor Telepon -->
-
     <!-- Kota -->
     <EditText
         android:id="@+id/edit_city"

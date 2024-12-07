@@ -6,20 +6,17 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.databinding.ActivityProfileBinding
-import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.location.LokasiActivity
+import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
-import com.google.android.material.bottomnavigation.BottomNavigationView
-
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
@@ -34,15 +31,17 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        findViewById<TextView>(R.id.edit_profile).setOnClickListener {
+        // Navigasi ke fragment edit profil atau edit alamat
+        binding.editProfile.setOnClickListener {
             navigateToFragment(EditProfileFragment())
         }
 
-        findViewById<TextView>(R.id.address).setOnClickListener {
+        binding.address.setOnClickListener {
             navigateToFragment(EditAddressFragment())
         }
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        // Navigasi menggunakan bottom navigation
+        val bottomNavigationView = binding.bottomNavigation
         bottomNavigationView.selectedItemId = R.id.profile
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -50,20 +49,18 @@ class ProfileActivity : AppCompatActivity() {
                     navigateWithLoading(MainActivity::class.java)
                     true
                 }
-
                 R.id.location -> {
                     navigateWithLoading(LokasiActivity::class.java)
                     true
                 }
-
                 R.id.profile -> {
                     navigateWithLoading(ProfileActivity::class.java)
                     true
                 }
-
                 else -> false
             }
         }
+
         setupAction()
     }
 
@@ -89,7 +86,6 @@ class ProfileActivity : AppCompatActivity() {
         }, 1500)
     }
 
-    // Fungsi untuk berpindah fragment
     private fun navigateToFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
@@ -97,4 +93,3 @@ class ProfileActivity : AppCompatActivity() {
             .commit()
     }
 }
-
