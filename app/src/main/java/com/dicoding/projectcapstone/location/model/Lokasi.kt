@@ -4,5 +4,6 @@ class Lokasi(
     @JvmField val name: String,
     val imageResource: Int,
     val rating: Double,
-    val isOpen: Boolean
+    val isOpen: Boolean,
+    val distance: Double
 )

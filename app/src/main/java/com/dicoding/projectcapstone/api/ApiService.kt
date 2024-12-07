@@ -54,7 +54,7 @@ interface ApiService {
     @GET("product/{id}")
     suspend fun getProductById(@Path("id") id: Int): Response<ProductDetail>
 
-    @GET("location")
+    @GET("locations")
     suspend fun getAllLocations(): List<LocationResponse>
 
     @GET("address/weather")
