@@ -113,10 +113,7 @@ class MainActivity : AppCompatActivity() {
             val isHorizontal = true
             productRecommendationAdapter(true)
             allProductAdapter(isHorizontal)
-            setupViewBaner()
-            setupAction()
             setupHome()
-            val address = sessionManager.getAddressUser()
         }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
