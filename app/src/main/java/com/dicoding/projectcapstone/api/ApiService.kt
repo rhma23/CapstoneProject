@@ -52,4 +52,8 @@ interface ApiService {
 
     @GET("location")
     suspend fun getAllLocations(): List<LocationResponse>
+
+    @GET("product/category/{category}")
+    suspend fun getProductsByCategory(@Path("category") category: String): GetAllProductResponse
+
 }

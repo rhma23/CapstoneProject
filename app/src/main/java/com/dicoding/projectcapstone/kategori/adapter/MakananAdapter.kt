@@ -6,34 +6,32 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.kategori.model.Makanan
+import com.dicoding.projectcapstone.product.DataItem
 
-class MakananAdapter(private val makananList: List<Makanan>) :
-    RecyclerView.Adapter<MakananAdapter.ViewHolder>() {
+class MakananAdapter(private val productList: List<DataItem>) :
+    RecyclerView.Adapter<MakananAdapter.MakananViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_kategori, parent, false)
-        return ViewHolder(view)
+    inner class MakananViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val name: TextView = itemView.findViewById(R.id.item_name)
+        val price: TextView = itemView.findViewById(R.id.item_price)
+        val image: ImageView = itemView.findViewById(R.id.item_image)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val makanan = makananList[position]
-        holder.itemImage.setImageResource(makanan.imageResource)
-        holder.itemName.text = makanan.name
-        holder.itemDescription.text = makanan.description
-        holder.itemPrice.text = makanan.price
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MakananViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_kategori, parent, false)
+        return MakananViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return makananList.size
+    override fun onBindViewHolder(holder: MakananViewHolder, position: Int) {
+        val product = productList[position]
+        holder.name.text = product.name
+        holder.price.text = product.price
+        // Load image with library like Glide or Picasso
+        Glide.with(holder.itemView.context).load(product.image).into(holder.image)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val itemImage: ImageView = itemView.findViewById(R.id.item_image)
-        val itemName: TextView = itemView.findViewById(R.id.item_name)
-        val itemDescription: TextView = itemView.findViewById(R.id.item_description)
-        val itemPrice: TextView = itemView.findViewById(R.id.item_price)
-    }
+    override fun getItemCount(): Int = productList.size
 }
+
