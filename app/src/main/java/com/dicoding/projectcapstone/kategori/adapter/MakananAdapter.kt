@@ -8,11 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.projectcapstone.R
+import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.product.DataItem
 
 class MakananAdapter(private val productList: List<DataItem>) :
     RecyclerView.Adapter<MakananAdapter.MakananViewHolder>() {
-
     inner class MakananViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.item_name)
         val price: TextView = itemView.findViewById(R.id.item_price)
@@ -26,10 +26,11 @@ class MakananAdapter(private val productList: List<DataItem>) :
 
     override fun onBindViewHolder(holder: MakananViewHolder, position: Int) {
         val product = productList[position]
+        val fullImageUrl = RetrofitClient.getBaseIp() + "/images/products/" + product.image
         holder.name.text = product.name
         holder.price.text = product.price
-        // Load image with library like Glide or Picasso
-        Glide.with(holder.itemView.context).load(product.image).into(holder.image)
+
+        Glide.with(holder.itemView.context).load(fullImageUrl).into(holder.image)
     }
 
     override fun getItemCount(): Int = productList.size
