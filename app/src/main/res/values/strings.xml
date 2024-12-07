@@ -109,7 +109,6 @@
     <string name="default_product_name">Product Name</string>
     <string name="default_product_price">Rp 10.000</string>
     <string name="default_rating">4.5</string>
-    <string name="default_distance">2,5 km</string>
     <string name="rating_icon">Rating Icon</string>
     <string name="default_merchant_name">Merchant Name</string>
     <string name="default_address">Jl. Lorem Ipsum No. 123</string>
