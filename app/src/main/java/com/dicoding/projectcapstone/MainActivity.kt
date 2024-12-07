@@ -257,7 +257,7 @@ class MainActivity : AppCompatActivity() {
         val handler = android.os.Handler()
         val runnable = object : Runnable {
             override fun run() {
-                weather_main = weatherModel.weather.value?.weather_main.toString()
+                weather_main = weatherModel.weather.value?.data?.weather_main.toString()
                 weatherData.forEach {
                     if (it.category == weather_main) {
                         Glide.with(this@MainActivity).load(it.imageUrl).into(binding.imgBackground)

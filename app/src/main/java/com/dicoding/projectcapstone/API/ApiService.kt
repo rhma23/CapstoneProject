@@ -1,6 +1,5 @@
 package com.dicoding.projectcapstone.API
 
-import GetAddressResponse
 import com.dicoding.projectcapstone.banner.weather.WeatherResponse
 import com.dicoding.projectcapstone.location.LocationResponse
 import com.dicoding.projectcapstone.login.LoginRequest
@@ -14,6 +13,7 @@ import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.product.GetAllProductResponse
 import com.dicoding.projectcapstone.profile.address.AddAddressResponse
 import com.dicoding.projectcapstone.profile.address.AddAdressRequest
+import com.dicoding.projectcapstone.profile.address.GetAddressResponse
 import com.dicoding.projectcapstone.register.RegisterRequest
 import retrofit2.http.POST
 import com.dicoding.projectcapstone.register.RegisterResponse

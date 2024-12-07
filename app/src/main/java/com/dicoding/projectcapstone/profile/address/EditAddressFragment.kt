@@ -57,7 +57,7 @@ class EditAddressFragment : Fragment() {
                         show()
                     }
                     Log.d("EditAddressFragment", "onCreateView: $address")
-                    sessionManager.saveAddressUser(address[0].address_name.toString())
+                    address.first().address_name?.let { it1 -> sessionManager.saveAddressUser(it1) }
                 } else {
                     AlertDialog.Builder(requireContext()).apply {
                         setTitle("Oops!")

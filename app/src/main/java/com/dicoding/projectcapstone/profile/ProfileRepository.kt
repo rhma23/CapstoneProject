@@ -1,18 +1,18 @@
 package com.dicoding.projectcapstone.profile
 
-import GetAddressResponse
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dicoding.projectcapstone.API.ApiService
 import com.dicoding.projectcapstone.profile.address.AddAdressRequest
-import com.dicoding.projectcapstone.profile.address.Data
+import com.dicoding.projectcapstone.profile.address.GetAddressResponse
+import com.dicoding.projectcapstone.profile.address.NewAddressData
 import retrofit2.HttpException
 
 class ProfileRepository(private val apiService: ApiService) {
 
-    private val _addAddressResponse = MutableLiveData<List<Data>>()
-    val addAddressResponse: LiveData<List<Data>> get() = _addAddressResponse
+    private val _addAddressResponse = MutableLiveData<List<NewAddressData>>()
+    val addAddressResponse: LiveData<List<NewAddressData>> get() = _addAddressResponse
 
     private val _getAddressResponse = MutableLiveData<List<GetAddressResponse>>()
     val getAddressResponse: LiveData<List<GetAddressResponse>> get() = _getAddressResponse
@@ -26,7 +26,7 @@ class ProfileRepository(private val apiService: ApiService) {
             val request = AddAdressRequest(addressName)
             val response = apiService.addAddress(request)
             val dataList = listOf(response.data)
-            _addAddressResponse.postValue(dataList as List<Data>?)
+            _addAddressResponse.postValue(dataList as List<NewAddressData>?)
         } catch (e: HttpException) {
             Log.e("ProfileRepository", "HTTP error: ${e.code()} - ${e.message()}")
             _errorMessage.postValue("Failed to add address: HTTP ${e.code()} - ${e.message()}")
@@ -36,12 +36,12 @@ class ProfileRepository(private val apiService: ApiService) {
         }
     }
 
-    suspend fun fetchAddress(): GetAddressResponse? {
-        return try {
-            apiService.getAddress()
+    suspend fun fetchAddress() {
+         try {
+            val response = apiService.getAddress()
+             Log.d("ProfileRepository", "fetchAddress: $response")
         } catch (e: Exception) {
             Log.e("ProfileRepository", "Error fetching address: ${e.message}")
-            null
         }
     }
 

@@ -36,7 +36,10 @@ class LoginModel(private val repository: AuthRepository) : ViewModel() {
                             callback(false)
                         }
                         val address = repository.getAddres()
-                        address?.address_name?.let { sessionManager.saveAddressUser(it) }
+                        if (address != null) {
+                            address.data?.address_name?.let { sessionManager.saveAddressUser(it) }
+                        }
+                        Log.d("Login Model", "login: $address")
                     }
 
                 }

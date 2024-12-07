@@ -1,6 +1,5 @@
 package com.dicoding.projectcapstone.repository
 
-import GetAddressResponse
 import com.dicoding.projectcapstone.API.ApiService
 import com.dicoding.projectcapstone.login.LoginRequest
 import com.dicoding.projectcapstone.login.LoginResponse
@@ -10,6 +9,7 @@ import com.dicoding.projectcapstone.otp.ResendOtpRequest
 import com.dicoding.projectcapstone.otp.ResendOtpResponse
 import com.dicoding.projectcapstone.password.ForgotPasswordRequest
 import com.dicoding.projectcapstone.password.ForgotPasswordResponse
+import com.dicoding.projectcapstone.profile.address.GetAddressResponse
 import com.dicoding.projectcapstone.register.RegisterRequest
 import com.dicoding.projectcapstone.register.RegisterResponse
 import com.dicoding.projectcapstone.user.UserDataResponse
