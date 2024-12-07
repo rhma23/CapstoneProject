@@ -2,16 +2,20 @@ package com.dicoding.projectcapstone
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
-import com.dicoding.projectcapstone.API.RetrofitClient
-import com.dicoding.projectcapstone.API.RetrofitClient.apiService
+import com.dicoding.projectcapstone.api.RetrofitClient
+import com.dicoding.projectcapstone.api.RetrofitClient.apiService
 import com.dicoding.projectcapstone.banner.BannerFactory
 import com.dicoding.projectcapstone.banner.BannerModel
 import com.dicoding.projectcapstone.banner.BannerRepository
@@ -20,6 +24,8 @@ import com.dicoding.projectcapstone.banner.weather.WeatherModel
 import com.dicoding.projectcapstone.banner.weather.WeatherModelFactory
 import com.dicoding.projectcapstone.banner.weather.WeatherRepository
 import com.dicoding.projectcapstone.databinding.ActivityMainBinding
+import com.dicoding.projectcapstone.kategori.KategoriMakananActivity
+import com.dicoding.projectcapstone.kategori.KategoriMinumanActivity
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.product.AllProductAdapter
 import com.dicoding.projectcapstone.product.ProductRecomendationAdapter
@@ -27,13 +33,8 @@ import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.profile.ProfileActivity
-import com.dicoding.projectcapstone.profile.ProfileModel
-import com.dicoding.projectcapstone.profile.ProfileModelFactory
-import com.dicoding.projectcapstone.profile.ProfileRepository
 import com.dicoding.projectcapstone.profile.address.EditAddressFragment
-import com.dicoding.projectcapstone.ui.kategori.KategoriMakananActivity
-import com.dicoding.projectcapstone.ui.kategori.KategoriMinumanActivity
-import com.dicoding.projectcapstone.ui.kategori.LokasiActivity
+import com.dicoding.projectcapstone.location.LokasiActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -47,8 +48,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var userRepository: UserRepository
     private lateinit var sessionManager: SessionManager
-    private lateinit var weatherRepository: WeatherRepository
-    private lateinit var weather_main: String
 
     private val weatherData = listOf(
         Weather(
@@ -65,13 +64,13 @@ class MainActivity : AppCompatActivity() {
         ),
         Weather(
             id = 3,
-            category = "Clear",
+            category = "Clouds",
             description = "Cuaca panas? Waktunya cari sesuatu yang bikin segar dan nyaman. Yuk, jangan tunggu lama-lama!",
             imageUrl = "https://i.pinimg.com/736x/b9/39/79/b939794266cf899fbbd55435efd2a402.jpg"
         ),
         Weather(
             id = 4,
-            category = "Clouds",
+            category = "Clear",
             description = "Matahari bersinar terang, saatnya menikmati hari dengan penuh semangat. Temukan pilihan yang bikin harimu lebih spesial!",
             imageUrl = "https://i.pinimg.com/736x/ff/08/a6/ff08a64470b936483bc51b823cb726eb.jpg"
         )
@@ -79,10 +78,6 @@ class MainActivity : AppCompatActivity() {
 
     private val userModel: UserModel by viewModels {
         UserModelFactory(userRepository)
-    }
-
-    private val weatherModel: WeatherModel by viewModels {
-        WeatherModelFactory(WeatherRepository(apiService))
     }
 
     private val productViewModel: ProductModel by viewModels {
@@ -93,9 +88,8 @@ class MainActivity : AppCompatActivity() {
         BannerFactory(BannerRepository(apiService))
     }
 
-    private val profileViewModel: ProfileModel by viewModels {
-        // Assuming you have a ViewModelFactory to provide the repository
-        ProfileModelFactory(ProfileRepository(apiService))
+    private val weatherModel: WeatherModel by viewModels {
+        WeatherModelFactory(WeatherRepository(apiService))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,16 +105,21 @@ class MainActivity : AppCompatActivity() {
         userRepository = UserRepository.getInstance(apiService)
 
         userModel.setSessionManager(sessionManager)
-        profileViewModel.fetchAddress()
+        weatherModel.fetchDataWeather()
 
         if (!sessionManager.getIsLogin()) {
             navigateToLogin()
         } else {
+            val isHorizontal = true
+            productRecommendationAdapter(true)
+            allProductAdapter(isHorizontal)
+            setupViewBaner()
+            setupAction()
             val address = sessionManager.getAddressUser()
             if (address.isNullOrEmpty()) {
                 navigateToFragment(EditAddressFragment()) // Navigate to add address
             } else {
-                setupHome() // Initialize the main home setup
+                setupHome()// Initialize the main home setup
             }
         }
 
@@ -154,23 +153,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupHome() {
+    fun setupHome() {
         val isHorizontal = true
-        productRecommendationAdapter(isHorizontal)
+        productRecommendationAdapter(true)
         allProductAdapter(isHorizontal)
         setupViewBaner()
         setupAction()
     }
 
-    private fun navigateToFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
-            .commit()
-    }
 
     private fun setupAction() {
-
         binding.txtName.text = sessionManager.getUsername()
 
         binding.button.setOnClickListener {
@@ -180,7 +172,6 @@ class MainActivity : AppCompatActivity() {
 
         productViewModel.fetchAllProducts()
         productViewModel.fetchAllProductsRecommendations()
-        weatherModel.fetchDataWeather()
     }
 
     private fun navigateToLogin() {
@@ -232,13 +223,13 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-        val layoutManager = if (isHorizontal) {
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        } else {
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        }
+        // Menggunakan StaggeredGridLayoutManager
+        val layoutManager = StaggeredGridLayoutManager(
+            2, // Jumlah kolom
+            StaggeredGridLayoutManager.VERTICAL // Orientasi vertikal
+        )
 
-        binding.rvPopular.apply {
+        binding.rvAllProduct.apply {
             this.layoutManager = layoutManager
             adapter = allProductAdapter
             setHasFixedSize(true)
@@ -257,7 +248,8 @@ class MainActivity : AppCompatActivity() {
         val handler = android.os.Handler()
         val runnable = object : Runnable {
             override fun run() {
-                weather_main = weatherModel.weather.value?.data?.weather_main.toString()
+               val weather_main = weatherModel.weather.value?.data?.weather_main.toString()
+                Log.d("MainActivity", "Weather: $weather_main")
                 weatherData.forEach {
                     if (it.category == weather_main) {
                         Glide.with(this@MainActivity).load(it.imageUrl).into(binding.imgBackground)
@@ -271,10 +263,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateWithLoading(targetActivity: Class<*>) {
-        val targetIntent = Intent(this, targetActivity)
-        val loadingIntent = Intent(this, LoadingActivity::class.java).apply {
-            putExtra("target_intent", targetIntent)
-        }
-        startActivity(loadingIntent)
+        binding.loading.visibility = View.VISIBLE // Tampilkan ProgressBar
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, targetActivity))
+            binding.loading.visibility = View.GONE // Sembunyikan ProgressBar
+        }, 1500)
+    }
+
+    private fun navigateToFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.projectcapstone.API.RetrofitClient
+import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityNewPasswordBinding
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.otp.OtpModel
@@ -41,10 +41,11 @@ class NewPasswordActivity : AppCompatActivity() {
             val newPassword = binding.etNewPassword.text.toString()
             val email = sessionManager.getEmailForgotPassword()
             val otp_code = sessionManager.getOtpForgotPassword()
-            Log.d("setupAction New Password", "setupAction: $email, $otp_code, $newPassword")
-//            if (newPassword != null && email != null && otp_code != null)
+
             if (email != null && otp_code != null) {
+                binding.btnSubmitNewPass.showLoading(true)
                 otpModel.resetPassowrd(otp_code, email, newPassword) { success ->
+                    binding.btnSubmitNewPass.showLoading(false)
                     if (success == true) {
                         AlertDialog.Builder(this).apply {
                             setTitle("Success")

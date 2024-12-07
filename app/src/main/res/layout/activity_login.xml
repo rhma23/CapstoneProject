@@ -126,21 +126,15 @@
                     android:focusable="true" />
 
                 <!-- Login Button -->
-                <com.dicoding.projectcapstone.ui.MyButton
+                <com.dicoding.projectcapstone.ui.BtnLogin
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:layout_marginHorizontal="32dp"
                     android:layout_marginBottom="24dp"
-                    android:padding="13dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/log_in"
-                    android:contentDescription="@string/login_button"
-                    android:textSize="20sp"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
                     android:textAllCaps="false" />
 
                 <!-- Footer -->

@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.projectcapstone.API.RetrofitClient
+import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityForgotPasswordBinding
 import com.dicoding.projectcapstone.otp.OtpModel
 import com.dicoding.projectcapstone.otp.OtpModelFactory
@@ -29,11 +29,14 @@ class ForgotPasswordActivity : AppCompatActivity() {
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
         otpModel.setSessionManager(sessionManager)
+
         binding.btnSubmitFgPassword.setOnClickListener {
             val email = binding.etEmail.text.toString()
             if (email != null) {
                 val intent = Intent(this, OtpForgotPasswordActivity::class.java)
+                binding.btnSubmitFgPassword.showLoading(true)
                 otpModel.resendOtpForgotPassword(email) { success ->
+                    binding.btnSubmitFgPassword.showLoading(false)
                     if (success) {
                             sessionManager.saveEmailForgotPassword(email)
                             AlertDialog.Builder(this).apply {

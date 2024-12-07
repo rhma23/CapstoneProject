@@ -3,7 +3,7 @@ package com.dicoding.projectcapstone.banner.weather
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dicoding.projectcapstone.API.ApiService
+import com.dicoding.projectcapstone.api.ApiService
 
 class WeatherRepository(private val apiService: ApiService) {
     private val _weather = MutableLiveData<WeatherResponse>()

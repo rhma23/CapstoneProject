@@ -182,15 +182,49 @@
         </LinearLayout>
     </ScrollView>
 
-            <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_navigation"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:menu="@menu/bottom_navigation_menu"/>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:itemIconTint="@color/bottom_nav"
+        app:itemTextColor="@color/bottom_nav"
+        app:itemRippleColor="@color/bottom_nav_ripple"
+        app:menu="@menu/bottom_navigation_menu"
+        style="@style/CustomBottomNav"/>
+
+    <!-- Tambahkan View untuk loading -->
+    <FrameLayout
+        android:id="@+id/loadingProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CustomProgressBar"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtLoadingMessage"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="48dp"-->
+<!--            android:text="Loading, please wait..."-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16sp" />-->
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

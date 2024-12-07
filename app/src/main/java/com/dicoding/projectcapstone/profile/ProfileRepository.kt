@@ -3,7 +3,7 @@ package com.dicoding.projectcapstone.profile
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dicoding.projectcapstone.API.ApiService
+import com.dicoding.projectcapstone.api.ApiService
 import com.dicoding.projectcapstone.profile.address.AddAdressRequest
 import com.dicoding.projectcapstone.profile.address.GetAddressResponse
 import com.dicoding.projectcapstone.profile.address.NewAddressData

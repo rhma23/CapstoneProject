@@ -7,15 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.dicoding.projectcapstone.api.RetrofitClient.apiService
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.profile.ProfileModel
 import com.dicoding.projectcapstone.profile.ProfileModelFactory
 import com.dicoding.projectcapstone.profile.ProfileRepository
-import com.dicoding.projectcapstone.API.RetrofitClient.apiService
 import com.dicoding.projectcapstone.utils.SessionManager
 
 class EditAddressFragment : Fragment() {

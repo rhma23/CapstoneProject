@@ -3,7 +3,8 @@ package com.dicoding.projectcapstone.product
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dicoding.projectcapstone.API.ApiService
+import com.dicoding.projectcapstone.api.ApiService
+import retrofit2.Response
 
 class ProductRepository(private val apiService: ApiService) {
 
@@ -37,4 +38,23 @@ class ProductRepository(private val apiService: ApiService) {
             Log.e("ProductRepository", "getAllData on Exception: ${e.message}")
         }
     }
+
+    suspend fun getProductById(id: Int): Response<ProductDetail> {
+        return apiService.getProductById(id)
+    }
+
+    suspend fun getProductsByCategory(category: String): List<DataItem>? {
+        return try {
+            val response = apiService.getProductsByCategory(category)
+            if (response.success == true) {
+                response.data as List<DataItem>?
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("ProductRepository", "Error fetching category: ${e.message}")
+            null
+        }
+    }
+
 }

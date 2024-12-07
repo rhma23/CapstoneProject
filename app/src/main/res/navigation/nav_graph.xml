@@ -35,6 +35,4 @@
                  android:name="email"
                  app:argType="string" />
     </fragment>
-
-
 </navigation>
