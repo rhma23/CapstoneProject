@@ -63,10 +63,10 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
         val lokasiList = ArrayList<Lokasi>()
         lokasiList.add(
             Lokasi(
-                "Restoran A", "1.5 km", "15 menit", R.drawable.ic_launcher_background, 4.5, true)
+                "Restoran A", R.drawable.ic_launcher_background, 4.5, true)
         )
         lokasiList.add(
-            Lokasi("Cafe B", "2.0 km", "20 menit", R.drawable.ic_launcher_background, 4.0, false)
+            Lokasi("Cafe B", R.drawable.ic_launcher_background, 4.0, false)
         )
 
         val adapter = LokasiAdapter(lokasiList)

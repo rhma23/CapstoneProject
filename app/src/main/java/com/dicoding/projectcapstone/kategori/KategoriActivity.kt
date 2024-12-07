@@ -25,7 +25,6 @@ class KategoriActivity : AppCompatActivity() {
                 imageResource = R.drawable.ic_food,
                 name = "Food",
                 rating = 4.5,
-                distance = "2 km",
                 price = "$10",
                 isOpen = true
             )
@@ -35,7 +34,6 @@ class KategoriActivity : AppCompatActivity() {
                 imageResource = R.drawable.ic_drink,
                 name = "Drink",
                 rating = 4.0,
-                distance = "1.5 km",
                 price = "$5",
                 isOpen = false
             )
