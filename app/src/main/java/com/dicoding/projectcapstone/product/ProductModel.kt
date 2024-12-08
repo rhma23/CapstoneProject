@@ -15,8 +15,8 @@ class ProductModel(private val repository: ProductRepository) : ViewModel() {
     private val _productDetailLiveData = MutableLiveData<ProductDetail?>()
     val productDetailLiveData: MutableLiveData<ProductDetail?> get() = _productDetailLiveData
 
-    private val _categoryProducts = MutableLiveData<List<DataItem>>()
-    val categoryProducts: LiveData<List<DataItem>> get() = _categoryProducts
+    private val _categoryProducts = MutableLiveData<List<DataItem>?>()
+    val categoryProducts: MutableLiveData<List<DataItem>?> get() = _categoryProducts
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading

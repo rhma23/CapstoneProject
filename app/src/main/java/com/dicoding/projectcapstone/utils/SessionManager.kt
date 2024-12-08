@@ -39,10 +39,6 @@ class SessionManager(context: Context) {
         editor.apply()
     }
 
-    fun getUserId(): Int {
-        return prefs.getInt(USER_ID, 0)
-    }
-
     fun saveIsLogin(isLogin: Boolean) {
         val editor = prefs.edit()
         editor.putBoolean(IS_LOGIN, isLogin)
@@ -67,10 +63,6 @@ class SessionManager(context: Context) {
         val editor = prefs.edit()
         editor.putString(EMAil_USER, email)
         editor.apply()
-    }
-
-    fun getEmailUser(): String? {
-        return prefs.getString(EMAil_USER, null)
     }
 
     fun saveRole(role: String) {

@@ -2,7 +2,7 @@ package com.dicoding.projectcapstone.user
 import androidx.lifecycle.ViewModel
 import com.dicoding.projectcapstone.utils.SessionManager
 
-class UserModel(private val repository: UserRepository) : ViewModel() {
+class UserModel : ViewModel() {
     private lateinit var sessionManager: SessionManager
 
     fun setSessionManager(sessionManager: SessionManager) {
