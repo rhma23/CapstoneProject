@@ -11,7 +11,7 @@ import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
-import com.dicoding.projectcapstone.ui.adapter.CategoryAdapter
+import com.dicoding.projectcapstone.kategori.adapter.CategoryAdapter
 
 class KategoriMinumanActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
