@@ -269,6 +269,10 @@ class MainActivity : AppCompatActivity() {
                 if (isDestroyed) return // Check if the activity is destroyed
                 val weather_main = weatherModel.weather.value?.data?.weather_main.toString()
                 binding.txtWeather.text = weather_main
+                binding.txtCity.text = weatherModel.weather.value?.data?.address?.address_name?.let {
+                    helper.extractLocationByIndex(
+                        it, 2)
+                }
                 binding.txtTemperature.text =
                     helper.roundToNearestInteger(weatherModel.weather.value?.data?.temperature.toString())
                         .toString()
@@ -279,7 +283,8 @@ class MainActivity : AppCompatActivity() {
                         binding.txtWeatherMessage.text = it.description
                     }
                 }
-                val delay = if (weather_main == "null") 1000L else 3600000L // 1 second if null, 1 hour otherwise
+                val delay =
+                    if (weather_main == "null") 1000L else 3600000L // 1 second if null, 1 hour otherwise
                 handler.postDelayed(this, delay)
             }
         }
