@@ -34,10 +34,13 @@ class ForgotPasswordActivity : AppCompatActivity() {
             val email = binding.etEmail.text.toString()
             if (email != null) {
                 val intent = Intent(this, OtpForgotPasswordActivity::class.java)
+
                 binding.btnSubmitFgPassword.showLoading(true)
                 otpModel.resendOtpForgotPassword(email) { success ->
-                    binding.btnSubmitFgPassword.showLoading(false)
-                    if (success) {
+
+                    binding.btnSubmitFgPassword.postDelayed({
+                        binding.btnSubmitFgPassword.showLoading(false)
+                        if (success) {
                             sessionManager.saveEmailForgotPassword(email)
                             AlertDialog.Builder(this).apply {
                                 setTitle("OTP Sent")
@@ -58,7 +61,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
                                 show()
                             }
                         }
-
+                    }, 2000)
                 }
             }
         }

@@ -64,6 +64,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
                     )
                     binding.txtLogin.text = spannableHover
                 }
+
                 MotionEvent.ACTION_UP -> {
                     // Kembalikan teks ke tampilan awal (tanpa warna biru dan underline)
                     binding.txtLogin.text = SpannableString("Log In")
@@ -99,41 +100,46 @@ class RegisterBuyerActivity : AppCompatActivity() {
             val password = binding.etPassword.text.toString()
             val confirmPassword = binding.etConfirmPassword.text.toString()
             val role = "buyer"
+
             if (password == confirmPassword) {
                 if (binding.etEmail.error == null && binding.etPassword.error == null) {
                     binding.btnRegister.showLoading(true)
+
                     registerModel.register(username, email, password, role) { success ->
-                        binding.btnRegister.showLoading(false)
-                        if (!isFinishing && !isDestroyed) {
-                            if (success) {
-                                sessionManager.saveEmail(email)
-                                AlertDialog.Builder(this).apply {
-                                    setTitle("Yeah!")
-                                    setMessage("The account with $email has been successfully created. Please log in to continue.")
-                                    setPositiveButton("Continue") { _, _ ->
-                                        finish()
-                                        val intent = Intent(
-                                            this@RegisterBuyerActivity,
-                                            OtpRegisterActivity::class.java
-                                        )
-                                        startActivity(intent)
+
+                        binding.btnRegister.postDelayed({
+                            binding.btnRegister.showLoading(false)
+                            if (!isFinishing && !isDestroyed) {
+                                if (success) {
+                                    sessionManager.saveEmail(email)
+                                    AlertDialog.Builder(this).apply {
+                                        setTitle("Yeah!")
+                                        setMessage("The account with $email has been successfully created. Please log in to continue.")
+                                        setPositiveButton("Continue") { _, _ ->
+                                            finish()
+                                            val intent = Intent(
+                                                this@RegisterBuyerActivity,
+                                                OtpRegisterActivity::class.java
+                                            )
+                                            startActivity(intent)
+                                        }
+                                        create()
+                                        show()
                                     }
-                                    create()
-                                    show()
-                                }
-                            } else {
-                                AlertDialog.Builder(this).apply {
-                                    setTitle("Oops!")
-                                    setMessage("The account with $email failed to be created. Please try again.")
-                                    setPositiveButton("Retry") { _, _ ->
-                                        startActivity(intentRegister)
-                                        finish()
+                                } else {
+                                    AlertDialog.Builder(this).apply {
+                                        setTitle("Oops!")
+                                        setMessage("The account with $email failed to be created. Please try again.")
+                                        setPositiveButton("Retry") { _, _ ->
+                                            startActivity(intentRegister)
+                                            finish()
+                                        }
+                                        create()
+                                        show()
                                     }
-                                    create()
-                                    show()
                                 }
                             }
-                        }
+                        }, 1000)
                     }
                 }
             } else {
