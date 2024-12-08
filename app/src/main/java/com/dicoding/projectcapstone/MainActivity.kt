@@ -122,7 +122,6 @@ class MainActivity : AppCompatActivity() {
                         setMessage("Hello, this account has not added an address. Add address first.")
                         setPositiveButton("Add Address") { _, _ ->
                             Log.i("MainActivity", "onCreate: Add Address")
-//                            navigateToFragment(EditAddressFragment())
                         }
                         create()
                         show()
@@ -184,14 +183,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.txtName.text = sessionManager.getUsername()
-
-//        binding.button.setOnClickListener {
-//            userModel.logout()
-//            navigateToLogin()
-//        }
-
         productViewModel.fetchAllProducts()
         productViewModel.fetchAllProductsRecommendations()
+    }
+
+    private fun navigateToProfileWithEditAddress() {
+        val intent = Intent(this, ProfileActivity::class.java)
+        intent.putExtra("SHOW_EDIT_ADDRESS", true)
+        startActivity(intent)
     }
 
     private fun navigateToLogin() {
@@ -243,10 +242,9 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-        // Menggunakan StaggeredGridLayoutManager
         val layoutManager = StaggeredGridLayoutManager(
-            2, // Jumlah kolom
-            StaggeredGridLayoutManager.VERTICAL // Orientasi vertikal
+            2,
+            StaggeredGridLayoutManager.VERTICAL
         )
 
         binding.rvAllProduct.apply {
@@ -296,10 +294,4 @@ class MainActivity : AppCompatActivity() {
         }, 1500)
     }
 
-    private fun navigateToFragment(fragment: Fragment) {
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
 }

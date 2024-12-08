@@ -45,6 +45,9 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
         sessionManager = SessionManager(this)
         binding.profileName.text = sessionManager.getUsername()
+        if (intent.getBooleanExtra("SHOW_EDIT_ADDRESS", false)) {
+            navigateToFragment(EditAddressFragment())
+        }
         // Navigasi ke fragment edit profil atau edit alamat
         binding.editProfile.setOnClickListener {
             navigateToFragment(EditProfileFragment())

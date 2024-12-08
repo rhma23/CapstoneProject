@@ -54,6 +54,10 @@ interface ApiService {
     @GET("product/{id}")
     suspend fun getProductById(@Path("id") id: Int): Response<ProductDetail>
 
+    @GET("product/category/{category}")
+    suspend fun getProductsByCategory(@Path("category") category: String): GetAllProductResponse
+
+    //    Location
     @GET("locations")
     suspend fun getAllLocations(): List<LocationResponse>
 
@@ -65,8 +69,5 @@ interface ApiService {
 
     @POST("address")
     suspend fun addAddress(@Body request: AddAdressRequest): AddAddressResponse
-
-    @GET("product/category/{category}")
-    suspend fun getProductsByCategory(@Path("category") category: String): GetAllProductResponse
 
 }
