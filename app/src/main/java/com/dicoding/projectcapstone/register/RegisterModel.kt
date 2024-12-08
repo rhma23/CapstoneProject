@@ -7,9 +7,15 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dicoding.projectcapstone.repository.AuthRepository
+import com.dicoding.projectcapstone.utils.SessionManager
 import retrofit2.HttpException
 
 class RegisterModel (private val repository: AuthRepository) : ViewModel() {
+
+    private lateinit var sessionManager: SessionManager
+    fun setSessionManager(sessionManager: SessionManager) {
+        this.sessionManager = sessionManager
+    }
 
     fun register(username: String, email: String, password: String, role: String, onResult: (Boolean) -> Unit) {
         val TAG = "registerUser"

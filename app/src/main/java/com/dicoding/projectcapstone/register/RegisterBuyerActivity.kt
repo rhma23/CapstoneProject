@@ -15,12 +15,14 @@ import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.login.LoginActivity
 import com.dicoding.projectcapstone.otp.OtpRegisterActivity
 import com.dicoding.projectcapstone.databinding.ActivityRegisterBuyerBinding
 import com.dicoding.projectcapstone.repository.AuthRepository
 import com.dicoding.projectcapstone.utils.SessionManager
+import com.google.android.material.textfield.TextInputLayout
 
 class RegisterBuyerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBuyerBinding
@@ -40,6 +42,7 @@ class RegisterBuyerActivity : AppCompatActivity() {
 
         repository = AuthRepository.getInstance(RetrofitClient.apiService)
         sessionManager = SessionManager(this)
+        registerModel.setSessionManager(sessionManager)
 
         val loginTextView = binding.txtLogin
 
@@ -168,14 +171,17 @@ class RegisterBuyerActivity : AppCompatActivity() {
     }
 
     private fun setupPasswordValidation() {
+        val passwordInputLayout = findViewById<TextInputLayout>(R.id.passwordInputLayout)
         binding.etPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s != null && s.length < 8) {
+                    passwordInputLayout.endIconMode = TextInputLayout.END_ICON_NONE
                     binding.etPassword.error = "Password cannot be less than 8 characters"
                 } else {
                     binding.etPassword.error = null
+                    passwordInputLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
                 }
             }
 

@@ -2,15 +2,19 @@ package com.dicoding.projectcapstone.password
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityForgotPasswordBinding
 import com.dicoding.projectcapstone.otp.OtpModel
 import com.dicoding.projectcapstone.otp.OtpModelFactory
 import com.dicoding.projectcapstone.repository.AuthRepository
 import com.dicoding.projectcapstone.utils.SessionManager
+import com.google.android.material.textfield.TextInputLayout
 
 class ForgotPasswordActivity : AppCompatActivity() {
     lateinit var repository: AuthRepository

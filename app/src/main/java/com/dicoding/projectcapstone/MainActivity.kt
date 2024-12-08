@@ -20,6 +20,7 @@ import com.dicoding.projectcapstone.api.RetrofitClient.apiService
 import com.dicoding.projectcapstone.banner.BannerFactory
 import com.dicoding.projectcapstone.banner.BannerModel
 import com.dicoding.projectcapstone.banner.BannerRepository
+import com.dicoding.projectcapstone.banner.ScrollingFragmentRecProduct
 import com.dicoding.projectcapstone.banner.Weather
 import com.dicoding.projectcapstone.banner.weather.WeatherModel
 import com.dicoding.projectcapstone.banner.weather.WeatherModelFactory
@@ -34,7 +35,6 @@ import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.profile.ProfileActivity
-import com.dicoding.projectcapstone.profile.address.EditAddressFragment
 import com.dicoding.projectcapstone.location.LokasiActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var userRepository: UserRepository
     private lateinit var sessionManager: SessionManager
+    private var setTimer = 1000
 
     private val weatherData = listOf(
         Weather(
@@ -127,6 +128,15 @@ class MainActivity : AppCompatActivity() {
                         show()
                     }
                 }
+            }
+
+            val scrollingFragmentRecProduct = ScrollingFragmentRecProduct()
+
+            binding.btnSeeAll.setOnClickListener {
+                scrollingFragmentRecProduct.show(
+                    supportFragmentManager,
+                    "ScrollingFragmentRecProduct"
+                )
             }
         }
 
@@ -255,26 +265,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewBaner() {
-    val handler = Handler(Looper.getMainLooper())
-    val runnable = object : Runnable {
-        override fun run() {
-            if (isDestroyed) return // Check if the activity is destroyed
-
-            val weather_main = weatherModel.weather.value?.data?.weather_main.toString()
-            binding.txtWeather.text = weather_main
-            binding.txtTemperature.text = helper.roundToNearestInteger(weatherModel.weather.value?.data?.temperature.toString()).toString()
-            Log.d("MainActivity", "Weather: $weather_main")
-            weatherData.forEach {
-                if (it.category == weather_main) {
-                    Glide.with(this@MainActivity).load(it.imageUrl).into(binding.imgBackground)
-                    binding.txtWeatherMessage.text = it.description
+        val handler = Handler(Looper.getMainLooper())
+        val runnable = object : Runnable {
+            override fun run() {
+                if (isDestroyed) return // Check if the activity is destroyed
+                val weather_main = weatherModel.weather.value?.data?.weather_main.toString()
+                binding.txtWeather.text = weather_main
+                binding.txtTemperature.text =
+                    helper.roundToNearestInteger(weatherModel.weather.value?.data?.temperature.toString())
+                        .toString()
+                Log.d("MainActivity", "Weather: $weather_main")
+                weatherData.forEach {
+                    if (it.category == weather_main) {
+                        Glide.with(this@MainActivity).load(it.imageUrl).into(binding.imgBackground)
+                        binding.txtWeatherMessage.text = it.description
+                    }
                 }
+                val delay = if (weather_main == "null") 1000L else 3600000L // 1 second if null, 1 hour otherwise
+                handler.postDelayed(this, delay)
             }
-            handler.postDelayed(this, 1000)
         }
+        handler.post(runnable)
     }
-    handler.post(runnable)
-}
 
     private fun navigateWithLoading(targetActivity: Class<*>) {
         binding.loading.visibility = View.VISIBLE // Tampilkan ProgressBar
