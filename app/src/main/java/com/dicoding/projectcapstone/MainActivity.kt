@@ -109,24 +109,26 @@ class MainActivity : AppCompatActivity() {
         weatherModel.fetchDataWeather()
 
         if (!sessionManager.getIsLogin()) {
-            navigateToLogin()
-        } else {
-            setupHome()// Initialize the main home setup
-            val address = sessionManager.getAddressUser()
-            Log.d("MainActivity", "onCreate: $address")
-            if (address.isNullOrEmpty()) {
-                AlertDialog.Builder(this).apply {
-                    setTitle("Hallo!")
-                    setMessage("Hello, this account has not added an address. Add address first.")
-                    setPositiveButton("Add Address") { _, _ ->
-                        navigateToFragment(EditAddressFragment())
-                        finish()
-                    }
-                    create()
-                    show()
+    navigateToLogin()
+} else {
+    setupHome() // Initialize the main home setup
+    val address = sessionManager.getAddressUser()
+    Log.d("MainActivity", "onCreate: $address")
+    if (address.isNullOrEmpty()) {
+        if (!isFinishing) {
+            AlertDialog.Builder(this).apply {
+                setTitle("Hallo!")
+                setMessage("Hello, this account has not added an address. Add address first.")
+                setPositiveButton("Add Address") { _, _ ->
+                    Log.i("MainActivity", "onCreate: Add Address")
+                    navigateToFragment(EditAddressFragment())
                 }
+                create()
+                show()
             }
         }
+    }
+}
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.selectedItemId = R.id.home
