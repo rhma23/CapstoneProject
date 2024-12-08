@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                         setMessage("Hello, this account has not added an address. Add address first.")
                         setPositiveButton("Add Address") { _, _ ->
                             Log.i("MainActivity", "onCreate: Add Address")
-//                            navigateToFragment(EditAddressFragment())
+                            navigateToProfileWithEditAddress()
                         }
                         create()
                         show()
@@ -182,6 +182,12 @@ class MainActivity : AppCompatActivity() {
 
         productViewModel.fetchAllProducts()
         productViewModel.fetchAllProductsRecommendations()
+    }
+
+    private fun navigateToProfileWithEditAddress() {
+        val intent = Intent(this, ProfileActivity::class.java)
+        intent.putExtra("SHOW_EDIT_ADDRESS", true)
+        startActivity(intent)
     }
 
     private fun navigateToLogin() {
@@ -284,10 +290,4 @@ class MainActivity : AppCompatActivity() {
         }, 1500)
     }
 
-    private fun navigateToFragment(fragment: Fragment) {
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
 }
