@@ -109,26 +109,26 @@ class MainActivity : AppCompatActivity() {
         weatherModel.fetchDataWeather()
 
         if (!sessionManager.getIsLogin()) {
-    navigateToLogin()
-} else {
-    setupHome() // Initialize the main home setup
-    val address = sessionManager.getAddressUser()
-    Log.d("MainActivity", "onCreate: $address")
-    if (address.isNullOrEmpty()) {
-        if (!isFinishing) {
-            AlertDialog.Builder(this).apply {
-                setTitle("Hallo!")
-                setMessage("Hello, this account has not added an address. Add address first.")
-                setPositiveButton("Add Address") { _, _ ->
-                    Log.i("MainActivity", "onCreate: Add Address")
-                    navigateToFragment(EditAddressFragment())
+            navigateToLogin()
+        } else {
+            setupHome() // Initialize the main home setup
+            val address = sessionManager.getAddressUser()
+            Log.d("MainActivity", "onCreate: $address")
+            if (address.isNullOrEmpty()) {
+                if (!isFinishing) {
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Hallo!")
+                        setMessage("Hello, this account has not added an address. Add address first.")
+                        setPositiveButton("Add Address") { _, _ ->
+                            Log.i("MainActivity", "onCreate: Add Address")
+//                            navigateToFragment(EditAddressFragment())
+                        }
+                        create()
+                        show()
+                    }
                 }
-                create()
-                show()
             }
         }
-    }
-}
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.selectedItemId = R.id.home
@@ -261,6 +261,8 @@ class MainActivity : AppCompatActivity() {
             if (isDestroyed) return // Check if the activity is destroyed
 
             val weather_main = weatherModel.weather.value?.data?.weather_main.toString()
+            binding.txtWeather.text = weather_main
+            binding.txtTemperature.text = helper.roundToNearestInteger(weatherModel.weather.value?.data?.temperature.toString()).toString()
             Log.d("MainActivity", "Weather: $weather_main")
             weatherData.forEach {
                 if (it.category == weather_main) {
