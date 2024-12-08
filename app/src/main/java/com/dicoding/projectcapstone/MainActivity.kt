@@ -173,10 +173,10 @@ class MainActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.txtName.text = sessionManager.getUsername()
 
-        binding.button.setOnClickListener {
-            userModel.logout()
-            navigateToLogin()
-        }
+//        binding.button.setOnClickListener {
+//            userModel.logout()
+//            navigateToLogin()
+//        }
 
         productViewModel.fetchAllProducts()
         productViewModel.fetchAllProductsRecommendations()

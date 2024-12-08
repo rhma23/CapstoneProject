@@ -4,10 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
+import android.util.Patterns
 import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -80,8 +83,8 @@ class RegisterBuyerActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
-//        setupPasswordValidation()
-//        setupEmailValidation()
+        setupPasswordValidation()
+        setupEmailValidation()
     }
 
     private fun setupView() {
@@ -148,36 +151,36 @@ class RegisterBuyerActivity : AppCompatActivity() {
         }
     }
 
-//    private fun setupEmailValidation() {
-//        binding.etEmail.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                if (s != null && !Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
-//                    binding.etEmail.error = "Invalid email format"
-//                } else {
-//                    binding.etEmail.error = null
-//                }
-//            }
-//
-//            override fun afterTextChanged(s: Editable?) {}
-//        })
-//    }
-//
-//    private fun setupPasswordValidation() {
-//        binding.etPassword.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                if (s != null && s.length < 8) {
-//                    binding.etPassword.error = "Password cannot be less than 8 characters"
-//                } else {
-//                    binding.etPassword.error = null
-//                }
-//            }
-//
-//            override fun afterTextChanged(s: Editable?) {}
-//        })
-//    }
+    private fun setupEmailValidation() {
+        binding.etEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s != null && !Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
+                    binding.etEmail.error = "Invalid email format"
+                } else {
+                    binding.etEmail.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun setupPasswordValidation() {
+        binding.etPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s != null && s.length < 8) {
+                    binding.etPassword.error = "Password cannot be less than 8 characters"
+                } else {
+                    binding.etPassword.error = null
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
 
 }
