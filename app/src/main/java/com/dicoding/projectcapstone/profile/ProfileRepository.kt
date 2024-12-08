@@ -28,7 +28,7 @@ class ProfileRepository(private val apiService: ApiService) {
             val dataList = listOf(response.data)
             _addAddressResponse.postValue(dataList as List<NewAddressData>?)
         } catch (e: HttpException) {
-            Log.e("ProfileRepository", "HTTP error: ${e.code()} - ${e.message()}")
+            Log.e("ProfileRepository", "HTTP error: ${e.code()} - ${e.response()?.errorBody()?.string()}")
             _errorMessage.postValue("Failed to add address: HTTP ${e.code()} - ${e.message()}")
         } catch (e: Exception) {
             Log.e("ProfileRepository", "Unexpected error: ${e.message}")

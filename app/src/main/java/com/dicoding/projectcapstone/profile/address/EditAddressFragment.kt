@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.dicoding.projectcapstone.api.RetrofitClient.apiService
 import com.dicoding.projectcapstone.R
+import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.profile.ProfileModel
 import com.dicoding.projectcapstone.profile.ProfileModelFactory
 import com.dicoding.projectcapstone.profile.ProfileRepository
@@ -31,7 +32,7 @@ class EditAddressFragment : Fragment() {
 
     ): View? {
         val view = inflater.inflate(R.layout.fragment_edit_address, container, false)
-
+        sessionManager = RetrofitClient.getSessionManager()
         val streetNameEditText = view.findViewById<EditText>(R.id.edit_street_name)
         val cityEditText = view.findViewById<EditText>(R.id.edit_city)
         val postalCodeEditText = view.findViewById<EditText>(R.id.edit_postal_code)

@@ -97,7 +97,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Initialize RetrofitClient with application context
         RetrofitClient.initialize(applicationContext)
+
+        // Initialize the sessionManager and userRepository properties
         sessionManager = SessionManager(this)
         userRepository = UserRepository.getInstance(apiService)
 
@@ -171,6 +174,12 @@ class MainActivity : AppCompatActivity() {
         binding.txtName.text = sessionManager.getUsername()
         productViewModel.fetchAllProducts()
         productViewModel.fetchAllProductsRecommendations()
+    }
+
+    private fun navigateToProfileWithEditAddress() {
+        val intent = Intent(this, ProfileActivity::class.java)
+        intent.putExtra("SHOW_EDIT_ADDRESS", true)
+        startActivity(intent)
     }
 
     private fun navigateToLogin() {
@@ -272,10 +281,4 @@ class MainActivity : AppCompatActivity() {
         }, 1500)
     }
 
-    private fun navigateToFragment(fragment: Fragment) {
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
 }

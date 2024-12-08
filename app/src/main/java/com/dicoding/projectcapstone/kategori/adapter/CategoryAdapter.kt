@@ -1,4 +1,4 @@
-package com.dicoding.projectcapstone.ui.adapter
+package com.dicoding.projectcapstone.kategori.adapter
 
 import android.view.LayoutInflater
 import android.view.View
