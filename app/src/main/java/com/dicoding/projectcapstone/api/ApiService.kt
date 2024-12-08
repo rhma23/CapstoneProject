@@ -22,6 +22,7 @@ import com.dicoding.projectcapstone.user.UserDataResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
@@ -67,7 +68,11 @@ interface ApiService {
     @GET("address")
     suspend fun getAddress(): GetAddressResponse
 
-    @POST("address")
+    @POST("address/location")
     suspend fun addAddress(@Body request: AddAdressRequest): AddAddressResponse
+
+    @PUT("address/location")
+    suspend fun updateAddress(@Body request: AddAdressRequest): AddAddressResponse
+
 
 }

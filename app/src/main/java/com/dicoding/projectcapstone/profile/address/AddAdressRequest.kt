@@ -2,5 +2,6 @@ package com.dicoding.projectcapstone.profile.address
 
 
 data class AddAdressRequest(
-    val addressName: String
+    val lat: String,
+    val lon: String
 )

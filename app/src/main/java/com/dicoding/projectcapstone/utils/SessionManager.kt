@@ -21,7 +21,19 @@ class SessionManager(context: Context) {
         private const val ADDRESS_USER = "address_user"
         private const val IS_LOGIN = "is_login"
         private const val USER_ID = "user_id"
+        private const val CITY_NAME = "city_name"
     }
+
+    fun saveCityName(cityName: String) {
+        val editor = prefs.edit()
+        editor.putString(CITY_NAME, cityName)
+        editor.apply()
+    }
+
+    fun getCityName(): String? {
+        return prefs.getString(CITY_NAME, null)
+    }
+
 
     fun saveAddressUser(address: String) {
         val editor = prefs.edit()

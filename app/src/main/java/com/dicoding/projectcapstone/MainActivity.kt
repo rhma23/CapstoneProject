@@ -1,6 +1,9 @@
 package com.dicoding.projectcapstone
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,8 +13,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
@@ -36,12 +42,17 @@ import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.profile.ProfileActivity
 import com.dicoding.projectcapstone.location.LokasiActivity
+import com.dicoding.projectcapstone.profile.ProfileRepository
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
 import com.dicoding.projectcapstone.utils.Helper
 import com.dicoding.projectcapstone.utils.SessionManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private var helper: Helper = Helper()
@@ -50,6 +61,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userRepository: UserRepository
     private lateinit var sessionManager: SessionManager
     private var setTimer = 1000
+    private val locationPermissionCode = 100
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private val weatherData = listOf(
         Weather(
@@ -105,10 +118,7 @@ class MainActivity : AppCompatActivity() {
         // Initialize the sessionManager and userRepository properties
         sessionManager = SessionManager(this)
         userRepository = UserRepository.getInstance(apiService)
-
         userModel.setSessionManager(sessionManager)
-        weatherModel.fetchDataWeather()
-
         if (!sessionManager.getIsLogin()) {
             navigateToLogin()
         } else {
@@ -176,8 +186,7 @@ class MainActivity : AppCompatActivity() {
         val isHorizontal = true
         productRecommendationAdapter(true)
         allProductAdapter(isHorizontal)
-        setupViewBaner()
-        setupAction()
+        checkAndRequestLocationPermission()
     }
 
 
@@ -268,6 +277,8 @@ class MainActivity : AppCompatActivity() {
             override fun run() {
                 if (isDestroyed) return // Check if the activity is destroyed
                 val weather_main = weatherModel.weather.value?.data?.weather_main.toString()
+                val weather_location = sessionManager.getCityName()
+                binding.txtCity.text = weather_location
                 binding.txtWeather.text = weather_main
                 binding.txtTemperature.text =
                     helper.roundToNearestInteger(weatherModel.weather.value?.data?.temperature.toString())
@@ -292,6 +303,59 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, targetActivity))
             binding.loading.visibility = View.GONE // Sembunyikan ProgressBar
         }, 1500)
+    }
+
+    private fun checkAndRequestLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                locationPermissionCode
+            )
+        } else {
+            fetchAndSaveLocation()
+            setupAction()
+        }
+    }
+
+    private fun fetchAndSaveLocation() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                val latitude = location.latitude.toString()
+                val longitude = location.longitude.toString()
+                val profileRepository = ProfileRepository(apiService)
+                lifecycleScope.launch {
+                    profileRepository.checkAndSaveAddress(latitude, longitude)
+                }
+                getCityFromCoordinates(location.latitude, location.longitude)
+                setupViewBaner()
+                Log.d("MainActivity", "Location saved: $latitude, $longitude")
+            } else {
+                Toast.makeText(this, "Lokasi tidak tersedia", Toast.LENGTH_SHORT).show()
+            }
+        }
+        weatherModel.fetchDataWeather()
+    }
+
+    fun getCityFromCoordinates(latitude: Double, longitude: Double): String? {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        try {
+            val addresses: MutableList<Address>? = geocoder.getFromLocation(latitude, longitude, 1)
+            if (!addresses.isNullOrEmpty()) {
+                val address = addresses[0]
+                sessionManager.saveCityName(address.locality)
+                Log.i("", "getCityFromCoordinates: "+address.locality)
+                return address.locality ?: "Indonesia"
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return "Indonesia"
     }
 
 }
