@@ -46,8 +46,8 @@ class EditAddressFragment : Fragment() {
             val fullAddress = combineAddress(streetName, city, postalCode)
 
             profileViewModel.addAddress(fullAddress)
-            profileViewModel.addAddressResponse.observe(viewLifecycleOwner, { address ->
-                if(address.isNotEmpty()) {
+            profileViewModel.addAddressResponse.observe(viewLifecycleOwner) { address ->
+                if (address.isNotEmpty()) {
                     AlertDialog.Builder(requireContext()).apply {
                         setTitle("sucess!")
                         setMessage("sucess to fill address")
@@ -66,7 +66,7 @@ class EditAddressFragment : Fragment() {
                         show()
                     }
                 }
-            })
+            }
         }
 
         return view
