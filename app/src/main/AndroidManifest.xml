@@ -17,7 +17,7 @@
         android:theme="@style/Theme.ProjectCapstone"
         android:usesCleartextTraffic="true"
         android:enableOnBackInvokedCallback="true"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu">
 
 
         <meta-data

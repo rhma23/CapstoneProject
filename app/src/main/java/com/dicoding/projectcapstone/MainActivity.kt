@@ -34,7 +34,6 @@ import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.profile.ProfileActivity
-import com.dicoding.projectcapstone.profile.address.EditAddressFragment
 import com.dicoding.projectcapstone.location.LokasiActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
@@ -98,10 +97,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize RetrofitClient with application context
         RetrofitClient.initialize(applicationContext)
-
-        // Initialize the sessionManager and userRepository properties
         sessionManager = SessionManager(this)
         userRepository = UserRepository.getInstance(apiService)
 
@@ -121,7 +117,6 @@ class MainActivity : AppCompatActivity() {
                         setMessage("Hello, this account has not added an address. Add address first.")
                         setPositiveButton("Add Address") { _, _ ->
                             Log.i("MainActivity", "onCreate: Add Address")
-//                            navigateToFragment(EditAddressFragment())
                         }
                         create()
                         show()
@@ -174,12 +169,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.txtName.text = sessionManager.getUsername()
-
-//        binding.button.setOnClickListener {
-//            userModel.logout()
-//            navigateToLogin()
-//        }
-
         productViewModel.fetchAllProducts()
         productViewModel.fetchAllProductsRecommendations()
     }
@@ -233,10 +222,9 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-        // Menggunakan StaggeredGridLayoutManager
         val layoutManager = StaggeredGridLayoutManager(
-            2, // Jumlah kolom
-            StaggeredGridLayoutManager.VERTICAL // Orientasi vertikal
+            2,
+            StaggeredGridLayoutManager.VERTICAL
         )
 
         binding.rvAllProduct.apply {
