@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -110,15 +111,20 @@ class MainActivity : AppCompatActivity() {
         if (!sessionManager.getIsLogin()) {
             navigateToLogin()
         } else {
-            val isHorizontal = true
-            productRecommendationAdapter(true)
-            allProductAdapter(isHorizontal)
-            setupHome()
+            setupHome()// Initialize the main home setup
             val address = sessionManager.getAddressUser()
+            Log.d("MainActivity", "onCreate: $address")
             if (address.isNullOrEmpty()) {
-                navigateToFragment(EditAddressFragment()) // Navigate to add address
-            } else {
-                setupHome()// Initialize the main home setup
+                AlertDialog.Builder(this).apply {
+                    setTitle("Hallo!")
+                    setMessage("Hello, this account has not added an address. Add address first.")
+                    setPositiveButton("Add Address") { _, _ ->
+                        navigateToFragment(EditAddressFragment())
+                        finish()
+                    }
+                    create()
+                    show()
+                }
             }
         }
 
@@ -131,14 +137,17 @@ class MainActivity : AppCompatActivity() {
                     navigateWithLoading(MainActivity::class.java)
                     true
                 }
+
                 R.id.location -> {
                     navigateWithLoading(LokasiActivity::class.java)
                     true
                 }
+
                 R.id.profile -> {
                     navigateWithLoading(ProfileActivity::class.java)
                     true
                 }
+
                 else -> false
             }
         }
@@ -243,23 +252,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setupViewBaner() {
-        val handler = android.os.Handler()
-        val runnable = object : Runnable {
-            override fun run() {
-               val weather_main = weatherModel.weather.value?.data?.weather_main.toString()
-                Log.d("MainActivity", "Weather: $weather_main")
-                weatherData.forEach {
-                    if (it.category == weather_main) {
-                        Glide.with(this@MainActivity).load(it.imageUrl).into(binding.imgBackground)
-                        binding.txtWeatherMessage.text = it.description
-                    }
+    private fun setupViewBaner() {
+    val handler = Handler(Looper.getMainLooper())
+    val runnable = object : Runnable {
+        override fun run() {
+            if (isDestroyed) return // Check if the activity is destroyed
+
+            val weather_main = weatherModel.weather.value?.data?.weather_main.toString()
+            Log.d("MainActivity", "Weather: $weather_main")
+            weatherData.forEach {
+                if (it.category == weather_main) {
+                    Glide.with(this@MainActivity).load(it.imageUrl).into(binding.imgBackground)
+                    binding.txtWeatherMessage.text = it.description
                 }
-                handler.postDelayed(this, 1000)
             }
+            handler.postDelayed(this, 1000)
         }
-        handler.post(runnable)
     }
+    handler.post(runnable)
+}
 
     private fun navigateWithLoading(targetActivity: Class<*>) {
         binding.loading.visibility = View.VISIBLE // Tampilkan ProgressBar
@@ -268,6 +279,7 @@ class MainActivity : AppCompatActivity() {
             binding.loading.visibility = View.GONE // Sembunyikan ProgressBar
         }, 1500)
     }
+
     private fun navigateToFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
