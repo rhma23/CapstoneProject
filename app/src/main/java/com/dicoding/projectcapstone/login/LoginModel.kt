@@ -28,18 +28,17 @@ class LoginModel(private val repository: AuthRepository) : ViewModel() {
                             userData.result.username?.let { sessionManager.saveUsername(it) }
                             userData.result.email?.let { sessionManager.saveEmailUser(it) }
                             userData.result.role?.let { sessionManager.saveRole(it) }
-                            userData.result.address?.let { sessionManager.saveAddressUser(it.toString()) }
+                            val address = repository.getAddres()
+                            if (address != null) {
+                                address.data?.address_name?.let { sessionManager.saveAddressUser(it) }
+                            }
+                            Log.d("Login Model", "login: $address")
                             sessionManager.saveIsLogin(true)
                             callback(result.success)
                         } else {
                             Log.d("C-Login Model F-login", "User belum register")
                             callback(false)
                         }
-                        val address = repository.getAddres()
-                        if (address != null) {
-                            address.data?.address_name?.let { sessionManager.saveAddressUser(it) }
-                        }
-                        Log.d("Login Model", "login: $address")
                     }
 
                 }
