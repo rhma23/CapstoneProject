@@ -280,12 +280,7 @@ class MainActivity : AppCompatActivity() {
                 val weather_location = sessionManager.getCityName()
                 binding.txtCity.text = weather_location
                 binding.txtWeather.text = weather_main
-                binding.txtCity.text =
-                    weatherModel.weather.value?.data?.address?.address_name?.let {
-                        helper.extractLocationByIndex(
-                            it, 2
-                        )
-                    }
+
                 binding.txtTemperature.text =
                     helper.roundToNearestInteger(weatherModel.weather.value?.data?.temperature.toString())
                         .toString()
