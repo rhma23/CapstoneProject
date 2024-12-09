@@ -11,13 +11,34 @@ import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.product.DataItem
 
-class CategoryAdapter(private val productList: List<DataItem>) :
-    RecyclerView.Adapter<CategoryAdapter.MakananViewHolder>() {
+class CategoryAdapter(
+    private val productList: List<DataItem>,
+    private val onItemClick: (DataItem) -> Unit
+) : RecyclerView.Adapter<CategoryAdapter.MakananViewHolder>() {
+
     inner class MakananViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.item_name)
         val price: TextView = itemView.findViewById(R.id.item_price)
         val image: ImageView = itemView.findViewById(R.id.item_image)
-        val decs: TextView = itemView.findViewById(R.id.item_description)
+        val description: TextView = itemView.findViewById(R.id.item_description)
+
+        // Bind data to views and set up the onClick listener
+        fun bind(product: DataItem) {
+            name.text = product.name
+            description.text = product.description
+            price.text = product.price?.toString() ?: "N/A"
+
+            // Construct the full image URL
+            val fullImageUrl = "${RetrofitClient.getBaseIp()}/images/products/${product.image}"
+            Glide.with(itemView.context)
+                .load(fullImageUrl)
+                .into(image)
+
+            // Set the onClick listener to call the onItemClick function
+            itemView.setOnClickListener {
+                onItemClick(product)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MakananViewHolder {
@@ -27,12 +48,7 @@ class CategoryAdapter(private val productList: List<DataItem>) :
 
     override fun onBindViewHolder(holder: MakananViewHolder, position: Int) {
         val product = productList[position]
-        val fullImageUrl = RetrofitClient.getBaseIp() + "/images/products/" + product.image
-        holder.name.text = product.name
-        holder.decs.text = product.description
-        holder.price.text = product.price
-
-        Glide.with(holder.itemView.context).load(fullImageUrl).into(holder.image)
+        holder.bind(product) // Bind the product to the ViewHolder
     }
 
     override fun getItemCount(): Int = productList.size
