@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.api.RetrofitClient.apiService
+import com.dicoding.projectcapstone.ui.MyButton
 import com.dicoding.projectcapstone.utils.Helper
 
 class DetailProductActivity : AppCompatActivity() {
@@ -78,5 +79,13 @@ class DetailProductActivity : AppCompatActivity() {
                 }
             }
         }, 3000)
+
+        // Set listener for the "Add to Cart" button
+        val addToCartButton: MyButton = findViewById(R.id.add_to_cart_button)
+        addToCartButton.setOnClickListener {
+            // Action when button is clicked
+            // This can be redirecting to another activity or showing a toast, etc.
+            Log.d("DetailProduct", "Add to Cart button clicked")
+        }
     }
 }

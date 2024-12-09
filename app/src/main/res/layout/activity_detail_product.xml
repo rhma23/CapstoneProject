@@ -158,7 +158,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Loading, please wait..."
+                    android:text="@string/loading_please_wait"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
             </FrameLayout>
@@ -214,14 +214,15 @@
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <!-- Add to Cart Button -->
-            <Button
+            <com.dicoding.projectcapstone.ui.MyButton
                 android:id="@+id/add_to_cart_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="@color/blue"
                 android:text="@string/see_seller"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:textColor="@android:color/white" />
         </LinearLayout>
     </LinearLayout>
