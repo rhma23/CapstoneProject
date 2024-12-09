@@ -269,10 +269,12 @@ class MainActivity : AppCompatActivity() {
                 if (isDestroyed) return // Check if the activity is destroyed
                 val weather_main = weatherModel.weather.value?.data?.weather_main.toString()
                 binding.txtWeather.text = weather_main
-                binding.txtCity.text = weatherModel.weather.value?.data?.address?.address_name?.let {
-                    helper.extractLocationByIndex(
-                        it, 2)
-                }
+                binding.txtCity.text =
+                    weatherModel.weather.value?.data?.address?.address_name?.let {
+                        helper.extractLocationByIndex(
+                            it, 2
+                        )
+                    }
                 binding.txtTemperature.text =
                     helper.roundToNearestInteger(weatherModel.weather.value?.data?.temperature.toString())
                         .toString()

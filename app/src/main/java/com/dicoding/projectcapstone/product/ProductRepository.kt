@@ -57,4 +57,9 @@ class ProductRepository(private val apiService: ApiService) {
         }
     }
 
+//    get product by id
+    suspend fun getProductById(id: Int): Response<ProductDetail> {
+        return apiService.getProductById(id)
+    }
+
 }

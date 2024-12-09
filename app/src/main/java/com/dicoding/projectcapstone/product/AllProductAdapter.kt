@@ -24,7 +24,11 @@ class AllProductAdapter(private var events: List<DataItem>, private val onItemCl
 //            productPrice.text = event.price ?: "Unknown Price"
 //            productRating.text = (event.merchant?.average_rating ?: "Unknown Rating").toString()
             productStatus.text = event.merchant?.status ?: "Unknown Status"
-
+            if(event.merchant?.status == "tutup") {
+                productStatus.setTextColor(itemView.context.resources.getColor(R.color.red))
+            } else {
+                productStatus.setTextColor(itemView.context.resources.getColor(R.color.green))
+            }
             Glide.with(itemView.context)
                 .load(event.image?.let { helper.removePath(it) })
                 .into(productImage)

@@ -30,7 +30,11 @@ class ProductRecomendationWeatherAdapter(
             productRating.text = (event.merchant?.average_rating ?: "Unknown Rating").toString()
             productStatus.text = event.merchant?.status ?: "Unknown Status"
             productDesc.text = event.description ?: "Unknown Description"
-
+            if (event.merchant?.status == "tutup") {
+                productStatus.setTextColor(itemView.context.resources.getColor(R.color.red))
+            } else {
+                productStatus.setTextColor(itemView.context.resources.getColor(R.color.green))
+            }
             Glide.with(itemView.context)
                 .load(event.image?.let { helper.removePath(it) })
                 .into(productImage)
