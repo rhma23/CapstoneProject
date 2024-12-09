@@ -21,7 +21,6 @@ class ProductRecomendationWeatherAdapter(
         val productName: TextView = itemView.findViewById(R.id.item_name)
         val productPrice: TextView = itemView.findViewById(R.id.item_price)
         val productRating: TextView = itemView.findViewById(R.id.item_rating)
-        val productDesc: TextView = itemView.findViewById(R.id.item_description)
         val productStatus: TextView = itemView.findViewById(R.id.item_status)
 
         fun bind(event: DataItem, onItemClick: (DataItem) -> Unit) {
@@ -29,7 +28,6 @@ class ProductRecomendationWeatherAdapter(
             productPrice.text = helper.formatRupiah(event.price?.toInt() ?: 0)
             productRating.text = (event.merchant?.average_rating ?: "Unknown Rating").toString()
             productStatus.text = event.merchant?.status ?: "Unknown Status"
-            productDesc.text = event.description ?: "Unknown Description"
             if (event.merchant?.status == "tutup") {
                 productStatus.setTextColor(itemView.context.resources.getColor(R.color.red))
             } else {

@@ -32,7 +32,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlin.math.log
 
 class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityLokasiBinding

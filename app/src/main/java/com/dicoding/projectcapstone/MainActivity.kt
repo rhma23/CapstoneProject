@@ -124,22 +124,7 @@ class MainActivity : AppCompatActivity() {
         if (!sessionManager.getIsLogin()) {
             navigateToLogin()
         } else {
-            setupHome() // Initialize the main home setup
-            val address = sessionManager.getAddressUser()
-            Log.d("MainActivity", "onCreate: $address")
-            if (address.isNullOrEmpty()) {
-                if (!isFinishing) {
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Hallo!")
-                        setMessage("Hello, this account has not added an address. Add address first.")
-                        setPositiveButton("Add Address") { _, _ ->
-                            Log.i("MainActivity", "onCreate: Add Address")
-                        }
-                        create()
-                        show()
-                    }
-                }
-            }
+            setupHome()
 
             val scrollingFragmentRecProduct = ScrollingFragmentRecProduct()
 
@@ -196,12 +181,6 @@ class MainActivity : AppCompatActivity() {
         binding.txtName.text = sessionManager.getUsername()
         productViewModel.fetchAllProducts()
         productViewModel.fetchAllProductsRecommendations()
-    }
-
-    private fun navigateToProfileWithEditAddress() {
-        val intent = Intent(this, ProfileActivity::class.java)
-        intent.putExtra("SHOW_EDIT_ADDRESS", true)
-        startActivity(intent)
     }
 
     private fun navigateToLogin() {
@@ -280,12 +259,7 @@ class MainActivity : AppCompatActivity() {
                 val weather_location = sessionManager.getCityName()
                 binding.txtCity.text = weather_location
                 binding.txtWeather.text = weather_main
-                binding.txtCity.text =
-                    weatherModel.weather.value?.data?.address?.address_name?.let {
-                        helper.extractLocationByIndex(
-                            it, 2
-                        )
-                    }
+
                 binding.txtTemperature.text =
                     helper.roundToNearestInteger(weatherModel.weather.value?.data?.temperature.toString())
                         .toString()

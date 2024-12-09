@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white" >
+    android:background="@color/white">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -17,23 +19,23 @@
         app:titleTextColor="@android:color/white"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Jalan -->
+    <!-- Street Name -->
     <EditText
         android:id="@+id/edit_street_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp"
-        android:hint="@string/street_name"
         android:background="@drawable/bg_edit_text"
+        android:hint="@string/street_name"
+        android:inputType="textPersonName"
         android:padding="12dp"
         android:textSize="14sp"
-        android:inputType="textPersonName"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Kota -->
+    <!-- City -->
     <EditText
         android:id="@+id/edit_city"
         android:layout_width="0dp"
@@ -45,11 +47,11 @@
         android:inputType="text"
         android:padding="12dp"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_street_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_street_name" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Kode Pos -->
+    <!-- Postal Code -->
     <EditText
         android:id="@+id/edit_postal_code"
         android:layout_width="0dp"
@@ -61,19 +63,22 @@
         android:inputType="number"
         android:padding="12dp"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_city"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_city" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Simpan Button -->
-    <com.dicoding.projectcapstone.ui.BtnSave
+    <!-- Save Button -->
+    <com.dicoding.projectcapstone.ui.MyButton
         android:id="@+id/save_address_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp"
+        android:text="@string/save"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/edit_postal_code"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp" />
-
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
