@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.location.model.Lokasi
-import org.w3c.dom.Text
 
 class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>) :
     RecyclerView.Adapter<LokasiAdapter.LokasiViewHolder>() {
