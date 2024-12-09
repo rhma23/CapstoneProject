@@ -1,5 +1,6 @@
 package com.dicoding.projectcapstone.banner
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.dicoding.projectcapstone.api.RetrofitClient.apiService
 import com.dicoding.projectcapstone.databinding.FragmentScrollingRecProductBinding
+import com.dicoding.projectcapstone.product.DetailProductActivity
 import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRecomendationWeatherAdapter
 import com.dicoding.projectcapstone.product.ProductRepository
@@ -42,11 +44,9 @@ class ScrollingFragmentRecProduct : BottomSheetDialogFragment() {
         val productAdapter = ProductRecomendationWeatherAdapter(
             events = listOf(),
             onItemClick = { dataItem ->
-                Log.d(
-                    "MainActivity",
-                    "Clicked item: ${dataItem.image?.let { removePath(it) }}"
-                )
-                Toast.makeText(requireContext(), "Clicked: ${dataItem.name}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(requireContext(), DetailProductActivity::class.java)
+                intent.putExtra("id", dataItem.id)
+                startActivity(intent)
             }
         )
 

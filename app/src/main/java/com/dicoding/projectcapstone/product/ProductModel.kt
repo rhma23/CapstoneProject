@@ -12,8 +12,8 @@ class ProductModel(private val repository: ProductRepository) : ViewModel() {
     val productsRecommendations: LiveData<List<DataItem>> = repository.productsRecommendations
     val errorMessage: LiveData<String> = repository.errorMessage
 
-    private val _productDetailLiveData = MutableLiveData<ProductDetail?>()
-    val productDetailLiveData: MutableLiveData<ProductDetail?> get() = _productDetailLiveData
+    private val _productDetailLiveData = MutableLiveData<ProductDetailResponse?>()
+    val productDetailLiveData: MutableLiveData<ProductDetailResponse?> get() = _productDetailLiveData
 
     private val _categoryProducts = MutableLiveData<List<DataItem>?>()
     val categoryProducts: MutableLiveData<List<DataItem>?> get() = _categoryProducts
@@ -37,19 +37,19 @@ class ProductModel(private val repository: ProductRepository) : ViewModel() {
         _loading.value = true
         viewModelScope.launch {
             try {
-                _productDetailLiveData.value = null // Menampilkan loading data
+                _productDetailLiveData.value = null
                 val response = repository.getProductById(id)
-                if (response.isSuccessful) {
-                    _productDetailLiveData.value = response.body()
-                } else {
-                    // Handle error
-                    _productDetailLiveData.value = null
+                if (response != null) {
+                    if (response.success == true) {
+                        _productDetailLiveData.value = response
+                    } else {
+                        // Handle error
+                        _productDetailLiveData.value = null
+                    }
                 }
             } catch (e: Exception) {
                 // Handle exception
                 _productDetailLiveData.value = null
-//            } finally {
-//                _loading.value = false
             }
         }
     }

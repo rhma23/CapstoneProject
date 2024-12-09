@@ -1,5 +1,6 @@
 package com.dicoding.projectcapstone
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
@@ -42,6 +43,7 @@ import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.profile.ProfileActivity
 import com.dicoding.projectcapstone.location.LokasiActivity
+import com.dicoding.projectcapstone.product.DetailProductActivity
 import com.dicoding.projectcapstone.profile.ProfileRepository
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
@@ -210,11 +212,10 @@ class MainActivity : AppCompatActivity() {
         val productAdapter = ProductRecomendationAdapter(
             events = listOf(),
             onItemClick = { dataItem ->
-                Log.d(
-                    "MainActivity",
-                    "Clicked item: ${dataItem.image?.let { helper.removePath(it) }}"
-                )
-                Toast.makeText(this, "Clicked: ${dataItem.name}", Toast.LENGTH_SHORT).show()
+                //berpindah ke halaman detail product
+                val intent = Intent(this, DetailProductActivity::class.java)
+                intent.putExtra("id", dataItem.id)
+                startActivity(intent)
             }
         )
 
@@ -243,11 +244,10 @@ class MainActivity : AppCompatActivity() {
         val allProductAdapter = AllProductAdapter(
             events = listOf(),
             onItemClick = { dataItem ->
-                Log.d(
-                    "MainActivity",
-                    "Clicked item: ${dataItem.image?.let { helper.removePath(it) }}"
-                )
-                Toast.makeText(this, "Clicked: ${dataItem.name}", Toast.LENGTH_SHORT).show()
+                //berpindah ke halaman detail product
+                val intent = Intent(this, DetailProductActivity::class.java)
+                intent.putExtra("id", dataItem.id)
+                startActivity(intent)
             }
         )
 
@@ -331,6 +331,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchAndSaveLocation() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+//        untuk mengecek apakah permission sudah diberikan atau belum
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
                 val latitude = location.latitude.toString()

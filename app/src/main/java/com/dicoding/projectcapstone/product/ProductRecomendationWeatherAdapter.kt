@@ -26,7 +26,7 @@ class ProductRecomendationWeatherAdapter(
 
         fun bind(event: DataItem, onItemClick: (DataItem) -> Unit) {
             productName.text = event.name ?: "Unnamed Event"
-            productPrice.text = event.price ?: "Unknown Price"
+            productPrice.text = helper.formatRupiah(event.price?.toInt() ?: 0)
             productRating.text = (event.merchant?.average_rating ?: "Unknown Rating").toString()
             productStatus.text = event.merchant?.status ?: "Unknown Status"
             productDesc.text = event.description ?: "Unknown Description"

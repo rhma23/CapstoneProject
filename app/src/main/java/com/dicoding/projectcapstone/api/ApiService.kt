@@ -12,6 +12,7 @@ import com.dicoding.projectcapstone.password.ForgotPasswordRequest
 import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.product.GetAllProductResponse
 import com.dicoding.projectcapstone.product.ProductDetail
+import com.dicoding.projectcapstone.product.ProductDetailResponse
 import com.dicoding.projectcapstone.profile.address.AddAddressResponse
 import com.dicoding.projectcapstone.profile.address.AddAdressRequest
 import com.dicoding.projectcapstone.profile.address.GetAddressResponse
@@ -53,7 +54,7 @@ interface ApiService {
     suspend fun getAllRecommendationProducts(): GetAllProductResponse
 
     @GET("product/{id}")
-    suspend fun getProductById(@Path("id") id: Int): Response<ProductDetail>
+    suspend fun getProductById(@Path("id") id: Int): ProductDetailResponse
 
     @GET("product/category/{category}")
     suspend fun getProductsByCategory(@Path("category") category: String): GetAllProductResponse

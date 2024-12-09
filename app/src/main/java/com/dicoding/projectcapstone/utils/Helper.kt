@@ -25,4 +25,8 @@ class Helper {
         return if (index in parts.indices) parts[index].trim() else null
     }
 
+    fun formatRupiah(amount: Int): String {
+        return "Rp ${"%,d".format(amount).replace(',', '.')}"
+    }
+
 }
