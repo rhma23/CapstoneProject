@@ -132,7 +132,7 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
                         Log.i(location.merchant.business_name, "showMarkers: "+isOpen)
                         val nearestLokasi = Lokasi(
                             location.merchant.business_name,
-                            R.drawable.ic_launcher_background, //TODO: Get image, need change API Response from backend
+                            location.merchant.products.firstOrNull()?.image ?: R.drawable.ic_launcher_background.toString(),
                             location.merchant.average_rating,
                             isOpen,
                             distance

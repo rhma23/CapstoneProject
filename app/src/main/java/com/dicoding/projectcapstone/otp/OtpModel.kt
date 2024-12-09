@@ -15,6 +15,7 @@ class OtpModel(private val repository: AuthRepository) : ViewModel() {
     fun setSessionManager(sessionManager: SessionManager) {
         this.sessionManager = sessionManager
     }
+
     fun verify(email: String, otp_code: String, onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
             try {

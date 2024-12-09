@@ -10,13 +10,6 @@ class Helper {
         // If "http" is found, return the substring starting from that index
         return if (index != -1) inputUrl.substring(index) else inputUrl
     }
-    fun roundDecimal(value: String?, decimalPlaces: Int): Double {
-        if (value.isNullOrEmpty() || value == "null") {
-            return 0.0
-        }
-        return BigDecimal(value.toDouble()).setScale(decimalPlaces, RoundingMode.HALF_UP).toDouble()
-    }
-
 
     fun roundToNearestInteger(value: String?): Int {
         if (value.isNullOrEmpty() || value == "null") {
