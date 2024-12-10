@@ -43,7 +43,7 @@ class ProfileActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
         binding.profileName.text = sessionManager.getUsername()
         // Navigasi ke fragment edit profil atau edit alamat
-        binding.editProfile.setOnClickListener {
+        binding.showProfile.setOnClickListener {
             navigateToFragment(ShowProfileFragment())
         }
 

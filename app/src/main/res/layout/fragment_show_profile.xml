@@ -20,6 +20,8 @@
     <!-- Your Name -->
     <EditText
         android:id="@+id/show_full_name"
+        android:focusable="false"
+        android:cursorVisible="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -36,6 +38,8 @@
     <!-- Change Password -->
     <EditText
         android:id="@+id/show_email"
+        android:focusable="false"
+        android:cursorVisible="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
