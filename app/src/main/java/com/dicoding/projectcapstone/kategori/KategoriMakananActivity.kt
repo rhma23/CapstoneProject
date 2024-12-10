@@ -1,6 +1,8 @@
 package com.dicoding.projectcapstone.kategori
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +14,7 @@ import com.dicoding.projectcapstone.product.ProductModel
 import com.dicoding.projectcapstone.product.ProductRepository
 import com.dicoding.projectcapstone.product.ProductViewModelFactory
 import com.dicoding.projectcapstone.kategori.adapter.CategoryAdapter
+import com.dicoding.projectcapstone.product.DetailProductActivity
 
 class KategoriMakananActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -28,7 +31,13 @@ class KategoriMakananActivity : AppCompatActivity() {
         viewModel.fetchProductsByCategory("Makanan")
         viewModel.categoryProducts.observe(this) { products ->
             if (products != null) {
-                val adapter = CategoryAdapter(products)
+                val adapter = CategoryAdapter(products, onItemClick = { dataItem ->
+                    //berpindah ke halaman detail product
+                    val intent = Intent(this, DetailProductActivity::class.java)
+                    intent.putExtra("id", dataItem.id)
+                    startActivity(intent)
+                    Log.d("KategoriMakananActivity", "onCreate: cliced")
+                })
                 recyclerView.adapter = adapter
             } else {
                 Toast.makeText(this, "Gagal memuat data", Toast.LENGTH_SHORT).show()

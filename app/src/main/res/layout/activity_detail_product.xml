@@ -30,11 +30,11 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lyDetailProductTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/lyDetailProductTop"
-            android:padding="16dp">
+            android:padding="20dp">
             <!-- Product Image -->
             <ImageView
                 android:id="@+id/product_image"
@@ -131,27 +131,28 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
-        </LinearLayout>
+       </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:visibility="visible" />
-        </FrameLayout>
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:visibility="visible" />
+            </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/txtLoadingMessage"
                 android:layout_width="wrap_content"
@@ -163,11 +164,13 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </FrameLayout>
+
         <LinearLayout
+            android:id="@+id/lyDetailProductBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/lyDetailProductBottom">
+            android:padding="20dp">
             <!-- Address Section with Location Icon -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -228,3 +231,4 @@
     </LinearLayout>
 
 </ScrollView>
+
