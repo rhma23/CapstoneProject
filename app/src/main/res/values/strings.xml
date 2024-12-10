@@ -47,7 +47,8 @@
     <string name="weather_match">Weather Match</string>
     <string name="food">Food</string>
     <string name="drink">Drink</string>
-    <string name="recommendations">Top Rated</string>
+    <string name="top_product">Top Product</string>
+    <string name="recommendations">Recommendation</string>
     <string name="profile_picture_description">profile_picture_description</string>
     <string name="all_product">All Product</string>
     <string name="click_here">Click Here</string>
@@ -220,5 +221,6 @@
     <string name="postal_code">Postal Code</string>
     <string name="save">Save</string>
     <string name="loading_please_wait">Loading, please wait...</string>
+
 
 </resources>
