@@ -11,8 +11,8 @@ import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.utils.Helper
 
 class ProductRecomendationWeatherAdapter(
-    private var events: List<DataItem>,
-    private val onItemClick: (DataItem) -> Unit
+    private var events: List<DataItemResponse>,
+    private val onItemClick: (DataItemResponse) -> Unit
 ) : RecyclerView.Adapter<ProductRecomendationWeatherAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,7 +23,7 @@ class ProductRecomendationWeatherAdapter(
         val productRating: TextView = itemView.findViewById(R.id.item_rating)
         val productStatus: TextView = itemView.findViewById(R.id.item_status)
 
-        fun bind(event: DataItem, onItemClick: (DataItem) -> Unit) {
+        fun bind(event: DataItemResponse, onItemClick: (DataItemResponse) -> Unit) {
             productName.text = event.name ?: "Unnamed Event"
             productPrice.text = helper.formatRupiah(event.price?.toInt() ?: 0)
             productRating.text = (event.merchant?.average_rating ?: "Unknown Rating").toString()
@@ -51,7 +51,7 @@ class ProductRecomendationWeatherAdapter(
 
     override fun getItemCount(): Int = events.size
 
-    fun updateData(newEvents: List<DataItem>) {
+    fun updateData(newEvents: List<DataItemResponse>) {
         events = newEvents
         notifyDataSetChanged()
     }

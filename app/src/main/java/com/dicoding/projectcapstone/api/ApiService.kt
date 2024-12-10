@@ -11,6 +11,7 @@ import com.dicoding.projectcapstone.otp.ResendOtpResponse
 import com.dicoding.projectcapstone.password.ForgotPasswordRequest
 import com.dicoding.projectcapstone.password.ForgotPasswordResponse
 import com.dicoding.projectcapstone.product.GetAllProductResponse
+import com.dicoding.projectcapstone.product.ProdRecFromMlResponse
 import com.dicoding.projectcapstone.product.ProductDetail
 import com.dicoding.projectcapstone.product.ProductDetailResponse
 import com.dicoding.projectcapstone.profile.address.AddAddressResponse
@@ -58,6 +59,9 @@ interface ApiService {
 
     @GET("product/category/{category}")
     suspend fun getProductsByCategory(@Path("category") category: String): GetAllProductResponse
+
+    @POST("product/ml/recommendations")
+    suspend fun getProductsRecomendationByMl(): ProdRecFromMlResponse
 
     //    Location
     @GET("locations")

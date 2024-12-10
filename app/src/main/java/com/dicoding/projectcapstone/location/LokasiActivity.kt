@@ -23,6 +23,7 @@ import com.dicoding.projectcapstone.api.RetrofitClient.apiService
 import com.dicoding.projectcapstone.databinding.ActivityLokasiBinding
 import com.dicoding.projectcapstone.location.model.Lokasi
 import com.dicoding.projectcapstone.location.adapter.LokasiAdapter
+import com.dicoding.projectcapstone.product.DetailProductActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -105,6 +106,23 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun showMarkers(locations: List<LocationResponse>) {
         googleMap?.let { map ->
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return
+            }
             fusedLocationClient.lastLocation.addOnSuccessListener { userLocation ->
                 if (userLocation != null) {
                     val userLat = userLocation.latitude

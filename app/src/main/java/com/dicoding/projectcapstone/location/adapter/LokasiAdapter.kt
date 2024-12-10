@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.projectcapstone.R
+import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.location.model.Lokasi
+import com.dicoding.projectcapstone.product.DataItem
 
 class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>) :
     RecyclerView.Adapter<LokasiAdapter.LokasiViewHolder>() {

@@ -39,11 +39,12 @@ class ScrollingFragmentRecProduct : BottomSheetDialogFragment() {
     override fun onStart() {
         super.onStart()
 
-        productViewModel.fetchAllProductsRecommendations()
+        productViewModel.fetchAllProductsRecommendationsFromMl()
 
         val productAdapter = ProductRecomendationWeatherAdapter(
             events = listOf(),
             onItemClick = { dataItem ->
+                Toast.makeText(requireContext(), "Clicked on ${dataItem.name}", Toast.LENGTH_SHORT).show()
                 val intent = Intent(requireContext(), DetailProductActivity::class.java)
                 intent.putExtra("id", dataItem.id)
                 startActivity(intent)
@@ -61,11 +62,12 @@ class ScrollingFragmentRecProduct : BottomSheetDialogFragment() {
             setHasFixedSize(true)
         }
 
-        productViewModel.productsRecommendations.observe(viewLifecycleOwner) { productList ->
+        productViewModel.productsRecommendationsFromMl.observe(viewLifecycleOwner) { productList ->
             productList?.let {
+                Log.d("ScrolingFragmentRecProduct", "${it}")
                 productAdapter.updateData(it)
             } ?: run {
-                Log.d("MainActivity", "Product list is null or empty")
+                Log.d("ScrolingFragmentRecProduct", "Product list is null or empty")
             }
         }
     }
