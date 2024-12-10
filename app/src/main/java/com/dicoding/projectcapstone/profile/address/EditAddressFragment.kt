@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.dicoding.projectcapstone.api.RetrofitClient.apiService
 import com.dicoding.projectcapstone.R
-import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.profile.ProfileModel
 import com.dicoding.projectcapstone.profile.ProfileModelFactory
 import com.dicoding.projectcapstone.profile.ProfileRepository
@@ -22,7 +21,6 @@ class EditAddressFragment : Fragment() {
     private lateinit var sessionManager: SessionManager
 
     private val profileViewModel: ProfileModel by viewModels {
-        // Assuming you have a ViewModelFactory to provide the repository
         ProfileModelFactory(ProfileRepository(apiService))
     }
 
@@ -46,7 +44,6 @@ class EditAddressFragment : Fragment() {
             val postalCode = postalCodeEditText.text.toString()
             val fullAddress = combineAddress(streetName, city, postalCode)
 
-            //profileViewModel.addAddress(fullAddress)
             profileViewModel.addAddressResponse.observe(viewLifecycleOwner) { address ->
                 if (address.isNotEmpty()) {
                     AlertDialog.Builder(requireContext()).apply {
