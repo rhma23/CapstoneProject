@@ -14,7 +14,6 @@ import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityProfileBinding
 import com.dicoding.projectcapstone.location.LokasiActivity
 import com.dicoding.projectcapstone.login.LoginActivity
-import com.dicoding.projectcapstone.profile.address.EditAddressFragment
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -43,16 +42,9 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
         sessionManager = SessionManager(this)
         binding.profileName.text = sessionManager.getUsername()
-        if (intent.getBooleanExtra("SHOW_EDIT_ADDRESS", false)) {
-            navigateToFragment(EditAddressFragment())
-        }
         // Navigasi ke fragment edit profil atau edit alamat
-        binding.editProfile.setOnClickListener {
-            navigateToFragment(EditProfileFragment())
-        }
-
-        binding.address.setOnClickListener {
-            navigateToFragment(EditAddressFragment())
+        binding.showProfile.setOnClickListener {
+            navigateToFragment(ShowProfileFragment())
         }
 
         // Navigasi menggunakan bottom navigation

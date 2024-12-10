@@ -39,29 +39,12 @@ class ProfileRepository(private val apiService: ApiService, requireContext: Cont
 
     suspend fun checkAndSaveAddress(lat: String, lon: String) {
         try {
-            val existingData = apiService.getAddress()
-            if (existingData.data == null) {
-                val addRequest = AddAdressRequest(lat, lon)
-                val response = apiService.addAddress(addRequest)
-                Log.d("ProfileRepository", "Data added successfully: ${response.data}")
-            } else {
-                val updateRequest = AddAdressRequest(lat, lon)
-                val response = apiService.updateAddress(updateRequest)
-                Log.d("ProfileRepository", "Data updated successfully: ${response.data}")
-            }
+            val addRequest = AddAdressRequest(lat, lon)
+            val response = apiService.addAddress(addRequest)
+            Log.d("ProfileRepository", "Data added successfully: ${response.data}")
         } catch (e: Exception) {
             Log.e("ProfileRepository", "Error in checkAndSaveAddress: ${e.message}")
         }
     }
-
-    suspend fun fetchAddress() {
-         try {
-            val response = apiService.getAddress()
-             Log.d("ProfileRepository", "fetchAddress: $response")
-        } catch (e: Exception) {
-            Log.e("ProfileRepository", "Error fetching address: ${e.message}")
-        }
-    }
-
 
 }
