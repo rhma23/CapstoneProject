@@ -1,6 +1,5 @@
 package com.dicoding.projectcapstone.profile
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,37 +9,10 @@ import com.dicoding.projectcapstone.profile.address.GetAddressResponse
 import com.dicoding.projectcapstone.profile.address.NewAddressData
 import retrofit2.HttpException
 
-class ProfileRepository(
-    private val apiService: ApiService,
-    private val context: Context
-    ) {
-
-    private val sharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+class ProfileRepository(private val apiService: ApiService) {
 
     private val _addAddressResponse = MutableLiveData<List<NewAddressData>>()
     val addAddressResponse: LiveData<List<NewAddressData>> get() = _addAddressResponse
-
-    fun saveAddressLocally(address: Address) {
-        sharedPreferences.edit().apply {
-            putString("street", address.street)
-            putString("city", address.city)
-            putString("postalCode", address.postalCode)
-            apply()
-        }
-    }
-
-    fun getAddressLocally(): Address? {
-        val street = sharedPreferences.getString("street", null)
-        val city = sharedPreferences.getString("city", null)
-        val postalCode = sharedPreferences.getString("postalCode", null)
-        return if (street != null && city != null && postalCode != null) {
-            Address(street, city, postalCode)
-        } else {
-            null
-        }
-    }
-
-
 
     private val _getAddressResponse = MutableLiveData<List<GetAddressResponse>>()
     val getAddressResponse: LiveData<List<GetAddressResponse>> get() = _getAddressResponse
