@@ -21,7 +21,7 @@ class EditAddressFragment : Fragment() {
     private lateinit var sessionManager: SessionManager
 
     private val profileViewModel: ProfileModel by viewModels {
-        ProfileModelFactory(ProfileRepository(apiService))
+        ProfileModelFactory(ProfileRepository(apiService, requireContext()))
     }
 
     override fun onCreateView(

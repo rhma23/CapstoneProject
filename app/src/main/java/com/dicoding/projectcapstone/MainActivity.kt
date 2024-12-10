@@ -327,7 +327,7 @@ class MainActivity : AppCompatActivity() {
             if (location != null) {
                 val latitude = location.latitude.toString()
                 val longitude = location.longitude.toString()
-                val profileRepository = ProfileRepository(apiService)
+                val profileRepository = ProfileRepository(apiService, this)
                 lifecycleScope.launch {
                     profileRepository.checkAndSaveAddress(latitude, longitude)
                 }
