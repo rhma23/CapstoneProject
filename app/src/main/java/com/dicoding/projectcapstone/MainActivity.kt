@@ -12,12 +12,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -327,7 +323,7 @@ class MainActivity : AppCompatActivity() {
             if (location != null) {
                 val latitude = location.latitude.toString()
                 val longitude = location.longitude.toString()
-                val profileRepository = ProfileRepository(apiService)
+                val profileRepository = ProfileRepository(apiService, this)
                 lifecycleScope.launch {
                     profileRepository.checkAndSaveAddress(latitude, longitude)
                 }

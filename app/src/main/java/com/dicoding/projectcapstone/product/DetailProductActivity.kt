@@ -28,14 +28,12 @@ class DetailProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
 
-        val lyDetailProductTop: LinearLayout = findViewById(R.id.lyDetailProductTop)
-        val lyDetailProductBottom: LinearLayout = findViewById(R.id.lyDetailProductBottom)
-        val progressBar: ProgressBar = findViewById(R.id.progressBar)
-        val txtLoadingMessage: TextView = findViewById(R.id.txtLoadingMessage)
+        val lyDetailProductTop: LinearLayout = findViewById(R.id.product_detail_container)
+        val progressBar: ProgressBar = findViewById(R.id.loading_spinner)
+        val txtLoadingMessage: TextView = findViewById(R.id.loading_text)
 
         //membuat indikator loading
         lyDetailProductTop.visibility = View.INVISIBLE
-        lyDetailProductBottom.visibility = View.INVISIBLE
         progressBar.visibility = View.VISIBLE
         txtLoadingMessage.visibility = View.VISIBLE
 
@@ -64,14 +62,14 @@ class DetailProductActivity : AppCompatActivity() {
                     descriptionTextView.text = data.description ?: "Unknown Description"
                     priceTextView.text = data.price?.let { helper.formatRupiah(it.toInt()) }
                     sellerTextView.text = data.merchant?.business_name ?: "Unknown Seller"
+                    Log.d("DetailProductActivity", "onCreate: ${data.image}")
 
                     Glide.with(this)
-                        .load(data.image)
+                        .load(data.image?.let { helper.removePath(it)})
                         .into(imageView)
 
                     //membuat indikator loading
-                    lyDetailProductBottom.visibility = View.VISIBLE
-                    lyDetailProductBottom.visibility = View.VISIBLE
+                    lyDetailProductTop.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
                     txtLoadingMessage.visibility = View.GONE
                 } ?: run {
