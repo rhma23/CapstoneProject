@@ -28,14 +28,14 @@ class DetailProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
 
-        val LyDetailProductTop: LinearLayout = findViewById(R.id.lyDetailProductTop)
-        val LyDetailProductBottom: LinearLayout = findViewById(R.id.lyDetailProductBottom)
+        val lyDetailProductTop: LinearLayout = findViewById(R.id.lyDetailProductTop)
+        val lyDetailProductBottom: LinearLayout = findViewById(R.id.lyDetailProductBottom)
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
         val txtLoadingMessage: TextView = findViewById(R.id.txtLoadingMessage)
 
         //membuat indikator loading
-        LyDetailProductTop.visibility = View.INVISIBLE
-        LyDetailProductBottom.visibility = View.INVISIBLE
+        lyDetailProductTop.visibility = View.INVISIBLE
+        lyDetailProductBottom.visibility = View.INVISIBLE
         progressBar.visibility = View.VISIBLE
         txtLoadingMessage.visibility = View.VISIBLE
 
@@ -70,8 +70,8 @@ class DetailProductActivity : AppCompatActivity() {
                         .into(imageView)
 
                     //membuat indikator loading
-                    LyDetailProductTop.visibility = View.VISIBLE
-                    LyDetailProductBottom.visibility = View.VISIBLE
+                    lyDetailProductBottom.visibility = View.VISIBLE
+                    lyDetailProductBottom.visibility = View.VISIBLE
                     progressBar.visibility = View.GONE
                     txtLoadingMessage.visibility = View.GONE
                 } ?: run {
