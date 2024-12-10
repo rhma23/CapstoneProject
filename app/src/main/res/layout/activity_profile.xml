@@ -90,8 +90,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
-                        android:id="@+id/edit_profile"
-                        android:text="@string/edit_profil"
+                        android:id="@+id/show_profile"
+                        android:text="@string/show_profil"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 

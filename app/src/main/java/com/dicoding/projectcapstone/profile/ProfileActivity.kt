@@ -44,7 +44,7 @@ class ProfileActivity : AppCompatActivity() {
         binding.profileName.text = sessionManager.getUsername()
         // Navigasi ke fragment edit profil atau edit alamat
         binding.editProfile.setOnClickListener {
-            navigateToFragment(EditProfileFragment())
+            navigateToFragment(ShowProfileFragment())
         }
 
         // Navigasi menggunakan bottom navigation
