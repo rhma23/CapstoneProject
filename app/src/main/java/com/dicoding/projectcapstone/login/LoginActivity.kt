@@ -145,12 +145,9 @@ class LoginActivity : AppCompatActivity() {
                     show()
                 }
             } else {
-                // Tampilkan loading di tombol
                 binding.btnLogin.showLoading(true)
-
                 binding.btnLogin.postDelayed({
                     loginModel.login(email, password) { success ->
-                        // Sembunyikan loading di tombol
                         binding.btnLogin.showLoading(false)
 
                         if (success) {

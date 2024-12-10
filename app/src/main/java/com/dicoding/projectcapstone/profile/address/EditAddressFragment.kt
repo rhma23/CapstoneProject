@@ -32,7 +32,7 @@ class EditAddressFragment : Fragment() {
 
     ): View? {
         val view = inflater.inflate(R.layout.fragment_edit_address, container, false)
-        sessionManager = RetrofitClient.getSessionManager()
+
         val streetNameEditText = view.findViewById<EditText>(R.id.edit_street_name)
         val cityEditText = view.findViewById<EditText>(R.id.edit_city)
         val postalCodeEditText = view.findViewById<EditText>(R.id.edit_postal_code)

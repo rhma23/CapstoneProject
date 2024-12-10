@@ -19,10 +19,6 @@ object RetrofitClient {
         sessionManager = SessionManager(context)
     }
 
-    fun getSessionManager(): SessionManager {
-        return sessionManager
-    }
-
     private fun createOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor(sessionManager))
