@@ -267,7 +267,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 val delay =
-                    if (weather_main == "null") 1000L else 3600000L // 1 second if null, 1 hour otherwise
+                    if (weather_main == "null") 1000L else 10800000L // 1 second if null, 3 hour otherwise
                 handler.postDelayed(this, delay)
             }
         }

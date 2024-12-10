@@ -22,15 +22,19 @@ class ProductRecomendationWeatherAdapter(
         val productPrice: TextView = itemView.findViewById(R.id.item_price)
         val productRating: TextView = itemView.findViewById(R.id.item_rating)
         val productStatus: TextView = itemView.findViewById(R.id.item_status)
+        val description: TextView = itemView.findViewById(R.id.item_description)
 
         fun bind(event: DataItemResponse, onItemClick: (DataItemResponse) -> Unit) {
             productName.text = event.name ?: "Unnamed Event"
             productPrice.text = helper.formatRupiah(event.price?.toInt() ?: 0)
             productRating.text = (event.merchant?.average_rating ?: "Unknown Rating").toString()
-            productStatus.text = event.merchant?.status ?: "Unknown Status"
+            description.text = event.description ?: "Unknown Description"
+
             if (event.merchant?.status == "tutup") {
+                productStatus.text = "Closed"
                 productStatus.setTextColor(itemView.context.resources.getColor(R.color.red))
             } else {
+                productStatus.text = "Open"
                 productStatus.setTextColor(itemView.context.resources.getColor(R.color.green))
             }
             Glide.with(itemView.context)

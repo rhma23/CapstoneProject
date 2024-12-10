@@ -89,15 +89,15 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun navigateToLogin() {
         navigateWithLoading(LoginActivity::class.java)
-        finish()
+//        finish()
     }
 
     private fun navigateWithLoading(targetActivity: Class<*>) {
         Log.d("ProfileActivity", "Loading started")
-        binding.loadingProfile.visibility = View.VISIBLE // Tampilkan ProgressBar
+        binding.loadingProfile.visibility = View.VISIBLE
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, targetActivity))
-            binding.loadingProfile.visibility = View.GONE // Sembunyikan ProgressBar
+            binding.loadingProfile.visibility = View.GONE
         }, 1500)
     }
 

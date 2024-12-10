@@ -53,6 +53,7 @@ class DetailProductActivity : AppCompatActivity() {
         val priceTextView: TextView = findViewById(R.id.product_price)
         val sellerTextView: TextView = findViewById(R.id.merchant_name)
         val imageView: ImageView = findViewById(R.id.product_image)
+        val statusTextView: TextView = findViewById(R.id.product_status)
 
         Handler(Looper.getMainLooper()).postDelayed({
             productViewModel.productDetailLiveData.observe(this) { productDetail ->
@@ -62,6 +63,13 @@ class DetailProductActivity : AppCompatActivity() {
                     descriptionTextView.text = data.description ?: "Unknown Description"
                     priceTextView.text = data.price?.let { helper.formatRupiah(it.toInt()) }
                     sellerTextView.text = data.merchant?.business_name ?: "Unknown Seller"
+                    if (data.merchant?.status == "tutup") {
+                        statusTextView.setTextColor(resources.getColor(R.color.red))
+                        statusTextView.text = "Closed"
+                    } else {
+                        statusTextView.setTextColor(resources.getColor(R.color.green))
+                        statusTextView.text = "Open"
+                    }
                     Log.d("DetailProductActivity", "onCreate: ${data.image}")
 
                     Glide.with(this)
