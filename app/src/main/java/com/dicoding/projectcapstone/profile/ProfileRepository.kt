@@ -1,5 +1,6 @@
 package com.dicoding.projectcapstone.profile
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +10,7 @@ import com.dicoding.projectcapstone.profile.address.GetAddressResponse
 import com.dicoding.projectcapstone.profile.address.NewAddressData
 import retrofit2.HttpException
 
-class ProfileRepository(private val apiService: ApiService) {
+class ProfileRepository(private val apiService: ApiService, requireContext: Context) {
 
     private val _addAddressResponse = MutableLiveData<List<NewAddressData>>()
     val addAddressResponse: LiveData<List<NewAddressData>> get() = _addAddressResponse

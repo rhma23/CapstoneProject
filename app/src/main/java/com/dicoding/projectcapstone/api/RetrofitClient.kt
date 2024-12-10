@@ -8,8 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     private lateinit var sessionManager: SessionManager
-        private const val BASE_URL = "https://kakilima-be-780530589771.asia-southeast2.run.app/api/"
-    private const val BASE_IP = "https://kakilima-be-780530589771.asia-southeast2.run.app/"
+    private const val BASE_URL = "http://35.219.16.190:3000/api/"
+    private const val BASE_IP = "http://35.219.16.190:3000/"
 
     fun getBaseIp(): String {
         return BASE_IP
