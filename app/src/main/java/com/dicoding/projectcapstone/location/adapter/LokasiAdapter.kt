@@ -14,8 +14,8 @@ import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.location.model.Lokasi
 import com.dicoding.projectcapstone.product.DataItem
 
-class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>) :
-    RecyclerView.Adapter<LokasiAdapter.LokasiViewHolder>() {
+class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>, private val onItemClick: (Lokasi) -> Unit
+) : RecyclerView.Adapter<LokasiAdapter.LokasiViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LokasiViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_lokasi, parent, false)
@@ -29,8 +29,8 @@ class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>) :
             .load(lokasi.imageUrl)
             .apply(
                 RequestOptions()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_background)
             )
             .into(holder.imageView)
         holder.ratingBar.rating = lokasi.rating.toFloat()
@@ -42,6 +42,9 @@ class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>) :
         } else {
             holder.itemStatus.text = "Tutup"
             holder.itemStatus.setTextColor(0xFFF44336.toInt())
+        }
+        holder.itemView.setOnClickListener {
+            onItemClick(lokasi)
         }
     }
 
