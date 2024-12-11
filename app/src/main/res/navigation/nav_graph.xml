@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/homeFragment">
 
     <fragment
@@ -34,5 +35,12 @@
             <argument
                  android:name="email"
                  app:argType="string" />
+
+        <fragment
+            android:id="@+id/changePasswordFragment"
+            android:name="com.dicoding.asclepius.profile.ChangePasswordFragment"
+            android:label="Ubah Password"
+            tools:layout="@layout/fragment_change_password" />
+
     </fragment>
 </navigation>

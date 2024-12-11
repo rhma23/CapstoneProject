@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
@@ -41,8 +42,21 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         sessionManager = SessionManager(this)
+
+        // set nama pengguna dari session
         binding.profileName.text = sessionManager.getUsername()
+
         // Navigasi ke fragment edit profil atau edit alamat
+        binding.showProfile.setOnClickListener {
+            navigateToFragment(ShowProfileFragment())
+        }
+
+        // Navigasi ke ChangePasswordFragment
+        binding.changePassword.setOnClickListener {
+            navigateToFragment(ChangePasswordFragment())
+        }
+
+        // Navigasi ke Profil
         binding.showProfile.setOnClickListener {
             navigateToFragment(ShowProfileFragment())
         }
@@ -56,14 +70,17 @@ class ProfileActivity : AppCompatActivity() {
                     navigateWithLoading(MainActivity::class.java)
                     true
                 }
+
                 R.id.location -> {
                     navigateWithLoading(LokasiActivity::class.java)
                     true
                 }
+
                 R.id.profile -> {
                     navigateWithLoading(ProfileActivity::class.java)
                     true
                 }
+
                 else -> false
             }
         }
@@ -100,3 +117,4 @@ class ProfileActivity : AppCompatActivity() {
             .commit()
     }
 }
+
