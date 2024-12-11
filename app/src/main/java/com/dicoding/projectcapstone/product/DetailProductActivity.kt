@@ -20,9 +20,11 @@ import com.dicoding.projectcapstone.api.RetrofitClient.apiService
 import com.dicoding.projectcapstone.location.LokasiActivity
 import com.dicoding.projectcapstone.ui.MyButton
 import com.dicoding.projectcapstone.utils.Helper
+import com.dicoding.projectcapstone.utils.SessionManager
 
 class DetailProductActivity : AppCompatActivity() {
     private var helper: Helper = Helper()
+    private lateinit var sessionManager: SessionManager
     private val productViewModel: ProductModel by viewModels {
         ProductViewModelFactory(ProductRepository(apiService))
     }
@@ -30,6 +32,8 @@ class DetailProductActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
+
+        sessionManager = SessionManager(this)
 
         val lyDetailProductTop: LinearLayout = findViewById(R.id.product_detail_container)
         val progressBar: ProgressBar = findViewById(R.id.loading_spinner)
@@ -58,7 +62,7 @@ class DetailProductActivity : AppCompatActivity() {
         val sellerTextView: TextView = findViewById(R.id.merchant_name)
         val imageView: ImageView = findViewById(R.id.product_image)
         val statusTextView: TextView = findViewById(R.id.product_status)
-
+        val user_address: TextView = findViewById(R.id.user_address)
         Handler(Looper.getMainLooper()).postDelayed({
             productViewModel.productDetailLiveData.observe(this) { productDetail ->
                 productDetail?.data?.let { data ->
@@ -67,6 +71,7 @@ class DetailProductActivity : AppCompatActivity() {
                     descriptionTextView.text = data.description ?: "Unknown Description"
                     priceTextView.text = data.price?.let { helper.formatRupiah(it.toInt()) }
                     sellerTextView.text = data.merchant?.business_name ?: "Unknown Seller"
+                    user_address.text = sessionManager.getFullAddress()
                     if (data.merchant?.status == "tutup") {
                         statusTextView.setTextColor(resources.getColor(R.color.red))
                         statusTextView.text = "Closed"
