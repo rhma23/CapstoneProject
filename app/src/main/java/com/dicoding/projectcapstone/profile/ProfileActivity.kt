@@ -15,6 +15,7 @@ import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityProfileBinding
 import com.dicoding.projectcapstone.location.LokasiActivity
 import com.dicoding.projectcapstone.login.LoginActivity
+import com.dicoding.projectcapstone.password.ForgotPasswordActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -53,7 +54,7 @@ class ProfileActivity : AppCompatActivity() {
 
         // Navigasi ke ChangePasswordFragment
         binding.changePassword.setOnClickListener {
-            navigateToFragment(ChangePasswordFragment())
+            navigateWithLoading(ForgotPasswordActivity::class.java)
         }
 
         // Navigasi ke Profil
