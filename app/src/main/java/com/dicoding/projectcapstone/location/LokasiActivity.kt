@@ -308,7 +308,8 @@ class LokasiActivity : AppCompatActivity(), OnMapReadyCallback {
         nameTextView.text = lokasi.name
         ratingBar.rating = lokasi.rating.toFloat()
         distanceTextView.text = String.format("%.2f km", lokasi.distance)
-        statusTextView.text = if (lokasi.isOpen) "Buka" else "Tutup"
+        statusTextView.text = if (lokasi.isOpen) "Open" else "Closed"
+        statusTextView.setTextColor(if (lokasi.isOpen) 0xFF4CAF50.toInt() else 0xFFF44336.toInt())
         Glide.with(this)
             .load(lokasi.imageUrl)
             .apply(

@@ -37,10 +37,10 @@ class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>, private val onIte
         holder.ratingText.text = lokasi.rating.toString()
         holder.distanceView.text = String.format("%.2f km", lokasi.distance)
         if (lokasi.isOpen) {
-            holder.itemStatus.text = "Buka"
+            holder.itemStatus.text = "Open"
             holder.itemStatus.setTextColor(0xFF4CAF50.toInt())
         } else {
-            holder.itemStatus.text = "Tutup"
+            holder.itemStatus.text = "Closed"
             holder.itemStatus.setTextColor(0xFFF44336.toInt())
         }
         holder.itemView.setOnClickListener {

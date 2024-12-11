@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.dicoding.projectcapstone.MainActivity
@@ -71,11 +72,19 @@ class ProfileActivity : AppCompatActivity() {
         setupAction()
     }
 
+
     private fun setupAction() {
         // Tombol logout
         binding.logout.setOnClickListener {
-            userModel.logout()
-            navigateToLogin()
+            AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton("Yes") { _, _ ->
+                    userModel.logout()
+                    navigateToLogin()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
     }
 
