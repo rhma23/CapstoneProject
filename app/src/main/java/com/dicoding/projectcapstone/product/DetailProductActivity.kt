@@ -80,5 +80,12 @@ class DetailProductActivity : AppCompatActivity() {
             }
         }, 3000)
 
+        // Set listener for the "Add to Cart" button
+//        val addToCartButton: MyButton = findViewById(R.id.add_to_cart_button)
+//        addTgit oCartButton.setOnClickListener {
+//            // Action when button is clicked
+//            // This can be redirecting to another activity or showing a toast, etc.
+//            Log.d("DetailProduct", "Add to Cart button clicked")
+//        }
     }
 }

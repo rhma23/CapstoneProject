@@ -20,12 +20,10 @@ class CategoryAdapter(
         val name: TextView = itemView.findViewById(R.id.item_name)
         val price: TextView = itemView.findViewById(R.id.item_price)
         val image: ImageView = itemView.findViewById(R.id.item_image)
-//        val description: TextView = itemView.findViewById(R.id.item_description)
 
         // Bind data to views and set up the onClick listener
         fun bind(product: DataItem) {
             name.text = product.name
-//            description.text = product.description
             price.text = product.price?.toString() ?: "N/A"
 
             // Construct the full image URL

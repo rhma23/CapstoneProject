@@ -42,7 +42,7 @@
 
     </LinearLayout>
 
-    <Button
+    <com.dicoding.projectcapstone.ui.MyButton
         android:id="@+id/save_address_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

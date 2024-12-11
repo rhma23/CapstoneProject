@@ -17,6 +17,9 @@ class ProductRepository(private val apiService: ApiService) {
     private val _productDetail = MutableLiveData<ProductDetailResponse>()
     val productDetail: LiveData<ProductDetailResponse> = _productDetail
 
+    private val _productRecomendationFromMl = MutableLiveData<List<DataItemResponse>>()
+    val productRecomendationFromMl: LiveData<List<DataItemResponse>> = _productRecomendationFromMl
+
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
@@ -39,6 +42,17 @@ class ProductRepository(private val apiService: ApiService) {
         } catch (e: Exception) {
             _errorMessage.postValue("Error: ${e.message}")
             Log.e("ProductRepository", "getAllData on Exception: ${e.message}")
+        }
+    }
+
+    suspend fun getProductRecommendationFromMl() {
+        try {
+            val response = apiService.getProductsRecomendationByMl()
+            Log.d("ProductRepository", "getAllDataRecomendaationByMl on Response: $response")
+            _productRecomendationFromMl.postValue(response.data as List<DataItemResponse>?)
+        } catch (e: Exception) {
+            _errorMessage.postValue("Error: ${e.message}")
+            Log.e("ProductRepository", "getAllDataRecomendaationByMl on Exception: ${e.message}")
         }
     }
 

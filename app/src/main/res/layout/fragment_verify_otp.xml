@@ -60,7 +60,7 @@
             android:elevation="4dp" />
 
         <!-- Tombol Submit -->
-        <Button
+        <com.dicoding.projectcapstone.ui.MyButton
             android:id="@+id/btnSubmitOtp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
