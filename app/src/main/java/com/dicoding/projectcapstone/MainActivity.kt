@@ -118,7 +118,9 @@ class MainActivity : AppCompatActivity() {
         userRepository = UserRepository.getInstance(apiService)
         userModel.setSessionManager(sessionManager)
         if (!sessionManager.getIsLogin()) {
-            navigateToLogin()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
         } else {
             setupHome()
 
@@ -177,10 +179,6 @@ class MainActivity : AppCompatActivity() {
         binding.txtName.text = sessionManager.getUsername()
         productViewModel.fetchAllProducts()
         productViewModel.fetchAllProductsRecommendations()
-    }
-
-    private fun navigateToLogin() {
-        navigateWithLoading(LoginActivity::class.java)
     }
 
     private fun productRecommendationAdapter(isHorizontal: Boolean) {
