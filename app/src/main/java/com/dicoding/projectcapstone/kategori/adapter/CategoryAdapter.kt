@@ -1,5 +1,6 @@
 package com.dicoding.projectcapstone.kategori.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.dicoding.projectcapstone.R
 import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.product.DataItem
+import com.dicoding.projectcapstone.utils.Helper
 
 class CategoryAdapter(
     private val productList: List<DataItem>,
@@ -20,14 +22,25 @@ class CategoryAdapter(
         val name: TextView = itemView.findViewById(R.id.item_name)
         val price: TextView = itemView.findViewById(R.id.item_price)
         val image: ImageView = itemView.findViewById(R.id.item_image)
+        val status: TextView = itemView.findViewById(R.id.item_status)
+        val description: TextView = itemView.findViewById(R.id.item_description)
+
 
         // Bind data to views and set up the onClick listener
         fun bind(product: DataItem) {
             name.text = product.name
-            price.text = product.price?.toString() ?: "N/A"
-
+            description.text = product.description
+            if (product.merchant?.status == "tutup") {
+                status.text = "Closed"
+                status.setTextColor(itemView.context.resources.getColor(R.color.red))
+            } else {
+                status.text = "Open"
+                status.setTextColor(itemView.context.resources.getColor(R.color.green))
+            }
             // Construct the full image URL
             val fullImageUrl = "${RetrofitClient.getBaseIp()}/images/products/${product.image}"
+            Log.d("CategoryAdapter", "bind: $fullImageUrl")
+            Log.d("CategoryAdapter", "bind: ${product.image}")
             Glide.with(itemView.context)
                 .load(fullImageUrl)
                 .into(image)

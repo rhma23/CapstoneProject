@@ -12,12 +12,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -271,7 +267,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 val delay =
-                    if (weather_main == "null") 1000L else 3600000L // 1 second if null, 1 hour otherwise
+                    if (weather_main == "null") 1000L else 10800000L // 1 second if null, 3 hour otherwise
                 handler.postDelayed(this, delay)
             }
         }
@@ -327,11 +323,12 @@ class MainActivity : AppCompatActivity() {
             if (location != null) {
                 val latitude = location.latitude.toString()
                 val longitude = location.longitude.toString()
-                val profileRepository = ProfileRepository(apiService)
+                val profileRepository = ProfileRepository(apiService, this)
                 lifecycleScope.launch {
                     profileRepository.checkAndSaveAddress(latitude, longitude)
                 }
                 getCityFromCoordinates(location.latitude, location.longitude)
+                getFullAddressFromCoordinates(location.latitude, location.longitude)
                 setupViewBaner()
                 Log.d("MainActivity", "Location saved: $latitude, $longitude")
             } else {
@@ -348,7 +345,7 @@ class MainActivity : AppCompatActivity() {
             if (!addresses.isNullOrEmpty()) {
                 val address = addresses[0]
                 sessionManager.saveCityName(address.locality)
-                Log.i("", "getCityFromCoordinates: "+address.locality)
+                Log.i("", "getCityFromCoordinates: " + address.locality)
                 return address.locality ?: "Indonesia"
             }
         } catch (e: Exception) {
@@ -356,5 +353,22 @@ class MainActivity : AppCompatActivity() {
         }
         return "Indonesia"
     }
+
+    fun getFullAddressFromCoordinates(latitude: Double, longitude: Double): String? {
+    val geocoder = Geocoder(this, Locale.getDefault())
+    try {
+        val addresses: MutableList<Address>? = geocoder.getFromLocation(latitude, longitude, 1)
+        if (!addresses.isNullOrEmpty()) {
+            val address = addresses[0]
+            val fullAddress = address.getAddressLine(0).substringAfter(" ")
+            sessionManager.saveFullAddress(fullAddress)
+            Log.i("MainActivity", "getFullAddressFromCoordinates: $fullAddress")
+            return fullAddress ?: "Indonesia"
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+    return "Indonesia"
+}
 
 }

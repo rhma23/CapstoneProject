@@ -23,10 +23,11 @@ class ProductRecomendationAdapter(private var events: List<DataItem>, private va
             productName.text = event.name ?: "Unnamed Event"
             productPrice.text = event.price ?: "Unknown Price"
             productRating.text = (event.merchant?.average_rating ?: "Unknown Rating").toString()
-            productStatus.text = event.merchant?.status ?: "Unknown Status"
             if(event.merchant?.status == "tutup") {
+                productStatus.text = "Closed"
                 productStatus.setTextColor(itemView.context.resources.getColor(R.color.red))
             } else {
+                productStatus.text = "Open"
                 productStatus.setTextColor(itemView.context.resources.getColor(R.color.green))
             }
 

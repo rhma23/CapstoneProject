@@ -10,37 +10,10 @@ import com.dicoding.projectcapstone.profile.address.GetAddressResponse
 import com.dicoding.projectcapstone.profile.address.NewAddressData
 import retrofit2.HttpException
 
-class ProfileRepository(
-    private val apiService: ApiService,
-    private val context: Context
-    ) {
-
-    private val sharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+class ProfileRepository(private val apiService: ApiService, requireContext: Context) {
 
     private val _addAddressResponse = MutableLiveData<List<NewAddressData>>()
     val addAddressResponse: LiveData<List<NewAddressData>> get() = _addAddressResponse
-
-    fun saveAddressLocally(address: Address) {
-        sharedPreferences.edit().apply {
-            putString("street", address.street)
-            putString("city", address.city)
-            putString("postalCode", address.postalCode)
-            apply()
-        }
-    }
-
-    fun getAddressLocally(): Address? {
-        val street = sharedPreferences.getString("street", null)
-        val city = sharedPreferences.getString("city", null)
-        val postalCode = sharedPreferences.getString("postalCode", null)
-        return if (street != null && city != null && postalCode != null) {
-            Address(street, city, postalCode)
-        } else {
-            null
-        }
-    }
-
-
 
     private val _getAddressResponse = MutableLiveData<List<GetAddressResponse>>()
     val getAddressResponse: LiveData<List<GetAddressResponse>> get() = _getAddressResponse
@@ -66,29 +39,12 @@ class ProfileRepository(
 
     suspend fun checkAndSaveAddress(lat: String, lon: String) {
         try {
-            val existingData = apiService.getAddress()
-            if (existingData.data == null) {
-                val addRequest = AddAdressRequest(lat, lon)
-                val response = apiService.addAddress(addRequest)
-                Log.d("ProfileRepository", "Data added successfully: ${response.data}")
-            } else {
-                val updateRequest = AddAdressRequest(lat, lon)
-                val response = apiService.updateAddress(updateRequest)
-                Log.d("ProfileRepository", "Data updated successfully: ${response.data}")
-            }
+            val addRequest = AddAdressRequest(lat, lon)
+            val response = apiService.addAddress(addRequest)
+            Log.d("ProfileRepository", "Data added successfully: ${response.data}")
         } catch (e: Exception) {
             Log.e("ProfileRepository", "Error in checkAndSaveAddress: ${e.message}")
         }
     }
-
-    suspend fun fetchAddress() {
-         try {
-            val response = apiService.getAddress()
-             Log.d("ProfileRepository", "fetchAddress: $response")
-        } catch (e: Exception) {
-            Log.e("ProfileRepository", "Error fetching address: ${e.message}")
-        }
-    }
-
 
 }

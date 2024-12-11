@@ -14,8 +14,8 @@ import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.location.model.Lokasi
 import com.dicoding.projectcapstone.product.DataItem
 
-class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>) :
-    RecyclerView.Adapter<LokasiAdapter.LokasiViewHolder>() {
+class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>, private val onItemClick: (Lokasi) -> Unit
+) : RecyclerView.Adapter<LokasiAdapter.LokasiViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LokasiViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_lokasi, parent, false)
@@ -29,19 +29,22 @@ class LokasiAdapter(private val lokasiList: ArrayList<Lokasi>) :
             .load(lokasi.imageUrl)
             .apply(
                 RequestOptions()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_background)
             )
             .into(holder.imageView)
         holder.ratingBar.rating = lokasi.rating.toFloat()
         holder.ratingText.text = lokasi.rating.toString()
         holder.distanceView.text = String.format("%.2f km", lokasi.distance)
         if (lokasi.isOpen) {
-            holder.itemStatus.text = "Buka"
+            holder.itemStatus.text = "Open"
             holder.itemStatus.setTextColor(0xFF4CAF50.toInt())
         } else {
-            holder.itemStatus.text = "Tutup"
+            holder.itemStatus.text = "Closed"
             holder.itemStatus.setTextColor(0xFFF44336.toInt())
+        }
+        holder.itemView.setOnClickListener {
+            onItemClick(lokasi)
         }
     }
 
