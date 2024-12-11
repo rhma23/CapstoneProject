@@ -71,11 +71,6 @@ class SessionManager(context: Context) {
         return prefs.getString(USERNAME_KEY, null)
     }
 
-    fun saveEmailUser(email: String) {
-        val editor = prefs.edit()
-        editor.putString(EMAil_USER, email)
-        editor.apply()
-    }
 
     fun saveRole(role: String) {
         val editor = prefs.edit()

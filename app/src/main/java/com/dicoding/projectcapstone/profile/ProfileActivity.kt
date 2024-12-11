@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import com.dicoding.projectcapstone.MainActivity
 import com.dicoding.projectcapstone.R
@@ -15,6 +16,7 @@ import com.dicoding.projectcapstone.api.RetrofitClient
 import com.dicoding.projectcapstone.databinding.ActivityProfileBinding
 import com.dicoding.projectcapstone.location.LokasiActivity
 import com.dicoding.projectcapstone.login.LoginActivity
+import com.dicoding.projectcapstone.password.ForgotPasswordActivity
 import com.dicoding.projectcapstone.user.UserModel
 import com.dicoding.projectcapstone.user.UserModelFactory
 import com.dicoding.projectcapstone.user.UserRepository
@@ -42,8 +44,21 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         sessionManager = SessionManager(this)
+
+        // set nama pengguna dari session
         binding.profileName.text = sessionManager.getUsername()
+
         // Navigasi ke fragment edit profil atau edit alamat
+        binding.showProfile.setOnClickListener {
+            navigateToFragment(ShowProfileFragment())
+        }
+
+        // Navigasi ke ChangePasswordFragment
+        binding.changePassword.setOnClickListener {
+            navigateWithLoading(ForgotPasswordActivity::class.java)
+        }
+
+        // Navigasi ke Profil
         binding.showProfile.setOnClickListener {
             navigateToFragment(ShowProfileFragment())
         }
@@ -57,14 +72,17 @@ class ProfileActivity : AppCompatActivity() {
                     navigateWithLoading(MainActivity::class.java)
                     true
                 }
+
                 R.id.location -> {
                     navigateWithLoading(LokasiActivity::class.java)
                     true
                 }
+
                 R.id.profile -> {
                     navigateWithLoading(ProfileActivity::class.java)
                     true
                 }
+
                 else -> false
             }
         }
@@ -109,3 +127,4 @@ class ProfileActivity : AppCompatActivity() {
             .commit()
     }
 }
+
