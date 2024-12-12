@@ -66,26 +66,26 @@ class MainActivity : AppCompatActivity() {
         Weather(
             id = 1,
             category = "Rain",
-            description = "Cuaca hujan bikin suasana lebih nyaman, ayo lengkapi harimu dengan yang terbaik! Jangan sampai terlewat.",
+            description = "Rainy weather is perfect for something warm. Enjoy a selection of hot drinks and comforting meals that make the atmosphere cozy",
             imageUrl = "https://i.pinimg.com/736x/7a/44/19/7a44199aff3fd42c45b1807feb518fa4.jpg"
         ),
         Weather(
             id = 2,
             category = "Drizzle",
-            description = "Langit mendung, tapi semangat tetap harus cerah! Buat harimu lebih seru dengan hal istimewa ini!",
-            imageUrl = "https://i.pinimg.com/736x/28/85/71/28857188f7a6757d5dba9d3f339f1bec.jpg"
+            description = "Light drizzle creates a soothing vibe. It’s the perfect time for warm snacks and sweet drinks to accompany your day",
+            imageUrl = "file:///C:/Users/asusu/Downloads/high-angle-closeup-shot-isolated-green-leaf-puddle-rainy-day.jpg"
         ),
         Weather(
             id = 3,
             category = "Clouds",
-            description = "Cuaca panas? Waktunya cari sesuatu yang bikin segar dan nyaman. Yuk, jangan tunggu lama-lama!",
-            imageUrl = "https://i.pinimg.com/736x/b9/39/79/b939794266cf899fbbd55435efd2a402.jpg"
+            description = "Cloudy skies don’t have to be dull. Discover delicious food and favorite drinks that bring cheer to your day",
+            imageUrl = "https://i.pinimg.com/736x/ff/08/a6/ff08a64470b936483bc51b823cb726eb.jpg"
         ),
         Weather(
             id = 4,
             category = "Clear",
-            description = "Matahari bersinar terang, saatnya menikmati hari dengan penuh semangat. Temukan pilihan yang bikin harimu lebih spesial!",
-            imageUrl = "https://i.pinimg.com/736x/ff/08/a6/ff08a64470b936483bc51b823cb726eb.jpg"
+            description = "Clear skies and fresh air? It’s the perfect moment to enjoy cold drinks and light snacks that make your day even better",
+            imageUrl = "https://i.pinimg.com/736x/b9/39/79/b939794266cf899fbbd55435efd2a402.jpg"
         )
     )
 

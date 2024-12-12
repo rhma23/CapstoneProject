@@ -135,7 +135,7 @@
                     android:id="@+id/product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="20dp"
                     android:text="@string/default_product_price"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -155,7 +155,7 @@
                         android:layout_height="16dp"
                         android:layout_marginEnd="8dp"
                         android:contentDescription="@string/distance_icon"
-                        android:src="@drawable/ic_location" />
+                        android:src="@drawable/ic_location_pin" />
 
                     <!-- Address Text -->
                     <TextView
@@ -175,7 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/description_label"
+                    android:text="Description"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />

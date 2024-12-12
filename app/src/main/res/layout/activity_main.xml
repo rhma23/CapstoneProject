@@ -26,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:gravity="center_vertical">
 
@@ -130,6 +129,14 @@
                     android:id="@+id/overlay"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:alpha="0.4" />
+
+                <!-- Background Hitam Transparan di bawah teks -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_banner"
                     android:alpha="0.4" />
 
                 <TextView

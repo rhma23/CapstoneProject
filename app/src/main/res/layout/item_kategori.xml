@@ -39,9 +39,10 @@
         <TextView
             android:id="@+id/item_description"
             android:maxLines="2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
+            android:layout_marginEnd="8dp"
             android:textColor="@android:color/black" />
 
         <!-- Status (Buka/Tutup) -->
@@ -93,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_harga"
+            android:background="@drawable/bg_full_corner"
             android:gravity="end"
             android:paddingHorizontal="12dp"
             android:paddingVertical="4dp"
